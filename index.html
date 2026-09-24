@@ -116,6 +116,13 @@ table.rt th{color:var(--muted);font-size:12px}
 @media(max-width:850px){.hero{grid-template-columns:1fr}.level-grid{grid-template-columns:repeat(3,1fr)}.play{grid-template-columns:1fr}.side{order:-1}}
 @media(max-width:520px){.level-grid{grid-template-columns:1fr 1fr}.options{grid-template-columns:1fr}.answer-row{flex-direction:column}.submit{padding:12px}.grid3{grid-template-columns:1fr}.brand h1{font-size:15px}}
 
+
+.uk-voice-tip{display:flex;align-items:flex-start;gap:8px;margin-top:10px;padding:9px 11px;background:#eef4ff;border:1px solid #c5d4f0;border-radius:11px;color:#294b9b;font-size:12px;font-weight:600;line-height:1.4}
+.uk-voice-tip[hidden]{display:none!important}
+.uk-voice-tip-text{flex:1}
+.uk-voice-tip-dismiss{flex:none;background:transparent;border:0;color:#294b9b;font-size:18px;line-height:1;padding:0 2px;cursor:pointer;font-weight:800}
+.uk-voice-tip-dismiss:hover{opacity:.7}
+
 </style>
 </head>
 <body>
@@ -1553,11 +1560,89 @@ function isCorrect(value,q){
   return acceptedAnswers(q).some(a=>clean(a)===v);
 }
 function shuffleCopy(arr){const a=arr.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]} return a}
+/* British English TTS — prefer an en-GB / UK system voice */
+let preferredUkVoice=null;
+let ukVoiceTipShown=false;
+
+function isUkVoice(v){
+  if(!v) return false;
+  const lang=String(v.lang||'').toLowerCase();
+  const blob=(String(v.name||'')+' '+String(v.voiceURI||'')).toLowerCase();
+  if(lang.startsWith('en-gb')) return true;
+  return /british|united kingdom|\buk\b|en-gb|english\s*\(\s*uk\s*\)|english\s*\(\s*united kingdom\s*\)/.test(blob);
+}
+function scoreUkVoice(v){
+  const n=String(v.name||'').toLowerCase();
+  let score=0;
+  if(String(v.lang||'').toLowerCase().startsWith('en-gb')) score+=10;
+  if(/serena|amy|emma|libby|susan|kate|hazel|martha|sonia|aria|jenny|moira|fiona|karen|zira/.test(n)) score+=8;
+  if(/female|woman|girl/.test(n)) score+=5;
+  if(/child|kid|kids|junior/.test(n)) score+=3;
+  if(v.localService) score+=1;
+  if(/male|daniel|george|oliver|arthur|ryan|thomas|david|mark/.test(n)) score-=2;
+  return score;
+}
+function pickUkVoice(voices){
+  const uk=(voices||[]).filter(isUkVoice);
+  if(!uk.length) return null;
+  uk.sort((a,b)=>scoreUkVoice(b)-scoreUkVoice(a));
+  return uk[0];
+}
+function refreshUkVoice(){
+  if(!('speechSynthesis' in window)) return;
+  preferredUkVoice=pickUkVoice(speechSynthesis.getVoices()||[]);
+}
+function ensureUkVoiceTipEl(){
+  let tip=document.getElementById('ukVoiceTip');
+  if(tip) return tip;
+  tip=document.createElement('div');
+  tip.id='ukVoiceTip';
+  tip.className='uk-voice-tip';
+  tip.setAttribute('role','status');
+  tip.hidden=true;
+  tip.innerHTML='<span class="uk-voice-tip-text">British English tip — install or enable the <strong>English (United Kingdom)</strong> speech voice in system settings (Windows: Settings → Time &amp; Language → Speech; macOS: System Settings → Accessibility → Spoken Content).</span><button type="button" class="uk-voice-tip-dismiss" aria-label="Dismiss tip">×</button>';
+  tip.querySelector('.uk-voice-tip-dismiss').onclick=function(){tip.hidden=true};
+  const soundBtn=document.getElementById('soundBtn');
+  const note=soundBtn&&(soundBtn.closest('.note')||soundBtn.closest('.side-note'));
+  if(note) note.appendChild(tip);
+  else{
+    const fb=document.getElementById('feedback');
+    if(fb) fb.parentNode.insertBefore(tip, fb.nextSibling);
+    else document.body.appendChild(tip);
+  }
+  return tip;
+}
+function showUkVoiceTipIfNeeded(){
+  if(ukVoiceTipShown||preferredUkVoice) return;
+  ukVoiceTipShown=true;
+  const tip=ensureUkVoiceTipEl();
+  tip.hidden=false;
+}
 function speak(text){
   if(!('speechSynthesis' in window)) return;
   speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(text); u.lang='en-GB'; u.rate=0.92; speechSynthesis.speak(u);
+  if(!preferredUkVoice) refreshUkVoice();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-GB';
+  u.rate=0.92;
+  if(preferredUkVoice){
+    u.voice=preferredUkVoice;
+  }else{
+    showUkVoiceTipIfNeeded();
+  }
+  speechSynthesis.speak(u);
 }
+function initUkTts(){
+  if(!('speechSynthesis' in window)) return;
+  refreshUkVoice();
+  if(typeof speechSynthesis.addEventListener==='function'){
+    speechSynthesis.addEventListener('voiceschanged', refreshUkVoice);
+  }else{
+    speechSynthesis.onvoiceschanged=refreshUkVoice;
+  }
+}
+initUkTts();
+
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(el=>el.classList.toggle('active', el.id===id));
 }
