@@ -66,10 +66,15 @@ button,input{font:inherit}button{cursor:pointer;border:0}
 .answer-input:focus{border-color:var(--paint);box-shadow:0 0 0 4px #2f6b4f1a}
 .submit{padding:0 16px;border-radius:12px;background:var(--court);color:#fff;font-weight:900;box-shadow:0 4px 0 var(--court-dark);white-space:nowrap}
 .submit:active{transform:translateY(2px);box-shadow:0 2px 0 var(--court-dark)}
-.feedback{min-height:72px;padding-top:14px}
+.feedback{min-height:110px;padding-top:14px}
 .fb{border-radius:12px;padding:11px 13px;font-weight:650}
 .fb.good{background:#e3f6ec;color:#136b4d}.fb.try{background:#fff4da;color:#745619}.fb.reveal{background:#e8f0ff;color:#294b9b}
-.fb .explain{font-size:14px;font-weight:500;margin-top:5px}
+.fb .explain{font-size:14px;font-weight:500;margin-top:8px;line-height:1.45}
+.fb .explain .why-heading{display:block;font-size:13px;font-weight:800;margin:0 0 4px;letter-spacing:.02em}
+.fb.good .explain,.fb.reveal .explain{color:inherit;opacity:.95}
+.continue-btn{display:inline-block;margin-top:12px;padding:10px 16px;border-radius:11px;background:var(--mint);color:#fff;font-weight:900;box-shadow:0 3px 0 #1e7a58}
+.continue-btn:hover{filter:brightness(1.05)}
+.continue-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #1e7a58}
 .side{padding:16px;height:max-content}
 .bar{height:10px;background:#e6e8ee;border-radius:8px;overflow:hidden;margin:8px 0}
 .bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--mint),#7dce7d);transition:.3s}
@@ -1644,6 +1649,7 @@ function appendHintUI(area,q){
   actions.append(hintBtn,hearBtn); wrap.append(actions,box); area.appendChild(wrap);
 }
 function praiseFor(q){return (q&&q.praise)||(typeof PRAISES!=='undefined'?PRAISES:ENGINE_PRAISES)[Math.min(state.level,PRAISES.length-1)]}
+function explainText(q){const e=q&&q.explain; if(e&&String(e).trim()) return String(e).trim(); return 'That option matches the key idea for this question.';}
 function submitAnswer(value){
   if(!String(value).trim()) return;
   const q=state.current;
@@ -1656,16 +1662,19 @@ function submitAnswer(value){
   if(correct){
     logQuestionResult(Object.assign({correct:true,revealed:false},meta));
     state.question++; state.streak++; state.best=Math.max(state.best,state.streak);
-    $('feedback').innerHTML='<div class="fb good">✓ '+escapeHtml(praise)+'<div class="explain">Correct — keep the streak alive.</div></div>';
-    speak(praise); saveProgress();
-    setTimeout(()=>{ if(state.question>=3) completeLevel(); else renderQuestion(); },900);
+    const why=explainText(q);
+    $('feedback').innerHTML='<div class="fb good">✓ '+escapeHtml(praise)+'<div class="explain"><span class="why-heading">Why this is right</span>'+escapeHtml(why)+'</div><button type="button" class="continue-btn" id="continueBtn">Continue</button></div>';
+    speak((praise||'')+'. '+why); saveProgress();
+    document.querySelectorAll('.option,.submit,.answer-input,.hint-btn,.hint-hear').forEach(x=>x.disabled=true);
+    $('continueBtn').onclick=()=>{ if(state.question>=3) completeLevel(); else renderQuestion(); };
   }else{
     state.wrong++; state.streak=0;
     const ansText=acceptedAnswers(q)[0]||'';
     if(state.wrong>=2){
       logReveal(meta);
-      $('feedback').innerHTML='<div class="fb reveal">The answer is <strong>'+escapeHtml(ansText)+'</strong>.<div class="explain">'+escapeHtml(q.explain||'')+'</div></div>';
-      speak('Here is the answer. '+ansText+'. '+(q.explain||''));
+      const why=explainText(q);
+      $('feedback').innerHTML='<div class="fb reveal">The answer is <strong>'+escapeHtml(ansText)+'</strong>.<div class="explain"><span class="why-heading">Why this is right</span>'+escapeHtml(why)+'</div></div>';
+      speak('Here is the answer. '+ansText+'. '+why);
       setTimeout(()=>renderQuestion(),2100);
     }else{
       if(levelAttempt){
