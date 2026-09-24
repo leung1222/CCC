@@ -225,7 +225,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Multiply two independent success probabilities.",
           "praise": "Clean probability read!",
-          "explain": "P(both)=0.8×0.8=0.64."
+          "explain": "Independent events multiply: P(make)=0.8 each. So P(both)=0.8×0.8=0.64 — a 64% chance of two makes in a row if shots are independent."
         },
         {
           "type": "choice",
@@ -241,7 +241,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "P(miss)=1−P(make).",
           "praise": "Solid complement rule!",
-          "explain": "P(miss)=1−0.8=0.2."
+          "explain": "Use the complement rule: P(miss)=1−P(make)=1−0.8=0.2. So there is a 20% chance the first free throw is missed."
         },
         {
           "type": "input",
@@ -252,7 +252,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "E(X)=n×p for a binomial.",
           "praise": "Nice expected-value work!",
-          "explain": "E(X)=10×0.7=7."
+          "explain": "For n independent trials with success probability p, E(X)=n×p. Here E(X)=10×0.7=7, so you expect seven makes on average."
         }
       ]
     },
@@ -274,7 +274,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "EV = value × probability.",
           "praise": "Sharp EV thinking!",
-          "explain": "EV=3×0.35=1.05."
+          "explain": "Expected points = score if successful × probability of success = 3×0.35=1.05. So each attempt is worth 1.05 points on average."
         },
         {
           "type": "choice",
@@ -290,7 +290,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Compare 2×0.55 with 3×0.35.",
           "praise": "Good comparison!",
-          "explain": "1.10 > 1.05, so the 2-pointer."
+          "explain": "EV(2-pt)=2×0.55=1.10 and EV(3-pt)=3×0.35=1.05. Because 1.10>1.05, the 2-pointer has the higher expected value in this matchup."
         },
         {
           "type": "input",
@@ -302,7 +302,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Multiply payout by probability.",
           "praise": "Clear EV!",
-          "explain": "12×1/4=3."
+          "explain": "Expected value = payoff × probability = 12×(1/4)=3. The average return per play is therefore £3."
         }
       ]
     },
@@ -324,7 +324,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Divide points by possessions.",
           "praise": "Pace maths locked in!",
-          "explain": "108÷90=1.2."
+          "explain": "Divide total points by possessions: 108÷90=1.2. So the team scored 1.2 points per possession."
         },
         {
           "type": "input",
@@ -335,7 +335,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Divide by the HCF.",
           "praise": "Ratio simplified!",
-          "explain": "HCF=6 → 3:2."
+          "explain": "Divide both parts by the highest common factor 6: 18:12 → 3:2. The simplified assist-to-turnover ratio is 3:2."
         },
         {
           "type": "choice",
@@ -351,7 +351,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Speed = distance ÷ time.",
           "praise": "Clean kinematics link!",
-          "explain": "24÷4=6 m/s."
+          "explain": "Speed = distance÷time = 24÷4=6 m/s. At constant speed the athlete covers 6 metres every second."
         }
       ]
     },
@@ -367,7 +367,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Find the common difference.",
           "praise": "Sequence spotted!",
-          "explain": "Difference 23 → 68+23=91."
+          "explain": "Common difference = 45−22=23 (and 68−45=23). Next term = 68+23=91."
         },
         {
           "type": "choice",
@@ -383,7 +383,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Divide a term by the previous one.",
           "praise": "Ratio found!",
-          "explain": "6÷2=3."
+          "explain": "Common ratio = term÷previous term = 6÷2=3 (and 18÷6=3). Each load is three times the one before."
         },
         {
           "type": "input",
@@ -393,7 +393,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Add them or use Sₙ=n/2×(first+last).",
           "praise": "Series sum correct!",
-          "explain": "5+10+15+20=50."
+          "explain": "Add the four terms: 5+10+15+20=50. This is also 4× the average of first and last: 4×(5+20)/2=50."
         }
       ]
     },
@@ -415,7 +415,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Gradient = Δy/Δx.",
           "praise": "Graph sense!",
-          "explain": "1.5 points per minute."
+          "explain": "Gradient means change in points per minute played. A gradient of 1.5 means 1.5 extra points for each extra minute on court."
         },
         {
           "type": "choice",
@@ -431,7 +431,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Pay for tickets first, then divide remainder.",
           "praise": "Budget constraint solved!",
-          "explain": "24 spent; 16 left → 8 programmes."
+          "explain": "Three tickets cost 3×8=24, leaving 40−24=16. Programmes at £2 each: 16÷2=8. So the maximum is 8 programmes."
         },
         {
           "type": "input",
@@ -443,7 +443,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Subtract 5, divide by 2.",
           "praise": "Equation cracked!",
-          "explain": "2x=12 ⇒ x=6."
+          "explain": "Subtract 5 from both sides: 2x=12. Divide by 2: x=6. Check: 2×6+5=17."
         }
       ]
     }
@@ -467,7 +467,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Gravity acts vertically only.",
           "praise": "Projectile fundamentals!",
-          "explain": "Horizontal velocity stays constant."
+          "explain": "With no air resistance, horizontal velocity does not change in flight. Gravity only changes the vertical component."
         },
         {
           "type": "choice",
@@ -483,7 +483,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "The ball stops rising for an instant.",
           "praise": "Apex understood!",
-          "explain": "Vertical velocity is briefly zero."
+          "explain": "At the highest point the ball stops rising for an instant, so vertical velocity is zero before it starts to fall."
         },
         {
           "type": "input",
@@ -494,7 +494,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Time to apex is half the flight.",
           "praise": "SUVAT applied!",
-          "explain": "0.5 s to apex → u=5 m/s."
+          "explain": "For a symmetric flight of 1.0 s, time to apex is 0.5 s. At the apex vertical velocity is 0, so 0=u−10×0.5 ⇒ u=5 m/s."
         }
       ]
     },
@@ -516,7 +516,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Δp=mΔv with final speed 0.",
           "praise": "Momentum change nailed!",
-          "explain": "0.60×8.0=4.8."
+          "explain": "Change in momentum |Δp|=m|Δv|=0.60×8.0=4.8 kg m/s when the ball is brought to rest."
         },
         {
           "type": "choice",
@@ -532,7 +532,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Newton III pairs act on different bodies.",
           "praise": "Newton III clear!",
-          "explain": "Ball-on-floor and floor-on-ball."
+          "explain": "Newton’s third law: if the floor pushes up on the ball, the ball pushes down on the floor with equal magnitude."
         },
         {
           "type": "input",
@@ -543,7 +543,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Impulse=F×t.",
           "praise": "Impulse sorted!",
-          "explain": "24×0.20=4.8."
+          "explain": "Impulse = force × time = 24×0.20=4.8 N s. Impulse equals the change in momentum."
         }
       ]
     },
@@ -565,7 +565,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "ΔGPE=mgΔh.",
           "praise": "Energy gain correct!",
-          "explain": "70×10×0.40=280 J."
+          "explain": "ΔGPE=mgh=70×10×0.40=280 J. That is the gain in gravitational potential energy in the jump."
         },
         {
           "type": "choice",
@@ -581,7 +581,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Definition of mechanical work.",
           "praise": "Work defined!",
-          "explain": "W=F×s along F."
+          "explain": "Mechanical work is W=F×s when force and displacement are in the same direction (or F×s×cosθ in general)."
         },
         {
           "type": "input",
@@ -592,7 +592,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Square speed, ×mass, ÷2.",
           "praise": "KE calculated!",
-          "explain": "½×0.6×100=30."
+          "explain": "Kinetic energy is ½mv². Substitute m=0.6 kg and v=10 m/s: ½×0.6×100=30 J. That is the energy due to the ball’s motion."
         }
       ]
     },
@@ -614,7 +614,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Force spread over contact area.",
           "praise": "Pressure definition locked!",
-          "explain": "P=F/A."
+          "explain": "Pressure is force per unit area: P=F/A. Larger area or smaller force means lower pressure."
         },
         {
           "type": "choice",
@@ -630,7 +630,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Impulse=F_avg×t.",
           "praise": "Impulse–time trade-off!",
-          "explain": "Longer Δt → smaller peak F."
+          "explain": "Impulse=average force×time. A soft pad lengthens the contact time, so the peak force is smaller for the same impulse."
         },
         {
           "type": "input",
@@ -642,7 +642,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "P=F/A.",
           "praise": "Pressure found!",
-          "explain": "200/0.050=4000 Pa."
+          "explain": "Pressure is force per unit area: P=F/A=200÷0.050=4000 Pa. Spreading the same force over a larger area would reduce pressure."
         }
       ]
     },
@@ -664,7 +664,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Integral of v dt.",
           "praise": "Graph area read!",
-          "explain": "Area under v–t = displacement."
+          "explain": "The area under a v–t graph equals displacement (change in position) over that time interval."
         },
         {
           "type": "choice",
@@ -680,7 +680,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "a=Δv/Δt.",
           "praise": "Gradient = acceleration!",
-          "explain": "Gradient of v–t is a."
+          "explain": "Gradient = Δv/Δt, which is acceleration. A steeper v–t slope means greater acceleration."
         },
         {
           "type": "input",
@@ -691,7 +691,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "v=u+at, u=0.",
           "praise": "SUVAT done!",
-          "explain": "v=2×3=6."
+          "explain": "From rest, u=0. Use v=u+at: v=0+2.0×3.0=6 m/s after 3 seconds of constant acceleration."
         }
       ]
     }
@@ -715,7 +715,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Hydrolysed at the myosin head.",
           "praise": "ATP locked in!",
-          "explain": "ATP powers the cross-bridge cycle."
+          "explain": "ATP is the immediate energy currency: its hydrolysis powers the myosin–actin cross-bridge cycle that shortens the muscle."
         },
         {
           "type": "choice",
@@ -731,7 +731,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Brief explosive efforts use phosphagens.",
           "praise": "Energy system sorted!",
-          "explain": "ATP–PC is fastest for short maximal work."
+          "explain": "The ATP–PC (phosphocreatine) system resynthesises ATP fastest and dominates very short maximal efforts of about 2–3 seconds."
         },
         {
           "type": "input",
@@ -742,7 +742,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Powerhouse of the cell.",
           "praise": "Organelle named!",
-          "explain": "Mitochondria: oxidative phosphorylation."
+          "explain": "Mitochondria produce most aerobic ATP by oxidative phosphorylation when oxygen is available."
         }
       ]
     },
@@ -764,7 +764,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Sustained work needs oxygen pathways.",
           "praise": "Aerobic dominance clear!",
-          "explain": "Aerobic metabolism dominates prolonged efforts."
+          "explain": "Efforts lasting several minutes rely mainly on aerobic metabolism, which can sustain ATP supply with oxygen."
         },
         {
           "type": "choice",
@@ -780,7 +780,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Pyruvate reduced when O₂ limited.",
           "praise": "Fatigue chemistry!",
-          "explain": "Anaerobic glycolysis → lactate."
+          "explain": "Intense anaerobic glycolysis produces lactate (lactic acid system) when oxygen supply cannot meet demand."
         },
         {
           "type": "input",
@@ -791,7 +791,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Useful product for the cell.",
           "praise": "Respiration products!",
-          "explain": "ATP (energy) is released."
+          "explain": "Aerobic respiration releases energy stored as ATP (as well as CO₂ and water)."
         }
       ]
     },
@@ -813,7 +813,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Slow-twitch, aerobic capacity.",
           "praise": "Fibre types clear!",
-          "explain": "Type I: oxidative and fatigue-resistant."
+          "explain": "Type I (slow-twitch) fibres are more oxidative and fatigue-resistant than Type II fibres."
         },
         {
           "type": "choice",
@@ -829,7 +829,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Elevated O₂ use after hard efforts.",
           "praise": "Recovery science!",
-          "explain": "EPOC: PC resynthesis and clearance."
+          "explain": "After exercise, EPOC supports recovery processes such as phosphocreatine resynthesis and lactate clearance."
         },
         {
           "type": "input",
@@ -839,7 +839,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Thick filament with ATPase heads.",
           "praise": "Myosin named!",
-          "explain": "Myosin heads hydrolyse ATP."
+          "explain": "Myosin heads bind and hydrolyse ATP; that energy drives the power stroke along actin."
         }
       ]
     },
@@ -861,7 +861,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Flow per minute = rate × volume/beat.",
           "praise": "Q=HR×SV!",
-          "explain": "Cardiac output = HR × SV."
+          "explain": "Cardiac output = heart rate × stroke volume. It is the volume of blood pumped per minute."
         },
         {
           "type": "choice",
@@ -877,7 +877,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Index of aerobic power.",
           "praise": "VO₂ max defined!",
-          "explain": "Highest achievable oxygen uptake rate."
+          "explain": "VO₂ max is the maximum rate at which the body can take up and use oxygen during intense exercise."
         },
         {
           "type": "input",
@@ -889,7 +889,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Final electron acceptor.",
           "praise": "Gas named!",
-          "explain": "Oxygen on haemoglobin."
+          "explain": "Oxygen is carried mainly bound to haemoglobin in red blood cells to working muscle."
         }
       ]
     },
@@ -911,7 +911,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Better O₂ delivery and use.",
           "praise": "Adaptation known!",
-          "explain": "SV and capillaries typically rise."
+          "explain": "Endurance training often increases stroke volume and muscle capillarisation, improving oxygen delivery."
         },
         {
           "type": "choice",
@@ -927,7 +927,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Stimulus must increase over time.",
           "praise": "Overload principle!",
-          "explain": "Raise intensity/volume gradually."
+          "explain": "Training load (intensity or volume) is increased gradually so the body keeps adapting without sudden overload."
         },
         {
           "type": "input",
@@ -943,7 +943,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Performance drop or heat illness.",
           "praise": "Risk noted!",
-          "explain": "Dehydration → fatigue/heat illness."
+          "explain": "Chronic dehydration raises risks such as earlier fatigue and heat-related illness in hard training."
         }
       ]
     }
@@ -967,7 +967,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Too little or too much hurts performance.",
           "praise": "Arousal curve clear!",
-          "explain": "Peak at moderate arousal."
+          "explain": "The inverted-U hypothesis says performance peaks at a moderate (optimal) arousal level — too little or too much arousal reduces performance."
         },
         {
           "type": "choice",
@@ -983,7 +983,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Sharper than a smooth inverted U.",
           "praise": "Catastrophe theory!",
-          "explain": "Dramatic performance crash."
+          "explain": "Catastrophe theory: when cognitive anxiety is already high and physiological arousal rises past the optimum, performance can fall sharply rather than gently."
         },
         {
           "type": "input",
@@ -994,7 +994,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Classic drive-theory audience work.",
           "praise": "Researcher named!",
-          "explain": "Zajonc — social facilitation."
+          "explain": "Zajonc is associated with social facilitation — the presence of others affecting performance."
         }
       ]
     },
@@ -1016,7 +1016,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Audience boosts what is already dominant.",
           "praise": "Facilitation sorted!",
-          "explain": "Dominant responses enhanced."
+          "explain": "An audience tends to enhance dominant (well-learned) responses; that is the core social-facilitation effect."
         },
         {
           "type": "choice",
@@ -1032,7 +1032,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Novice correct response not yet dominant.",
           "praise": "Novice effect clear!",
-          "explain": "Extra arousal can impair unlearned skills."
+          "explain": "Social facilitation boosts dominant skills. For a novice, the free throw is not yet dominant, so audience arousal can impair accuracy."
         },
         {
           "type": "input",
@@ -1043,7 +1043,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Two-word phrase.",
           "praise": "Term locked!",
-          "explain": "Evaluation apprehension."
+          "explain": "Evaluation apprehension is anxiety about being judged by an audience or evaluators."
         }
       ]
     },
@@ -1065,7 +1065,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Under-performance when stakes feel high.",
           "praise": "Choking defined!",
-          "explain": "Skill fails under pressure."
+          "explain": "Choking is a clear drop in skilled performance under pressure compared with normal ability."
         },
         {
           "type": "choice",
@@ -1081,7 +1081,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Conscious control disrupts procedural skill.",
           "praise": "Reinvestment clear!",
-          "explain": "Attention reinvested in automatic moves."
+          "explain": "Under pressure, performers may consciously monitor normally automatic movements, which disrupts fluent skill."
         },
         {
           "type": "input",
@@ -1099,7 +1099,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Consistent actions before the shot.",
           "praise": "Strategy named!",
-          "explain": "Routines/quiet eye/simulation help."
+          "explain": "Pre-shot routines, quiet-eye focus, or pressure simulation in practice help keep attention on task cues."
         }
       ]
     },
@@ -1121,7 +1121,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Contrast with ego/outcome goals.",
           "praise": "Goal orientation clear!",
-          "explain": "Mastery = learning and progress."
+          "explain": "Mastery (task) goals emphasise learning, improvement and effort rather than only beating others."
         },
         {
           "type": "choice",
@@ -1137,7 +1137,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Three basic psychological needs.",
           "praise": "SDT triad!",
-          "explain": "Relatedness completes the three."
+          "explain": "Self-determination theory’s three needs are autonomy, competence and relatedness (connection with others)."
         },
         {
           "type": "input",
@@ -1147,7 +1147,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Trackable criteria.",
           "praise": "SMART M!",
-          "explain": "Measurable."
+          "explain": "In SMART, M usually means Measurable — you can track progress with a clear measure."
         }
       ]
     },
@@ -1169,7 +1169,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Baddeley-style temporary workspace.",
           "praise": "WM defined!",
-          "explain": "Limited temporary workspace."
+          "explain": "Working memory is a limited-capacity system for holding and processing information temporarily while you use it."
         },
         {
           "type": "choice",
@@ -1185,7 +1185,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Experts chunk offensive sets.",
           "praise": "Chunking clear!",
-          "explain": "Meaningful groups expand capacity."
+          "explain": "Chunking groups elements into meaningful units (e.g. a play pattern), so more information fits in memory."
         },
         {
           "type": "input",
@@ -1198,7 +1198,7 @@ const SKELETON_SUBJECTS = {
           ],
           "hint": "Before working memory.",
           "praise": "Store named!",
-          "explain": "Sensory memory."
+          "explain": "Sensory memory briefly holds raw sensory input (iconic for vision, echoic for hearing) before further processing."
         }
       ]
     }
