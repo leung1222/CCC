@@ -1,0 +1,1790 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Year 12 · A-Level Basketball Arena — Ear TerryL</title>
+<style>
+:root{--ink:#1a2332;--muted:#5a6578;--paper:#fffdf8;--cream:#f7f0e4;--court:#c45c26;--court-dark:#8f3d14;--paint:#2f6b4f;--paint-dark:#1e4a36;--line:#e6dcc8;--mint:#2f9e7a;--gold:#f0c14b;--shadow:0 14px 32px #1a233228}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 80% -10%,#ffe8c8 0 18%,transparent 42%),radial-gradient(ellipse at 10% 0,#d8efe4 0 16%,transparent 40%),linear-gradient(160deg,#f4f7f2,#fff8ee 55%,#f6efe4);min-height:100vh;-webkit-tap-highlight-color:transparent}
+button,input{font:inherit}button{cursor:pointer;border:0}
+.app{max-width:1100px;margin:auto;padding:20px 14px 48px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:52px;height:52px;display:grid;place-items:center;border-radius:16px;font-size:28px;color:#fff;background:linear-gradient(145deg,var(--court),var(--court-dark));box-shadow:0 5px 0 var(--court-dark)}
+.brand h1{margin:0;font-size:18px;letter-spacing:-.02em;line-height:1.15}
+.brand small{color:var(--muted);display:block;margin-top:2px}
+.top-actions{display:flex;flex-wrap:wrap;gap:8px}
+.ghost{background:#fff;border:1px solid var(--line);color:var(--paint-dark);padding:10px 12px;border-radius:12px;font-weight:700}
+.ghost:hover{background:#f3faf6}
+.hero{display:grid;grid-template-columns:1.35fr .65fr;gap:14px;margin-bottom:16px}
+.card{background:rgba(255,255,255,.93);border:1px solid #e8e0d2;border-radius:20px;box-shadow:var(--shadow)}
+.hero-main{padding:24px;background:linear-gradient(125deg,#fff,#fff7ec 55%,#eef8f2)}
+.eyebrow{color:var(--court);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:800}
+.hero h2{font-size:clamp(24px,4vw,38px);margin:8px 0;letter-spacing:-.03em;line-height:1.08}
+.hero p{color:var(--muted);margin:0;max-width:560px}
+.coach-tip{margin-top:14px;padding:10px 12px;background:#fff4e4;border:1px solid #f0d2a8;border-radius:12px;color:#7a4e16;font-size:14px;font-weight:650}
+.court{position:relative;min-height:160px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(90deg,transparent 48%,#fff6 49%,#fff6 51%,transparent 52%),radial-gradient(circle at 50% 100%,#fff3 0 28%,transparent 29%),linear-gradient(180deg,#3d8f62,#2a6b48)}
+.court:before{content:"";position:absolute;inset:12px;border:3px solid #fffa;border-radius:8px}
+.hoop{font-size:68px;z-index:1;animation:bounce 2.4s ease-in-out infinite;filter:drop-shadow(0 6px 4px #12382266)}
+.court-label{position:absolute;bottom:12px;background:#fff;padding:5px 11px;border-radius:999px;font-size:12px;font-weight:800;color:var(--paint-dark);z-index:1}
+@keyframes bounce{50%{transform:translateY(-9px)}}
+.screen{display:none}.screen.active{display:block}
+.section-head{margin:12px 2px 8px}.section-head h2{margin:0;font-size:22px}.section-head p{margin:4px 0 0;color:var(--muted)}
+.row-title{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:12px 2px 8px}
+.row-title h3{margin:0;font-size:16px}.row-title span{color:var(--muted);font-size:13px}
+.subject-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.subject{padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--paint-dark);font-weight:800}
+.subject:hover{border-color:#9bc4ae;background:#f3faf6}
+.subject.active{background:#e4f3ea;border-color:#6eab8a;box-shadow:inset 0 -3px 0 var(--paint)}
+.subject.done:after{content:" ✓";color:var(--mint)}
+.subject .badge{display:inline-block;margin-left:6px;font-size:10px;padding:2px 6px;border-radius:999px;background:#fff1d6;color:#7a5214;vertical-align:middle}
+.level-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.level{padding:14px 12px;min-height:150px;text-align:left;position:relative;display:flex;flex-direction:column;align-items:flex-start;transition:.2s}
+.level:not(:disabled):hover{transform:translateY(-2px);border-color:#9bc4ae}
+.level:disabled{opacity:.58;cursor:not-allowed;background:#f5f3ee}
+.lvl-num{width:32px;height:32px;display:grid;place-items:center;border-radius:10px;background:#eef6f1;font-weight:900;margin-bottom:8px;color:var(--paint-dark)}
+.level.done .lvl-num{background:#d8f3e6;color:#157a58}
+.level strong{font-size:14px;line-height:1.2}.level small{color:var(--muted);margin-top:5px;font-size:12px}
+.lock,.tick{position:absolute;right:10px;top:12px}.tick{color:var(--mint);font-size:16px}
+.stats{display:flex;gap:8px;overflow:auto;margin:14px 0}
+.stat{min-width:100px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:12px}
+.stat b{display:block;font-size:18px}.stat span{font-size:12px;color:var(--muted)}
+.back{background:none;color:var(--paint);font-weight:800;padding:0;margin-bottom:12px}
+.play{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:14px}
+.qcard{padding:20px;min-height:400px}
+.qtop{display:flex;justify-content:space-between;align-items:center;gap:8px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:16px}
+.crumb{font-weight:800;color:var(--paint-dark)}.streak{background:#fff1d6;color:#7a5214;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800}
+.qcard h2{font-size:clamp(18px,3vw,28px);margin:0 0 16px;line-height:1.25}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:9px;max-width:660px}
+.option{text-align:left;padding:13px;border-radius:12px;border:2px solid #d9e0d8;background:#fff;font-weight:700}
+.option:hover{border-color:var(--paint);background:#f4faf6}
+.option:disabled{cursor:default}
+.answer-row{display:flex;gap:8px;max-width:640px}
+.answer-input{flex:1;padding:13px 14px;border:2px solid #d9e0d8;border-radius:12px;outline:none}
+.answer-input:focus{border-color:var(--paint);box-shadow:0 0 0 4px #2f6b4f1a}
+.submit{padding:0 16px;border-radius:12px;background:var(--court);color:#fff;font-weight:900;box-shadow:0 4px 0 var(--court-dark);white-space:nowrap}
+.submit:active{transform:translateY(2px);box-shadow:0 2px 0 var(--court-dark)}
+.feedback{min-height:72px;padding-top:14px}
+.fb{border-radius:12px;padding:11px 13px;font-weight:650}
+.fb.good{background:#e3f6ec;color:#136b4d}.fb.try{background:#fff4da;color:#745619}.fb.reveal{background:#e8f0ff;color:#294b9b}
+.fb .explain{font-size:14px;font-weight:500;margin-top:5px}
+.side{padding:16px;height:max-content}
+.bar{height:10px;background:#e6e8ee;border-radius:8px;overflow:hidden;margin:8px 0}
+.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--mint),#7dce7d);transition:.3s}
+.note{background:#f6f8f5;padding:11px;border-radius:12px;margin-top:14px;color:var(--muted);font-size:14px}
+.sound{background:#e8f5f2;color:#146f5b;border-radius:10px;padding:8px 11px;font-weight:800;margin-top:8px}
+.hint-wrap{margin-top:12px;max-width:660px}
+.hint-actions{display:flex;flex-wrap:wrap;gap:8px}
+.hint-btn{background:#fff7e6;color:#815d16;border:2px solid #f0d9a0;padding:9px 12px;border-radius:11px;font-weight:800}
+.hint-btn:disabled{background:#ececec;color:#8a8a8a;border-color:#d7d7d7;cursor:not-allowed}
+.hint-hear{background:#e8f5f2;color:#146f5b;border-radius:10px;padding:8px 11px;font-weight:800}
+.hint-box{display:none;margin-top:8px;background:#fff8e8;border:1px solid #f0d9a0;color:#745619;border-radius:11px;padding:11px 12px;font-weight:650}
+.hint-box.show{display:block}
+.hidden{display:none!important}
+.celebrate{text-align:center;padding:40px 16px}
+.celebrate .big{font-size:60px}.celebrate h2{font-size:28px;margin:6px 0}
+.primary{padding:12px 16px;background:var(--court);color:#fff;border-radius:12px;font-weight:900;box-shadow:0 4px 0 var(--court-dark)}
+.modal{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:14px;background:#1a233299}
+.modal.open{display:flex}
+.panel{width:min(740px,100%);max-height:min(90vh,900px);overflow:auto;background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:18px}
+.panel h2{margin:0 0 4px;font-size:22px}.lead{color:var(--muted);font-size:14px;margin:0 0 12px}
+.sec{margin:0 0 12px;padding:12px;background:#fff;border:1px solid var(--line);border-radius:12px}
+.sec h3{margin:0 0 8px;font-size:15px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pstat{background:#f6f8f5;border-radius:10px;padding:9px 10px}.pstat b{display:block;font-size:16px}.pstat span{font-size:12px;color:var(--muted)}
+table.rt{width:100%;border-collapse:collapse;font-size:13px}
+table.rt th,table.rt td{text-align:left;padding:6px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+table.rt th{color:var(--muted);font-size:12px}
+#coachTips{background:#eef8f2;border:1px solid #c5e0d0;border-radius:12px;padding:11px 12px;color:var(--paint-dark);font-size:14px}
+#coachTips ul{margin:6px 0 0;padding-left:18px}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.danger{background:#fff1ee;color:#9a3a2a;border:1px solid #f0c2b8;padding:9px 12px;border-radius:11px;font-weight:800}
+@media(max-width:850px){.hero{grid-template-columns:1fr}.level-grid{grid-template-columns:repeat(3,1fr)}.play{grid-template-columns:1fr}.side{order:-1}}
+@media(max-width:520px){.level-grid{grid-template-columns:1fr 1fr}.options{grid-template-columns:1fr}.answer-row{flex-direction:column}.submit{padding:12px}.grid3{grid-template-columns:1fr}.brand h1{font-size:15px}}
+
+</style>
+</head>
+<body>
+<main class="app">
+<header class="topbar">
+  <div class="brand"><div class="logo" aria-hidden="true">🏀</div>
+    <div><h1>Year 12 · A-Level Basketball Arena</h1><small>Arena for Ear TerryL · Year 12 A-Level</small></div>
+  </div>
+  <div class="top-actions">
+    <button class="ghost" type="button" id="coachBtn">Coach report</button>
+    <button class="ghost" type="button" id="homeBtn">Home</button>
+    <button class="ghost" type="button" id="resetBtn">Reset progress</button>
+  </div>
+</header>
+<section class="hero">
+  <div class="card hero-main">
+    <div class="eyebrow">Playbook · Year 12 A-Level</div>
+    <h2>Step onto the court. Call the play.</h2>
+    <p>Pick a subject, run five levels, string three correct answers to unlock the next. Hints are one-shot — use them like a timeout. Economics uses the official Cambridge AS pack.</p>
+    <div class="coach-tip" id="coachTip">Coach tip: Film the mistake, then re-run the possession without the hint.</div>
+  </div>
+  <div class="card court" aria-hidden="true"><div class="hoop">🏀</div><div class="court-label">Game clock · tactics board</div></div>
+</section>
+<section id="home" class="screen active">
+  <div class="section-head"><h2>Choose your subject</h2><p>Economics is the official educator pack. Other subjects are skeletons until Jerry confirms.</p></div>
+  <div class="row-title"><h3>Subjects</h3><span>5 levels · streak of 3 unlocks next</span></div>
+  <div class="subject-grid" id="subjectGrid"></div>
+  <div class="row-title"><h3 id="levelHeading">Levels</h3><span>Locked until previous complete</span></div>
+  <div class="level-grid" id="levelGrid"></div>
+  <div class="stats">
+    <div class="stat"><b id="doneCount">0</b><span>levels complete</span></div>
+    <div class="stat"><b id="bestStreak">0</b><span>best streak</span></div>
+    <div class="stat"><b>🇬🇧</b><span>British English</span></div>
+  </div>
+</section>
+<section id="play" class="screen">
+  <button class="back" type="button" id="backBtn">← Back to levels</button>
+  <div class="play">
+    <article class="card qcard">
+      <div class="qtop"><div class="crumb" id="crumb"></div><div class="streak" id="streakLabel">Question 1 of 3</div></div>
+      <h2 id="qText"></h2>
+      <div id="answerArea"></div>
+      <div class="feedback" id="feedback" aria-live="polite"></div>
+    </article>
+    <aside class="card side">
+      <h3>Possession progress</h3>
+      <strong id="progLabel">0 of 3 correct</strong>
+      <div class="bar"><i id="progBar"></i></div>
+      <small id="progHint">Get all three right to unlock the next level.</small>
+      <div class="note"><strong>Coach habit</strong><p id="habit">Read the stem twice, then pick a method.</p>
+        <button class="sound" type="button" id="soundBtn">🔊 Hear encouragement</button></div>
+    </aside>
+  </div>
+</section>
+<section id="complete" class="screen">
+  <div class="card celebrate">
+    <div class="big">🏆</div><div class="eyebrow">Level complete</div>
+    <h2 id="completeTitle">And one!</h2>
+    <p id="completeText">Three in a row — next level unlocked.</p>
+    <button class="primary" type="button" id="nextBtn">Continue</button>
+    <button class="ghost" type="button" id="levelsBtn">Choose another level</button>
+  </div>
+</section>
+<div class="modal" id="coachModal" role="dialog" aria-modal="true" hidden>
+  <div class="panel">
+    <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start">
+      <div><h2>Coach report</h2><p class="lead">Practice time, accuracy and trouble spots — stored only on this device.</p></div>
+      <button class="ghost" type="button" id="coachClose">Close</button>
+    </div>
+    <section class="sec"><h3>Time</h3><div class="grid3" id="timeGrid"></div>
+      <div style="overflow:auto;margin-top:8px"><table class="rt" id="timeTable"><thead><tr><th>Subject / level</th><th>Time</th></tr></thead><tbody></tbody></table></div></section>
+    <section class="sec"><h3>Scores</h3><div class="grid3" id="scoreGrid"></div>
+      <div style="overflow:auto;margin-top:8px"><table class="rt" id="scoreTable"><thead><tr><th>Subject</th><th>Levels</th><th>Accuracy</th><th>Correct</th><th>Not yet</th></tr></thead><tbody></tbody></table></div></section>
+    <section class="sec"><h3>Where practice may help</h3><p class="lead" id="troubleIntro">Trouble spots appear as you miss or use hints.</p>
+      <div style="overflow:auto"><table class="rt" id="troubleTable"><thead><tr><th>Subject / level</th><th>Incorrect</th><th>Hints</th><th>2-fail reveals</th></tr></thead><tbody></tbody></table></div></section>
+    <section class="sec" id="coachTips"><h3>Coach tips</h3>
+      <ul>
+        <li><strong>Deliberate practice:</strong> isolate one sticky skill, short drill, read the explain box — quality reps beat volume.</li>
+        <li><strong>Spacing:</strong> revisit subjects across shorter sessions rather than one marathon.</li>
+        <li><strong>Sleep:</strong> consolidation happens off the court — protect sleep before heavy revision.</li>
+        <li><strong>Review mistakes:</strong> use trouble spots as tomorrow’s warm-up; re-attempt hint-free first.</li>
+      </ul>
+    </section>
+    <div class="actions">
+      <button class="danger" type="button" id="resetStatsBtn">Reset practice stats</button>
+      <button class="ghost" type="button" id="resetAllBtn">Reset stats and progress</button>
+      <button class="primary" type="button" id="coachDone">Done</button>
+    </div>
+    <p class="lead" style="margin-top:10px;margin-bottom:0">Reset stats clears the coach report only. Level unlocks stay unless you reset both.</p>
+  </div>
+</div>
+</main>
+
+<script>
+'use strict';
+// PLACEHOLDER BANK — educator will replace (Economics = official pack below)
+const SKELETON_SUBJECTS = {
+  "Maths": [
+    {
+      "name": "Free throws & probability",
+      "short": "Chance on the line",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "A shooter makes 80% of free throws. Assuming independence, P(makes both of two)?",
+          "options": [
+            "0.64",
+            "0.80",
+            "1.60",
+            "0.16"
+          ],
+          "answers": [
+            "0.64"
+          ],
+          "hint": "Multiply two independent success probabilities.",
+          "praise": "Clean probability read!",
+          "explain": "P(both)=0.8×0.8=0.64."
+        },
+        {
+          "type": "choice",
+          "text": "Same shooter (p=0.8). P(misses the first free throw)?",
+          "options": [
+            "0.2",
+            "0.8",
+            "0.16",
+            "1.2"
+          ],
+          "answers": [
+            "0.2"
+          ],
+          "hint": "P(miss)=1−P(make).",
+          "praise": "Solid complement rule!",
+          "explain": "P(miss)=1−0.8=0.2."
+        },
+        {
+          "type": "input",
+          "text": "In 10 independent free throws at p=0.7, expected number made?",
+          "answers": [
+            "7",
+            "7.0"
+          ],
+          "hint": "E(X)=n×p for a binomial.",
+          "praise": "Nice expected-value work!",
+          "explain": "E(X)=10×0.7=7."
+        }
+      ]
+    },
+    {
+      "name": "Expected value on court",
+      "short": "Payoffs & EV",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "A 3-pointer scores 3 if made (p=0.35). Expected points per attempt?",
+          "options": [
+            "1.05",
+            "3.00",
+            "0.35",
+            "2.65"
+          ],
+          "answers": [
+            "1.05"
+          ],
+          "hint": "EV = value × probability.",
+          "praise": "Sharp EV thinking!",
+          "explain": "EV=3×0.35=1.05."
+        },
+        {
+          "type": "choice",
+          "text": "2-pointer p=0.55 vs 3-pointer p=0.35. Which has higher EV?",
+          "options": [
+            "The 2-pointer",
+            "The 3-pointer",
+            "Equal",
+            "Cannot tell"
+          ],
+          "answers": [
+            "The 2-pointer"
+          ],
+          "hint": "Compare 2×0.55 with 3×0.35.",
+          "praise": "Good comparison!",
+          "explain": "1.10 > 1.05, so the 2-pointer."
+        },
+        {
+          "type": "input",
+          "text": "A gamble pays £12 with probability 1/4 (else £0). Expected payout (£)?",
+          "answers": [
+            "3",
+            "3.0",
+            "£3"
+          ],
+          "hint": "Multiply payout by probability.",
+          "praise": "Clear EV!",
+          "explain": "12×1/4=3."
+        }
+      ]
+    },
+    {
+      "name": "Rates & ratios",
+      "short": "Per-possession maths",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "108 points in 90 possessions. Points per possession (1 d.p.)?",
+          "options": [
+            "1.2",
+            "1.08",
+            "0.83",
+            "12"
+          ],
+          "answers": [
+            "1.2"
+          ],
+          "hint": "Divide points by possessions.",
+          "praise": "Pace maths locked in!",
+          "explain": "108÷90=1.2."
+        },
+        {
+          "type": "input",
+          "text": "Simplify assists:turnovers 18:12.",
+          "answers": [
+            "3:2",
+            "3 : 2"
+          ],
+          "hint": "Divide by the HCF.",
+          "praise": "Ratio simplified!",
+          "explain": "HCF=6 → 3:2."
+        },
+        {
+          "type": "choice",
+          "text": "Runs 24 m in 4 s at constant speed. Speed in m/s?",
+          "options": [
+            "6",
+            "28",
+            "4",
+            "96"
+          ],
+          "answers": [
+            "6"
+          ],
+          "hint": "Speed = distance ÷ time.",
+          "praise": "Clean kinematics link!",
+          "explain": "24÷4=6 m/s."
+        }
+      ]
+    },
+    {
+      "name": "Sequences",
+      "short": "Pattern on the clock",
+      "questions": [
+        {
+          "type": "input",
+          "text": "Arithmetic sequence of quarter scores: 22, 45, 68, … Next term?",
+          "answers": [
+            "91"
+          ],
+          "hint": "Find the common difference.",
+          "praise": "Sequence spotted!",
+          "explain": "Difference 23 → 68+23=91."
+        },
+        {
+          "type": "choice",
+          "text": "Geometric loads 2, 6, 18, … Common ratio?",
+          "options": [
+            "3",
+            "4",
+            "2",
+            "6"
+          ],
+          "answers": [
+            "3"
+          ],
+          "hint": "Divide a term by the previous one.",
+          "praise": "Ratio found!",
+          "explain": "6÷2=3."
+        },
+        {
+          "type": "input",
+          "text": "Sum of first 4 terms of 5, 10, 15, 20?",
+          "answers": [
+            "50"
+          ],
+          "hint": "Add them or use Sₙ=n/2×(first+last).",
+          "praise": "Series sum correct!",
+          "explain": "5+10+15+20=50."
+        }
+      ]
+    },
+    {
+      "name": "Graphs & equations",
+      "short": "Playbook algebra",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "Points vs minutes is a straight line with gradient 1.5. Gradient means:",
+          "options": [
+            "Points per minute",
+            "Total points",
+            "Minutes only",
+            "y-intercept only"
+          ],
+          "answers": [
+            "Points per minute"
+          ],
+          "hint": "Gradient = Δy/Δx.",
+          "praise": "Graph sense!",
+          "explain": "1.5 points per minute."
+        },
+        {
+          "type": "choice",
+          "text": "Tickets £8, programmes £2, budget £40. Max programmes if 3 tickets bought?",
+          "options": [
+            "8",
+            "5",
+            "16",
+            "20"
+          ],
+          "answers": [
+            "8"
+          ],
+          "hint": "Pay for tickets first, then divide remainder.",
+          "praise": "Budget constraint solved!",
+          "explain": "24 spent; 16 left → 8 programmes."
+        },
+        {
+          "type": "input",
+          "text": "Solve 2x+5=17 for x.",
+          "answers": [
+            "6",
+            "x=6",
+            "x = 6"
+          ],
+          "hint": "Subtract 5, divide by 2.",
+          "praise": "Equation cracked!",
+          "explain": "2x=12 ⇒ x=6."
+        }
+      ]
+    }
+  ],
+  "Physics": [
+    {
+      "name": "Jump-shot projectile",
+      "short": "Ball in flight",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "Ignoring air resistance, which is constant after release?",
+          "options": [
+            "Horizontal velocity component",
+            "Vertical velocity component",
+            "Speed",
+            "Vertical acceleration is zero"
+          ],
+          "answers": [
+            "Horizontal velocity component"
+          ],
+          "hint": "Gravity acts vertically only.",
+          "praise": "Projectile fundamentals!",
+          "explain": "Horizontal velocity stays constant."
+        },
+        {
+          "type": "choice",
+          "text": "At the apex of the arc, vertical velocity is:",
+          "options": [
+            "Zero",
+            "Maximum",
+            "Always equal to horizontal",
+            "Equal to g"
+          ],
+          "answers": [
+            "Zero"
+          ],
+          "hint": "The ball stops rising for an instant.",
+          "praise": "Apex understood!",
+          "explain": "Vertical velocity is briefly zero."
+        },
+        {
+          "type": "input",
+          "text": "Symmetric flight time 1.0 s; g=10 m/s². Initial vertical speed (m/s)?",
+          "answers": [
+            "5",
+            "5.0"
+          ],
+          "hint": "Time to apex is half the flight.",
+          "praise": "SUVAT applied!",
+          "explain": "0.5 s to apex → u=5 m/s."
+        }
+      ]
+    },
+    {
+      "name": "Forces & momentum",
+      "short": "Contact plays",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "0.60 kg ball at 8.0 m/s is stopped. |Δp| in kg m/s?",
+          "options": [
+            "4.8",
+            "8.6",
+            "0.075",
+            "13.3"
+          ],
+          "answers": [
+            "4.8"
+          ],
+          "hint": "Δp=mΔv with final speed 0.",
+          "praise": "Momentum change nailed!",
+          "explain": "0.60×8.0=4.8."
+        },
+        {
+          "type": "choice",
+          "text": "Floor pushes up on the ball. Equal and opposite force is:",
+          "options": [
+            "Ball pushing down on the floor",
+            "Gravity on the ball",
+            "Air resistance only",
+            "Weight of the floor"
+          ],
+          "answers": [
+            "Ball pushing down on the floor"
+          ],
+          "hint": "Newton III pairs act on different bodies.",
+          "praise": "Newton III clear!",
+          "explain": "Ball-on-floor and floor-on-ball."
+        },
+        {
+          "type": "input",
+          "text": "Force 24 N for 0.20 s. Impulse (N s)?",
+          "answers": [
+            "4.8",
+            "4.80"
+          ],
+          "hint": "Impulse=F×t.",
+          "praise": "Impulse sorted!",
+          "explain": "24×0.20=4.8."
+        }
+      ]
+    },
+    {
+      "name": "Energy",
+      "short": "KE, GPE, work",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "70 kg player; CoM rises 0.40 m; g=10 N/kg. ΔGPE (J)?",
+          "options": [
+            "280",
+            "28",
+            "700",
+            "175"
+          ],
+          "answers": [
+            "280"
+          ],
+          "hint": "ΔGPE=mgΔh.",
+          "praise": "Energy gain correct!",
+          "explain": "70×10×0.40=280 J."
+        },
+        {
+          "type": "choice",
+          "text": "Work done equals:",
+          "options": [
+            "Force × distance in the direction of the force",
+            "Force ÷ time",
+            "Mass × velocity",
+            "Power × force"
+          ],
+          "answers": [
+            "Force × distance in the direction of the force"
+          ],
+          "hint": "Definition of mechanical work.",
+          "praise": "Work defined!",
+          "explain": "W=F×s along F."
+        },
+        {
+          "type": "input",
+          "text": "KE of 0.6 kg ball at 10 m/s (J)? KE=½mv².",
+          "answers": [
+            "30",
+            "30.0"
+          ],
+          "hint": "Square speed, ×mass, ÷2.",
+          "praise": "KE calculated!",
+          "explain": "½×0.6×100=30."
+        }
+      ]
+    },
+    {
+      "name": "Pressure & collisions",
+      "short": "Impact science",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "Pressure is:",
+          "options": [
+            "Force / area",
+            "Force × area",
+            "Mass / volume",
+            "Energy / time"
+          ],
+          "answers": [
+            "Force / area"
+          ],
+          "hint": "Force spread over contact area.",
+          "praise": "Pressure definition locked!",
+          "explain": "P=F/A."
+        },
+        {
+          "type": "choice",
+          "text": "Same impulse: soft pad vs hard floor. Soft pad usually means:",
+          "options": [
+            "Longer contact time and smaller average force",
+            "Shorter time and larger force",
+            "Zero impulse",
+            "Higher momentum always"
+          ],
+          "answers": [
+            "Longer contact time and smaller average force"
+          ],
+          "hint": "Impulse=F_avg×t.",
+          "praise": "Impulse–time trade-off!",
+          "explain": "Longer Δt → smaller peak F."
+        },
+        {
+          "type": "input",
+          "text": "200 N on 0.050 m². Pressure (Pa)?",
+          "answers": [
+            "4000",
+            "4 000",
+            "4e3"
+          ],
+          "hint": "P=F/A.",
+          "praise": "Pressure found!",
+          "explain": "200/0.050=4000 Pa."
+        }
+      ]
+    },
+    {
+      "name": "Motion graphs",
+      "short": "SUVAT & graphs",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "Area under a velocity–time graph is:",
+          "options": [
+            "Displacement",
+            "Acceleration",
+            "Force",
+            "Power"
+          ],
+          "answers": [
+            "Displacement"
+          ],
+          "hint": "Integral of v dt.",
+          "praise": "Graph area read!",
+          "explain": "Area under v–t = displacement."
+        },
+        {
+          "type": "choice",
+          "text": "Gradient of a velocity–time graph is:",
+          "options": [
+            "Acceleration",
+            "Displacement",
+            "Speed",
+            "Momentum"
+          ],
+          "answers": [
+            "Acceleration"
+          ],
+          "hint": "a=Δv/Δt.",
+          "praise": "Gradient = acceleration!",
+          "explain": "Gradient of v–t is a."
+        },
+        {
+          "type": "input",
+          "text": "From rest, a=2.0 m/s² for 3.0 s. Final speed (m/s)?",
+          "answers": [
+            "6",
+            "6.0"
+          ],
+          "hint": "v=u+at, u=0.",
+          "praise": "SUVAT done!",
+          "explain": "v=2×3=6."
+        }
+      ]
+    }
+  ],
+  "Biology (Sport Science)": [
+    {
+      "name": "ATP & energy systems",
+      "short": "Fuel for the play",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "Immediate energy currency for muscle contraction?",
+          "options": [
+            "ATP",
+            "Glucose only",
+            "DNA",
+            "Oxygen alone"
+          ],
+          "answers": [
+            "ATP"
+          ],
+          "hint": "Hydrolysed at the myosin head.",
+          "praise": "ATP locked in!",
+          "explain": "ATP powers the cross-bridge cycle."
+        },
+        {
+          "type": "choice",
+          "text": "Maximal dunk ~2–3 s: which system dominates initially?",
+          "options": [
+            "ATP–PC (phosphocreatine)",
+            "Aerobic only",
+            "Protein synthesis",
+            "Photosynthesis"
+          ],
+          "answers": [
+            "ATP–PC (phosphocreatine)"
+          ],
+          "hint": "Brief explosive efforts use phosphagens.",
+          "praise": "Energy system sorted!",
+          "explain": "ATP–PC is fastest for short maximal work."
+        },
+        {
+          "type": "input",
+          "text": "Organelle where most aerobic ATP is made?",
+          "answers": [
+            "mitochondria",
+            "mitochondrion"
+          ],
+          "hint": "Powerhouse of the cell.",
+          "praise": "Organelle named!",
+          "explain": "Mitochondria: oxidative phosphorylation."
+        }
+      ]
+    },
+    {
+      "name": "Aerobic vs anaerobic",
+      "short": "Fourth-quarter energy",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "Long half-court press (several minutes): main energy supply?",
+          "options": [
+            "Aerobic respiration",
+            "ATP–PC only",
+            "Anaerobic only forever",
+            "Digestive enzymes"
+          ],
+          "answers": [
+            "Aerobic respiration"
+          ],
+          "hint": "Sustained work needs oxygen pathways.",
+          "praise": "Aerobic dominance clear!",
+          "explain": "Aerobic metabolism dominates prolonged efforts."
+        },
+        {
+          "type": "choice",
+          "text": "By-product of intense anaerobic glycolysis in muscle?",
+          "options": [
+            "Lactate",
+            "Oxygen gas",
+            "Urea only",
+            "Starch"
+          ],
+          "answers": [
+            "Lactate"
+          ],
+          "hint": "Pyruvate reduced when O₂ limited.",
+          "praise": "Fatigue chemistry!",
+          "explain": "Anaerobic glycolysis → lactate."
+        },
+        {
+          "type": "input",
+          "text": "glucose + oxygen → CO₂ + water + ?",
+          "answers": [
+            "ATP",
+            "energy"
+          ],
+          "hint": "Useful product for the cell.",
+          "praise": "Respiration products!",
+          "explain": "ATP (energy) is released."
+        }
+      ]
+    },
+    {
+      "name": "Muscle & recovery",
+      "short": "Between possessions",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "More fatigue-resistant fibre type?",
+          "options": [
+            "Type I (slow oxidative)",
+            "Type IIx only",
+            "Cardiac only",
+            "Gut smooth muscle only"
+          ],
+          "answers": [
+            "Type I (slow oxidative)"
+          ],
+          "hint": "Slow-twitch, aerobic capacity.",
+          "praise": "Fibre types clear!",
+          "explain": "Type I: oxidative and fatigue-resistant."
+        },
+        {
+          "type": "choice",
+          "text": "EPOC mainly helps to:",
+          "options": [
+            "Restore PC and clear metabolites",
+            "Create DNA",
+            "Stop breathing",
+            "Digest protein only"
+          ],
+          "answers": [
+            "Restore PC and clear metabolites"
+          ],
+          "hint": "Elevated O₂ use after hard efforts.",
+          "praise": "Recovery science!",
+          "explain": "EPOC: PC resynthesis and clearance."
+        },
+        {
+          "type": "input",
+          "text": "Sliding filament: which filament binds ATP — actin or myosin?",
+          "answers": [
+            "myosin"
+          ],
+          "hint": "Thick filament with ATPase heads.",
+          "praise": "Myosin named!",
+          "explain": "Myosin heads hydrolyse ATP."
+        }
+      ]
+    },
+    {
+      "name": "Cardio & VO₂",
+      "short": "Oxygen delivery",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "Cardiac output equals:",
+          "options": [
+            "Heart rate × stroke volume",
+            "HR ÷ SV",
+            "BP × resistance only",
+            "Tidal volume × rate only"
+          ],
+          "answers": [
+            "Heart rate × stroke volume"
+          ],
+          "hint": "Flow per minute = rate × volume/beat.",
+          "praise": "Q=HR×SV!",
+          "explain": "Cardiac output = HR × SV."
+        },
+        {
+          "type": "choice",
+          "text": "VO₂ max is:",
+          "options": [
+            "Max rate of O₂ uptake in intense exercise",
+            "Max lung volume at rest",
+            "Resting HR only",
+            "Blood glucose"
+          ],
+          "answers": [
+            "Max rate of O₂ uptake in intense exercise"
+          ],
+          "hint": "Index of aerobic power.",
+          "praise": "VO₂ max defined!",
+          "explain": "Highest achievable oxygen uptake rate."
+        },
+        {
+          "type": "input",
+          "text": "Gas delivered to muscle, mainly on haemoglobin?",
+          "answers": [
+            "oxygen",
+            "O2",
+            "O₂"
+          ],
+          "hint": "Final electron acceptor.",
+          "praise": "Gas named!",
+          "explain": "Oxygen on haemoglobin."
+        }
+      ]
+    },
+    {
+      "name": "Training adaptations",
+      "short": "Season-long gains",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "Long-term aerobic adaptation often includes:",
+          "options": [
+            "Higher stroke volume / capillary density",
+            "Fewer mitochondria",
+            "Loss of haemoglobin",
+            "Cannot use fat"
+          ],
+          "answers": [
+            "Higher stroke volume / capillary density"
+          ],
+          "hint": "Better O₂ delivery and use.",
+          "praise": "Adaptation known!",
+          "explain": "SV and capillaries typically rise."
+        },
+        {
+          "type": "choice",
+          "text": "Progressive overload means:",
+          "options": [
+            "Gradually raising training demand to drive adaptation",
+            "Never changing sessions",
+            "Only resting",
+            "Training with no recovery"
+          ],
+          "answers": [
+            "Gradually raising training demand to drive adaptation"
+          ],
+          "hint": "Stimulus must increase over time.",
+          "praise": "Overload principle!",
+          "explain": "Raise intensity/volume gradually."
+        },
+        {
+          "type": "input",
+          "text": "One health risk of chronic dehydration in heavy training?",
+          "answers": [
+            "fatigue",
+            "heatstroke",
+            "heat stroke",
+            "cramp",
+            "cramps",
+            "kidney damage",
+            "headache"
+          ],
+          "hint": "Performance drop or heat illness.",
+          "praise": "Risk noted!",
+          "explain": "Dehydration → fatigue/heat illness."
+        }
+      ]
+    }
+  ],
+  "Psychology": [
+    {
+      "name": "Arousal & performance",
+      "short": "Game-day nerves",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "Inverted-U: performance best at:",
+          "options": [
+            "Moderate arousal",
+            "Zero arousal only",
+            "Maximum panic",
+            "No attention"
+          ],
+          "answers": [
+            "Moderate arousal"
+          ],
+          "hint": "Too little or too much hurts performance.",
+          "praise": "Arousal curve clear!",
+          "explain": "Peak at moderate arousal."
+        },
+        {
+          "type": "choice",
+          "text": "Sudden collapse under high cognitive anxiety + high arousal is a:",
+          "options": [
+            "Catastrophe",
+            "Plateau only",
+            "Habituation",
+            "Extinction burst"
+          ],
+          "answers": [
+            "Catastrophe"
+          ],
+          "hint": "Sharper than a smooth inverted U.",
+          "praise": "Catastrophe theory!",
+          "explain": "Dramatic performance crash."
+        },
+        {
+          "type": "input",
+          "text": "Surname of psychologist linked to social facilitation / audience effects?",
+          "answers": [
+            "Zajonc",
+            "zajonc"
+          ],
+          "hint": "Classic drive-theory audience work.",
+          "praise": "Researcher named!",
+          "explain": "Zajonc — social facilitation."
+        }
+      ]
+    },
+    {
+      "name": "Social facilitation",
+      "short": "Crowd in the gym",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "Social facilitation typically boosts:",
+          "options": [
+            "Well-learned / dominant responses",
+            "Brand-new complex skills only",
+            "Sleep",
+            "Zero-practice tasks"
+          ],
+          "answers": [
+            "Well-learned / dominant responses"
+          ],
+          "hint": "Audience boosts what is already dominant.",
+          "praise": "Facilitation sorted!",
+          "explain": "Dominant responses enhanced."
+        },
+        {
+          "type": "choice",
+          "text": "Audience may impair a novice free throw mainly via:",
+          "options": [
+            "Higher arousal disrupting a non-dominant skill",
+            "Instant automaticity",
+            "Zero evaluation worry",
+            "Lower heart rate only"
+          ],
+          "answers": [
+            "Higher arousal disrupting a non-dominant skill"
+          ],
+          "hint": "Novice correct response not yet dominant.",
+          "praise": "Novice effect clear!",
+          "explain": "Extra arousal can impair unlearned skills."
+        },
+        {
+          "type": "input",
+          "text": "Term for worry about being judged by others?",
+          "answers": [
+            "evaluation apprehension",
+            "evaluation-apprehension"
+          ],
+          "hint": "Two-word phrase.",
+          "praise": "Term locked!",
+          "explain": "Evaluation apprehension."
+        }
+      ]
+    },
+    {
+      "name": "Choking under pressure",
+      "short": "Clutch or choke",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "Choking often means:",
+          "options": [
+            "Big performance drop under pressure despite ability",
+            "Always improving under pressure",
+            "Airway blockage only",
+            "Forgetting rules forever"
+          ],
+          "answers": [
+            "Big performance drop under pressure despite ability"
+          ],
+          "hint": "Under-performance when stakes feel high.",
+          "praise": "Choking defined!",
+          "explain": "Skill fails under pressure."
+        },
+        {
+          "type": "choice",
+          "text": "Explicit monitoring explanation of choking:",
+          "options": [
+            "Over-thinking automatic skills step-by-step",
+            "Never thinking",
+            "Imagery only",
+            "Ignoring the basket"
+          ],
+          "answers": [
+            "Over-thinking automatic skills step-by-step"
+          ],
+          "hint": "Conscious control disrupts procedural skill.",
+          "praise": "Reinvestment clear!",
+          "explain": "Attention reinvested in automatic moves."
+        },
+        {
+          "type": "input",
+          "text": "One anti-choke strategy (routine, quiet eye, simulation…)?",
+          "answers": [
+            "pre-performance routine",
+            "routines",
+            "routine",
+            "quiet eye",
+            "quiet-eye",
+            "simulation",
+            "imagery",
+            "breathing",
+            "mindfulness"
+          ],
+          "hint": "Consistent actions before the shot.",
+          "praise": "Strategy named!",
+          "explain": "Routines/quiet eye/simulation help."
+        }
+      ]
+    },
+    {
+      "name": "Motivation & goals",
+      "short": "Drive to improve",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "Mastery (task) goals focus on:",
+          "options": [
+            "Skill improvement and personal progress",
+            "Only beating others",
+            "Avoiding feedback",
+            "Ignoring effort"
+          ],
+          "answers": [
+            "Skill improvement and personal progress"
+          ],
+          "hint": "Contrast with ego/outcome goals.",
+          "praise": "Goal orientation clear!",
+          "explain": "Mastery = learning and progress."
+        },
+        {
+          "type": "choice",
+          "text": "Self-determination theory needs autonomy, competence and:",
+          "options": [
+            "Relatedness",
+            "Punishment only",
+            "Fixed mindset only",
+            "Silence"
+          ],
+          "answers": [
+            "Relatedness"
+          ],
+          "hint": "Three basic psychological needs.",
+          "praise": "SDT triad!",
+          "explain": "Relatedness completes the three."
+        },
+        {
+          "type": "input",
+          "text": "In SMART goals, M usually stands for?",
+          "answers": [
+            "measurable"
+          ],
+          "hint": "Trackable criteria.",
+          "praise": "SMART M!",
+          "explain": "Measurable."
+        }
+      ]
+    },
+    {
+      "name": "Memory & tactics",
+      "short": "Playbook recall",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "Working memory is:",
+          "options": [
+            "Limited system for holding/manipulating info now",
+            "Permanent life storage",
+            "Glycogen stores",
+            "Spinal cord only"
+          ],
+          "answers": [
+            "Limited system for holding/manipulating info now"
+          ],
+          "hint": "Baddeley-style temporary workspace.",
+          "praise": "WM defined!",
+          "explain": "Limited temporary workspace."
+        },
+        {
+          "type": "choice",
+          "text": "Chunking helps remember plays by:",
+          "options": [
+            "Grouping into meaningful units",
+            "Deleting schemas",
+            "Avoiding organisation",
+            "Sensory memory only"
+          ],
+          "answers": [
+            "Grouping into meaningful units"
+          ],
+          "hint": "Experts chunk offensive sets.",
+          "praise": "Chunking clear!",
+          "explain": "Meaningful groups expand capacity."
+        },
+        {
+          "type": "input",
+          "text": "Brief store from the senses (iconic/echoic)?",
+          "answers": [
+            "sensory memory",
+            "sensory",
+            "iconic memory",
+            "echoic memory"
+          ],
+          "hint": "Before working memory.",
+          "praise": "Store named!",
+          "explain": "Sensory memory."
+        }
+      ]
+    }
+  ]
+};
+
+/* Official Economics pack (inline from alevel-basketball-economics-pack.js) */
+const ALEVEL_BBALL_ECONOMICS = {
+  subject: 'Economics',
+  syllabus: 'Cambridge International AS & A Level Economics (coursebook Bamford & Grant 4e)',
+  levels: [
+    {
+      name: 'Opportunity cost',
+      short: 'Unit 1 · Scarcity & choice',
+      chapter: '1 Scarcity, choice and opportunity cost',
+      questions: [
+        {
+          type: 'choice',
+          text: 'A player has two hours free: practise free throws or revise Economics. Choosing practice means the revision time given up is what?',
+          options: ['Opportunity cost', 'Fixed cost', 'Sunk cost', 'External cost'],
+          answers: ['Opportunity cost'],
+          hint: 'It is the next-best alternative forgone when a choice is made.',
+          praise: 'Clear AS opportunity-cost thinking!',
+          explain: 'Opportunity cost is the next-best alternative forgone — here, the Economics revision.'
+        },
+        {
+          type: 'input',
+          text: 'On a PPC, moving to more “games won” and fewer “study hours” illustrates what basic idea?',
+          answers: ['scarcity', 'trade-off', 'opportunity cost', 'choice'],
+          hint: 'Resources (time) are limited, so gaining one good means less of another.',
+          praise: 'Excellent PPC link!',
+          explain: 'A PPC shows scarcity and trade-offs: more of one outcome means less of another.'
+        },
+        {
+          type: 'choice',
+          text: 'Which statement best shows a normative claim about basketball pay?',
+          options: [
+            'Star players ought to earn more than coaches',
+            'Average ticket price rose 5% last season',
+            'Arena capacity is 18,000 seats',
+            'Three-point percentage was 36%'
+          ],
+          answers: ['Star players ought to earn more than coaches'],
+          hint: 'Normative statements include value judgements (ought / should).',
+          praise: 'Sharp positive vs normative distinction!',
+          explain: '“Ought” signals a value judgement — a normative statement.'
+        }
+      ]
+    },
+    {
+      name: 'Ticket demand & supply',
+      short: 'Unit 2 · Price system',
+      chapter: '7–10 Demand, supply and market equilibrium',
+      questions: [
+        {
+          type: 'choice',
+          text: 'If a rivalry game raises fans’ willingness to pay, the ticket demand curve usually…',
+          options: ['Shifts to the right', 'Shifts to the left', 'Becomes vertical only', 'Disappears'],
+          answers: ['Shifts to the right'],
+          hint: 'A change in demand conditions shifts the whole demand curve.',
+          praise: 'Strong demand analysis!',
+          explain: 'Higher willingness to pay at each price shifts demand rightward.'
+        },
+        {
+          type: 'input',
+          text: 'Other things equal, if ticket price rises, quantity demanded of tickets usually does what?',
+          answers: ['falls', 'decreases', 'falls / decreases', 'goes down'],
+          hint: 'Move along the demand curve — law of demand.',
+          praise: 'Clear law-of-demand thinking!',
+          explain: 'A higher price leads to a lower quantity demanded, ceteris paribus.'
+        },
+        {
+          type: 'choice',
+          text: 'A new arena increases seating capacity. What happens to the ticket supply curve?',
+          options: ['Shifts right', 'Shifts left', 'Becomes demand', 'Does not change'],
+          answers: ['Shifts right'],
+          hint: 'More can be offered at each price when capacity rises.',
+          praise: 'Excellent supply-shift reasoning!',
+          explain: 'Greater capacity increases supply — the supply curve shifts right.'
+        }
+      ]
+    },
+    {
+      name: 'Jersey price elasticity',
+      short: 'Unit 2 · Elasticities',
+      chapter: '8 Price, income and cross elasticity of demand',
+      questions: [
+        {
+          type: 'choice',
+          text: 'PED for replica jerseys is −2. A 10% price cut should change quantity demanded by about…',
+          options: ['20% increase', '5% increase', '2% decrease', '10% decrease'],
+          answers: ['20% increase'],
+          hint: '%ΔQD ≈ PED × %ΔP (use the magnitude carefully).',
+          praise: 'Excellent PED calculation!',
+          explain: '|−2| × 10% = 20% rise in quantity demanded when price falls.'
+        },
+        {
+          type: 'input',
+          text: 'If PED for tickets is inelastic, does a small price rise tend to raise or lower total revenue (other things equal)?',
+          answers: ['raise', 'increase', 'raises', 'increases'],
+          hint: 'When demand is inelastic, %ΔQD is smaller than %ΔP.',
+          praise: 'Strong revenue–elasticity link!',
+          explain: 'With inelastic demand, a price rise increases total revenue, ceteris paribus.'
+        },
+        {
+          type: 'choice',
+          text: 'Basketball boots and jerseys are often bought together. Cross elasticity of demand is likely…',
+          options: ['Negative (complements)', 'Positive (substitutes)', 'Always zero', 'Always infinite'],
+          answers: ['Negative (complements)'],
+          hint: 'Complements: price of one up → demand for the other down.',
+          praise: 'Clear XED thinking!',
+          explain: 'Complements have negative cross elasticity of demand.'
+        }
+      ]
+    },
+    {
+      name: 'Arena subsidy & market failure',
+      short: 'Unit 3 · Government micro intervention',
+      chapter: '12–13 Intervention; public/merit ideas',
+      questions: [
+        {
+          type: 'choice',
+          text: 'A city subsidises a public basketball court because fitness benefits others too. This argues the courts are partly…',
+          options: ['A merit good / positive externality case', 'A pure private demerit good', 'Always a monopoly', 'Only a progressive tax'],
+          answers: ['A merit good / positive externality case'],
+          hint: 'Social benefits may exceed private benefits.',
+          praise: 'Excellent market-failure application!',
+          explain: 'Positive externalities / merit-good reasoning can justify subsidy.'
+        },
+        {
+          type: 'input',
+          text: 'Name one microeconomic method a government might use to cut ticket prices for students.',
+          answers: ['subsidy', 'maximum price', 'price ceiling', 'voucher', 'subsidies'],
+          hint: 'Think taxes, subsidies or price controls from Unit 3.',
+          praise: 'Solid intervention toolkit!',
+          explain: 'Subsidies, maximum prices or vouchers can support lower student prices.'
+        },
+        {
+          type: 'choice',
+          text: 'A binding maximum ticket price set below equilibrium tends to create…',
+          options: ['Excess demand (shortage)', 'Excess supply (surplus)', 'No effect ever', 'Only inflation'],
+          answers: ['Excess demand (shortage)'],
+          hint: 'At a price below equilibrium, QD > QS.',
+          praise: 'Sharp price-control analysis!',
+          explain: 'A binding maximum price below equilibrium causes a shortage.'
+        }
+      ]
+    },
+    {
+      name: 'Macro: jobs, inflation, AD',
+      short: 'Units 4–5 · Macro + policy',
+      chapter: '17–23 AD/AS, unemployment, inflation, fiscal/monetary',
+      questions: [
+        {
+          type: 'choice',
+          text: 'Hosting a basketball finals week boosts tourism spending. In the short run this mainly shifts…',
+          options: ['AD to the right', 'LRAS left only', 'Money supply to zero', 'PED to infinity'],
+          answers: ['AD to the right'],
+          hint: 'Higher C/I/G/net exports components raise aggregate demand.',
+          praise: 'Clear AD thinking!',
+          explain: 'Extra spending raises aggregate demand — AD shifts right.'
+        },
+        {
+          type: 'input',
+          text: 'Stadium construction hires workers who previously had no job. Which type of unemployment mainly falls?',
+          answers: ['cyclical', 'demand-deficient', 'cyclical unemployment', 'demand deficient'],
+          hint: 'Think unemployment linked to weak aggregate demand.',
+          praise: 'Excellent unemployment classification!',
+          explain: 'Demand-deficient / cyclical unemployment falls when AD and hiring rise.'
+        },
+        {
+          type: 'choice',
+          text: 'If ticket and merchandise prices rise rapidly across the economy, the macro problem is mainly…',
+          options: ['Inflation', 'Deflation only', 'A current-account definition', 'Perfect competition'],
+          answers: ['Inflation'],
+          hint: 'Sustained rise in the general price level.',
+          praise: 'Clear price-stability link!',
+          explain: 'A sustained rise in the general price level is inflation.'
+        }
+      ]
+    }
+  ]
+};
+
+const SUBJECT_DATA = Object.assign({}, SKELETON_SUBJECTS, {
+  Economics: ALEVEL_BBALL_ECONOMICS.levels.map(function(lv){
+    return { name: lv.name, short: lv.short || '', questions: lv.questions };
+  })
+});
+const SUBJECT_NAMES = ['Maths','Physics','Biology (Sport Science)','Psychology','Economics'];
+const OFFICIAL = { Economics: true };
+const PRAISES = ['Clean look — bang.','That\'s the read the coach wanted.','Sharp under the game clock.','High-IQ basketball thinking.','Clutch answer.'];
+const HOME_TIPS = [
+  'Coach tip: Warm up on something you nearly know, then stretch into the tougher set.',
+  'Coach tip: Treat a hint like a timeout — one per possession.',
+  'Coach tip: After two misses the answer is shown — film that explain line and re-run later.',
+  'Coach tip: Spaced sessions beat one long scrimmage. Come back tomorrow.'
+];
+
+
+const PROGRESS_KEY = 'y12BasketballProgress_v1';
+const STATS_KEY = 'y12BasketballStats_v1';
+const SESSION_TICK_MS = 15000;
+const COACH_TIPS = [
+  'Coach tip: Film the mistake, then re-run the possession without the hint.',
+  'Coach tip: Warm up on a near-miss topic, then stretch into the tougher set.',
+  'Coach tip: Spaced sessions beat one long scrimmage — come back tomorrow.',
+  'Coach tip: Treat a hint like a timeout — one per possession.'
+];
+const ENGINE_PRAISES = ['Clean look — bang.', "That's the read the coach wanted.", 'Sharp under the game clock.', 'High-IQ answer.', 'Clutch — level energy.'];
+
+function emptyStats(){
+  return {version:1,totalPlayMs:0,sessionCount:0,currentSession:{start:null,playMs:0},lastSession:{start:null,end:null,playMs:0},subjects:{},recentAttempts:[]};
+}
+function loadStats(){
+  try{
+    const raw=localStorage.getItem(STATS_KEY);
+    if(!raw) return emptyStats();
+    const s=JSON.parse(raw);
+    return Object.assign(emptyStats(),s,{
+      subjects:s.subjects&&typeof s.subjects==='object'?s.subjects:{},
+      recentAttempts:Array.isArray(s.recentAttempts)?s.recentAttempts:[],
+      currentSession:Object.assign({start:null,playMs:0},s.currentSession||{}),
+      lastSession:Object.assign({start:null,end:null,playMs:0},s.lastSession||{})
+    });
+  }catch(e){return emptyStats()}
+}
+function saveStats(){try{localStorage.setItem(STATS_KEY,JSON.stringify(stats))}catch(e){}}
+let stats=loadStats();
+let sessionActive=false, sessionAnchor=Date.now(), questionStartedAt=0, levelAttempt=null;
+
+function loadProgress(){
+  try{
+    const raw=localStorage.getItem(PROGRESS_KEY);
+    if(!raw) return {completed:{},best:0};
+    const p=JSON.parse(raw);
+    return {completed:p&&p.completed&&typeof p.completed==='object'?p.completed:{}, best:Number(p&&p.best)||0};
+  }catch(e){return {completed:{},best:0}}
+}
+function saveProgress(){try{localStorage.setItem(PROGRESS_KEY,JSON.stringify({completed:state.completed,best:state.best}))}catch(e){}}
+
+const progress0=loadProgress();
+const state={
+  subject: SUBJECT_NAMES[0],
+  level:0, question:0, streak:0, wrong:0, hintShown:false, current:null,
+  completed:progress0.completed, best:progress0.best
+};
+
+const $=id=>document.getElementById(id);
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function activeLevels(){return SUBJECT_DATA[state.subject]||[]}
+function completionKey(){return state.subject}
+function subjectKeyForStats(){return state.subject}
+function ensureSubject(key){
+  if(!stats.subjects[key]) stats.subjects[key]={correct:0,wrong:0,hints:0,reveals:0,playMs:0,levelsCompleted:0,levels:{}};
+  return stats.subjects[key];
+}
+function ensureLevel(sub,idx,name){
+  const id=String(idx);
+  if(!sub.levels[id]) sub.levels[id]={name:name||('Level '+(idx+1)),correct:0,wrong:0,hints:0,reveals:0,playMs:0,completed:0,attempts:0};
+  return sub.levels[id];
+}
+function flushSessionPlay(){
+  if(!sessionActive) return;
+  const now=Date.now(), delta=Math.max(0,now-sessionAnchor);
+  sessionAnchor=now;
+  if(delta<=0) return;
+  stats.totalPlayMs+=delta;
+  stats.currentSession.playMs=(stats.currentSession.playMs||0)+delta;
+  if(levelAttempt){
+    levelAttempt.playMs=(levelAttempt.playMs||0)+delta;
+    const sub=ensureSubject(levelAttempt.subjectKey);
+    sub.playMs+=delta;
+    ensureLevel(sub,levelAttempt.level,levelAttempt.levelName).playMs+=delta;
+  }
+}
+function startSession(){
+  if(sessionActive) return;
+  sessionActive=true; sessionAnchor=Date.now();
+  if(!stats.currentSession.start){
+    stats.currentSession={start:Date.now(),playMs:0};
+    stats.sessionCount=(stats.sessionCount||0)+1;
+  }
+  saveStats();
+}
+function endSession(){
+  if(!sessionActive) return;
+  flushSessionPlay(); sessionActive=false;
+  stats.lastSession={start:stats.currentSession.start,end:Date.now(),playMs:stats.currentSession.playMs||0};
+  stats.currentSession={start:null,playMs:0}; saveStats();
+}
+function formatDuration(ms){
+  ms=Math.max(0,Math.floor(ms||0)); let s=Math.floor(ms/1000);
+  if(s<60) return s+'s'; let m=Math.floor(s/60); s%=60;
+  if(m<60) return m+'m '+s+'s'; const h=Math.floor(m/60); m%=60; return h+'h '+m+'m';
+}
+function accuracyPct(c,w){const t=(c||0)+(w||0); return t?Math.round(c/t*100)+'%':'—'}
+function beginLevelAttempt(levelIdx){
+  flushSessionPlay();
+  const levels=activeLevels();
+  const name=(levels[levelIdx]&&levels[levelIdx].name)||('Level '+(levelIdx+1));
+  levelAttempt={subjectKey:subjectKeyForStats(),subject:state.subject,level:levelIdx,levelName:name,start:Date.now(),playMs:0,correct:0,wrong:0,hints:0,reveals:0,completed:false,questions:[]};
+  ensureLevel(ensureSubject(levelAttempt.subjectKey),levelIdx,name).attempts++;
+  saveStats();
+}
+function finishLevelAttempt(completed,leftEarly){
+  if(!levelAttempt) return;
+  flushSessionPlay();
+  levelAttempt.completed=!!completed; levelAttempt.end=Date.now(); levelAttempt.leftEarly=!!leftEarly;
+  const sub=ensureSubject(levelAttempt.subjectKey);
+  const lv=ensureLevel(sub,levelAttempt.level,levelAttempt.levelName);
+  if(completed){lv.completed++; sub.levelsCompleted++}
+  stats.recentAttempts.unshift({subjectKey:levelAttempt.subjectKey,level:levelAttempt.level,levelName:levelAttempt.levelName,durationMs:levelAttempt.playMs,correct:levelAttempt.correct,wrong:levelAttempt.wrong,hints:levelAttempt.hints,reveals:levelAttempt.reveals,completed:!!completed,leftEarly:!!leftEarly,at:levelAttempt.end});
+  if(stats.recentAttempts.length>40) stats.recentAttempts.length=40;
+  levelAttempt=null; saveStats();
+}
+function logQuestionResult(opts){
+  const sk=opts.subjectKey||subjectKeyForStats();
+  const sub=ensureSubject(sk), lv=ensureLevel(sub,opts.level,opts.levelName);
+  if(opts.correct){sub.correct++;lv.correct++}else{sub.wrong++;lv.wrong++}
+  if(opts.usedHint){sub.hints++;lv.hints++}
+  if(opts.revealed){sub.reveals++;lv.reveals++}
+  if(levelAttempt){
+    if(opts.correct) levelAttempt.correct++; else levelAttempt.wrong++;
+    if(opts.usedHint) levelAttempt.hints++;
+    if(opts.revealed) levelAttempt.reveals++;
+    levelAttempt.questions.push({correct:!!opts.correct,usedHint:!!opts.usedHint,revealed:!!opts.revealed,ms:opts.questionMs||0,at:Date.now()});
+  }
+  saveStats();
+}
+function logReveal(meta){
+  const sk=meta.subjectKey||subjectKeyForStats();
+  const sub=ensureSubject(sk), lv=ensureLevel(sub,meta.level,meta.levelName);
+  sub.wrong++; lv.wrong++; if(levelAttempt) levelAttempt.wrong++;
+  sub.reveals++; lv.reveals++;
+  if(meta.usedHint){sub.hints++;lv.hints++; if(levelAttempt) levelAttempt.hints++}
+  if(levelAttempt){levelAttempt.reveals++; levelAttempt.questions.push({correct:false,usedHint:!!meta.usedHint,revealed:true,ms:meta.questionMs||0,at:Date.now()})}
+  saveStats();
+}
+
+function clean(s){return String(s).toLowerCase().replace(/[’']/g,'').replace(/£/g,'').replace(/[^a-z0-9:%./\-]/g,'').trim()}
+function acceptedAnswers(q){return Array.isArray(q.answers)?q.answers.slice():[]}
+function isCorrect(value,q){
+  const v=clean(value);
+  return acceptedAnswers(q).some(a=>clean(a)===v);
+}
+function shuffleCopy(arr){const a=arr.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]} return a}
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text); u.lang='en-GB'; u.rate=0.92; speechSynthesis.speak(u);
+}
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(el=>el.classList.toggle('active', el.id===id));
+}
+function normalizeQuestion(q){
+  // Map pack fields: type choice|input, text, options, answers, hint, praise, explain
+  const out=Object.assign({},q);
+  if(out.type==='mc') out.type='choice';
+  if(out.prompt && !out.text) out.text=out.prompt;
+  if(out.answer!=null && !out.answers) out.answers=[out.answer];
+  if(out.type==='choice' && out.options) out.options=shuffleCopy(out.options);
+  return out;
+}
+
+function renderHome(){
+  showScreen('home');
+  $('coachTip').textContent=(typeof HOME_TIPS!=='undefined'?HOME_TIPS:COACH_TIPS)[Math.floor(Date.now()/86400000)%COACH_TIPS.length];
+  const sg=$('subjectGrid'); sg.innerHTML='';
+  SUBJECT_NAMES.forEach(name=>{
+    const b=document.createElement('button'); b.type='button';
+    const done=(state.completed[name]||[]).length;
+    b.className='subject'+(name===state.subject?' active':'')+(done?' done':'');
+    const official=(typeof OFFICIAL!=='undefined'&&OFFICIAL[name])?' <span class="badge">official</span>':' <span class="badge">skeleton</span>';
+    b.innerHTML=escapeHtml(name)+official;
+    b.onclick=()=>{state.subject=name; renderHome()};
+    sg.appendChild(b);
+  });
+  const levels=activeLevels(), grid=$('levelGrid'), done=state.completed[completionKey()]||[];
+  grid.innerHTML='';
+  $('levelHeading').textContent=state.subject+' levels';
+  levels.forEach((l,i)=>{
+    const unlocked=i===0||done.includes(i-1);
+    const b=document.createElement('button'); b.type='button';
+    b.className='level-card card'+(done.includes(i)?' done':'');
+    b.disabled=!unlocked;
+    b.innerHTML='<span class="lvl-num">'+(i+1)+'</span><strong>'+escapeHtml(l.name)+'</strong><small>'+escapeHtml(l.short||'')+'</small>'+
+      (done.includes(i)?'<span class="tick">✓</span>':(!unlocked?'<span class="lock">🔒</span>':''));
+    b.onclick=()=>startLevel(i);
+    grid.appendChild(b);
+  });
+  $('doneCount').textContent=done.length;
+  $('bestStreak').textContent=state.best;
+}
+
+function startLevel(i){
+  if(levelAttempt) finishLevelAttempt(false,true);
+  state.level=i; state.question=0; state.streak=0; state.wrong=0;
+  startSession(); beginLevelAttempt(i);
+  showScreen('play'); renderQuestion();
+}
+function currentQuestion(){
+  const lvl=activeLevels()[state.level];
+  return normalizeQuestion(lvl.questions[state.question]);
+}
+function renderQuestion(){
+  const l=activeLevels()[state.level];
+  state.current=currentQuestion(); state.wrong=0; state.hintShown=false; questionStartedAt=Date.now();
+  $('crumb').textContent='Level '+(state.level+1)+' · '+l.name;
+  $('streakLabel').textContent='Question '+(state.question+1)+' of 3';
+  $('qText').textContent=state.current.text;
+  $('progLabel').textContent=state.question+' of 3 correct';
+  $('progBar').style.width=(state.question/3*100)+'%';
+  $('progHint').textContent=state.question?((3-state.question)+' correct to finish this level.'):'Get all three right to unlock the next level.';
+  $('habit').textContent=state.current.type==='choice'?'Read every option before you shoot.':'Read the stem twice, then choose a method.';
+  $('feedback').innerHTML='';
+  const area=$('answerArea'); area.innerHTML='';
+  if(state.current.type==='choice'){
+    const o=document.createElement('div'); o.className='options';
+    state.current.options.forEach(opt=>{
+      const b=document.createElement('button'); b.type='button'; b.className='option'; b.textContent=opt;
+      b.onclick=()=>submitAnswer(opt); o.appendChild(b);
+    });
+    area.appendChild(o);
+  }else{
+    const row=document.createElement('div'); row.className='answer-row';
+    const input=document.createElement('input'); input.className='answer-input'; input.placeholder='Type your answer'; input.autocomplete='off'; input.setAttribute('aria-label','Your answer');
+    const btn=document.createElement('button'); btn.type='button'; btn.className='submit'; btn.textContent='Check answer';
+    btn.onclick=()=>submitAnswer(input.value);
+    input.onkeydown=e=>{if(e.key==='Enter') submitAnswer(input.value)};
+    row.append(input,btn); area.appendChild(row); setTimeout(()=>input.focus(),40);
+  }
+  appendHintUI(area, state.current);
+}
+function appendHintUI(area,q){
+  if(!q.hint) return;
+  const wrap=document.createElement('div'); wrap.className='hint-wrap';
+  const actions=document.createElement('div'); actions.className='hint-actions';
+  const hintBtn=document.createElement('button'); hintBtn.type='button'; hintBtn.className='hint-btn'; hintBtn.textContent='Hint';
+  const hearBtn=document.createElement('button'); hearBtn.type='button'; hearBtn.className='hint-hear hidden'; hearBtn.textContent='🔊 Hear hint';
+  const box=document.createElement('div'); box.className='hint-box'; box.setAttribute('aria-live','polite');
+  hintBtn.onclick=()=>{
+    if(state.hintShown) return;
+    state.hintShown=true; box.textContent=q.hint; box.classList.add('show');
+    hintBtn.disabled=true; hintBtn.textContent='Hint shown'; hearBtn.classList.remove('hidden');
+  };
+  hearBtn.onclick=()=>{if(state.hintShown) speak(q.hint)};
+  actions.append(hintBtn,hearBtn); wrap.append(actions,box); area.appendChild(wrap);
+}
+function praiseFor(q){return (q&&q.praise)||(typeof PRAISES!=='undefined'?PRAISES:ENGINE_PRAISES)[Math.min(state.level,PRAISES.length-1)]}
+function submitAnswer(value){
+  if(!String(value).trim()) return;
+  const q=state.current;
+  const correct=isCorrect(value,q);
+  document.querySelectorAll('.option,.submit,.answer-input').forEach(x=>x.disabled=true);
+  const qMs=questionStartedAt?Date.now()-questionStartedAt:0;
+  const lvl=activeLevels()[state.level];
+  const meta={subjectKey:subjectKeyForStats(),level:state.level,levelName:lvl?lvl.name:('Level '+(state.level+1)),questionMs:qMs,usedHint:!!state.hintShown};
+  const praise=praiseFor(q);
+  if(correct){
+    logQuestionResult(Object.assign({correct:true,revealed:false},meta));
+    state.question++; state.streak++; state.best=Math.max(state.best,state.streak);
+    $('feedback').innerHTML='<div class="fb good">✓ '+escapeHtml(praise)+'<div class="explain">Correct — keep the streak alive.</div></div>';
+    speak(praise); saveProgress();
+    setTimeout(()=>{ if(state.question>=3) completeLevel(); else renderQuestion(); },900);
+  }else{
+    state.wrong++; state.streak=0;
+    const ansText=acceptedAnswers(q)[0]||'';
+    if(state.wrong>=2){
+      logReveal(meta);
+      $('feedback').innerHTML='<div class="fb reveal">The answer is <strong>'+escapeHtml(ansText)+'</strong>.<div class="explain">'+escapeHtml(q.explain||'')+'</div></div>';
+      speak('Here is the answer. '+ansText+'. '+(q.explain||''));
+      setTimeout(()=>renderQuestion(),2100);
+    }else{
+      if(levelAttempt){
+        levelAttempt.wrong++;
+        const sub=ensureSubject(meta.subjectKey); const lv=ensureLevel(sub,meta.level,meta.levelName);
+        sub.wrong++; lv.wrong++; saveStats();
+      }
+      const soft=q.hint||'Check your method and have another go.';
+      $('feedback').innerHTML='<div class="fb try">Not quite yet. '+escapeHtml(soft)+'<div class="explain">Have another go using that method.</div></div>';
+      speak(soft);
+      setTimeout(()=>{
+        document.querySelectorAll('.option,.submit,.answer-input').forEach(x=>x.disabled=false);
+        const inp=document.querySelector('.answer-input'); if(inp) inp.focus();
+      },650);
+    }
+  }
+}
+function completeLevel(){
+  finishLevelAttempt(true,false);
+  const key=completionKey(); const done=state.completed[key]||[];
+  if(!done.includes(state.level)) done.push(state.level);
+  state.completed[key]=done; saveProgress();
+  showScreen('complete');
+  const levels=activeLevels(); const last=state.level===levels.length-1;
+  $('completeTitle').textContent=last?'Subject swept!':'Level unlocked!';
+  $('completeText').textContent=last?('You finished all five levels in '+state.subject+'.'):('Three in a row — '+levels[state.level].name+' is complete.');
+  $('nextBtn').textContent=last?'See subjects':'Next level';
+  $('nextBtn').onclick=()=>{ if(last) renderHome(); else startLevel(state.level+1); };
+  speak(last?'Subject swept! Brilliant work.':'Level unlocked!');
+}
+function leavePlayToHome(){ if(levelAttempt) finishLevelAttempt(false,true); renderHome(); }
+
+function openCoach(){ flushSessionPlay(); saveStats(); const m=$('coachModal'); m.hidden=false; m.classList.add('open'); renderCoach(); }
+function closeCoach(){ const m=$('coachModal'); m.classList.remove('open'); m.hidden=true; }
+function renderCoach(){
+  flushSessionPlay();
+  const cur=sessionActive?(stats.currentSession.playMs||0):0;
+  const last=stats.lastSession||{};
+  $('timeGrid').innerHTML=
+    '<div class="pstat"><b>'+formatDuration(stats.totalPlayMs)+'</b><span>Total practice</span></div>'+
+    '<div class="pstat"><b>'+(sessionActive?formatDuration(cur):'—')+'</b><span>'+(sessionActive?'Current session':'No session open')+'</span></div>'+
+    '<div class="pstat"><b>'+(last.playMs?formatDuration(last.playMs):'—')+'</b><span>Last session'+(last.end?' · '+new Date(last.end).toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short'}):'')+'</span></div>';
+  const tbody=$('timeTable').querySelector('tbody'); tbody.innerHTML='';
+  const entries=Object.entries(stats.subjects).sort((a,b)=>(b[1].playMs||0)-(a[1].playMs||0));
+  if(!entries.length) tbody.innerHTML='<tr><td colspan="2">No practice time yet.</td></tr>';
+  else entries.forEach(([name,sub])=>{
+    tbody.innerHTML+='<tr><td><strong>'+escapeHtml(name)+'</strong></td><td>'+formatDuration(sub.playMs)+'</td></tr>';
+    Object.keys(sub.levels||{}).map(Number).sort((a,b)=>a-b).forEach(idx=>{
+      const lv=sub.levels[String(idx)]; if(!lv||!lv.playMs) return;
+      tbody.innerHTML+='<tr><td style="padding-left:14px">Level '+(idx+1)+': '+escapeHtml(lv.name)+'</td><td>'+formatDuration(lv.playMs)+'</td></tr>';
+    });
+  });
+  let totC=0,totW=0,totL=0; entries.forEach(([,s])=>{totC+=s.correct||0;totW+=s.wrong||0;totL+=s.levelsCompleted||0});
+  $('scoreGrid').innerHTML=
+    '<div class="pstat"><b>'+totL+'</b><span>Level completions</span></div>'+
+    '<div class="pstat"><b>'+accuracyPct(totC,totW)+'</b><span>Overall accuracy</span></div>'+
+    '<div class="pstat"><b>'+totC+' / '+totW+'</b><span>Correct / not yet</span></div>';
+  const sbody=$('scoreTable').querySelector('tbody'); sbody.innerHTML='';
+  if(!entries.length) sbody.innerHTML='<tr><td colspan="5">Scores appear after you answer questions.</td></tr>';
+  else entries.forEach(([name,sub])=>{
+    sbody.innerHTML+='<tr><td>'+escapeHtml(name)+'</td><td>'+(sub.levelsCompleted||0)+'</td><td>'+accuracyPct(sub.correct,sub.wrong)+'</td><td>'+(sub.correct||0)+'</td><td>'+(sub.wrong||0)+'</td></tr>';
+  });
+  const trouble=[];
+  entries.forEach(([name,sub])=>{
+    Object.keys(sub.levels||{}).forEach(id=>{
+      const lv=sub.levels[id];
+      const score=(lv.wrong||0)*2+(lv.hints||0)+(lv.reveals||0)*3;
+      if(score>0) trouble.push({label:name+' · Level '+(Number(id)+1)+': '+lv.name,wrong:lv.wrong||0,hints:lv.hints||0,reveals:lv.reveals||0,score});
+    });
+  });
+  trouble.sort((a,b)=>b.score-a.score);
+  const tr=$('troubleTable').querySelector('tbody'); tr.innerHTML='';
+  $('troubleIntro').textContent=trouble.length?'These spots had more incorrect tries or hint use.':'No trouble spots yet.';
+  if(!trouble.length) tr.innerHTML='<tr><td colspan="4">Nothing flagged — steady progress.</td></tr>';
+  else trouble.slice(0,12).forEach(row=>{
+    tr.innerHTML+='<tr><td>'+escapeHtml(row.label)+'</td><td>'+row.wrong+'</td><td>'+row.hints+'</td><td>'+row.reveals+'</td></tr>';
+  });
+}
+function resetStatsOnly(){
+  if(!confirm('Reset practice stats for the coach report? Level unlocks stay.')) return;
+  stats=emptyStats();
+  if(sessionActive){stats.currentSession={start:Date.now(),playMs:0};stats.sessionCount=1;sessionAnchor=Date.now()}
+  if(levelAttempt) levelAttempt=Object.assign({},levelAttempt,{playMs:0,correct:0,wrong:0,hints:0,reveals:0,questions:[]});
+  saveStats(); renderCoach();
+}
+function resetStatsAndProgress(){
+  if(!confirm('Reset BOTH practice stats and level progress on this device?')) return;
+  stats=emptyStats();
+  if(sessionActive){stats.currentSession={start:Date.now(),playMs:0};stats.sessionCount=1;sessionAnchor=Date.now()}
+  levelAttempt=null; saveStats();
+  state.completed={}; state.best=0; saveProgress(); renderHome(); renderCoach();
+}
+
+$('homeBtn').onclick=leavePlayToHome;
+$('backBtn').onclick=leavePlayToHome;
+$('levelsBtn').onclick=leavePlayToHome;
+$('soundBtn').onclick=()=>speak((typeof PRAISES!=='undefined'?PRAISES:ENGINE_PRAISES)[Math.min(state.level,PRAISES.length-1)]);
+$('resetBtn').onclick=()=>{
+  if(confirm('Reset all level progress? Coach stats stay unless reset in the report.')){
+    state.completed={}; state.best=0; saveProgress(); renderHome();
+  }
+};
+$('coachBtn').onclick=openCoach;
+$('coachClose').onclick=closeCoach;
+$('coachDone').onclick=closeCoach;
+$('resetStatsBtn').onclick=resetStatsOnly;
+$('resetAllBtn').onclick=resetStatsAndProgress;
+$('coachModal').addEventListener('click',e=>{if(e.target===$('coachModal')) closeCoach()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('coachModal').classList.contains('open')) closeCoach()});
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden){flushSessionPlay();saveStats()}
+  else{if(!sessionActive) startSession(); else sessionAnchor=Date.now()}
+});
+window.addEventListener('pagehide',()=>endSession());
+window.addEventListener('beforeunload',()=>{flushSessionPlay();saveStats()});
+setInterval(()=>{if(sessionActive){flushSessionPlay();saveStats()}},SESSION_TICK_MS);
+startSession();
+renderHome();
+
+</script>
+</body>
+</html>
