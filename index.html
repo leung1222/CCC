@@ -60,7 +60,10 @@ button,input{font:inherit}button{cursor:pointer;border:0}
 .options{display:grid;grid-template-columns:1fr 1fr;gap:9px;max-width:660px}
 .option{text-align:left;padding:13px;border-radius:12px;border:2px solid #d9e0d8;background:#fff;font-weight:700}
 .option:hover{border-color:var(--paint);background:#f4faf6}
+.option.selected{border-color:var(--paint);background:#e8f5ee;box-shadow:inset 0 -3px 0 var(--paint)}
 .option:disabled{cursor:default}
+.choice-check{margin-top:12px}.choice-check .submit{padding:12px 16px}
+.submit:disabled{opacity:.5;cursor:not-allowed;box-shadow:none}
 .answer-row{display:flex;gap:8px;max-width:640px}
 .answer-input{flex:1;padding:13px 14px;border:2px solid #d9e0d8;border-radius:12px;outline:none}
 .answer-input:focus{border-color:var(--paint);box-shadow:0 0 0 4px #2f6b4f1a}
@@ -70,7 +73,11 @@ button,input{font:inherit}button{cursor:pointer;border:0}
 .fb{border-radius:12px;padding:11px 13px;font-weight:650}
 .fb.good{background:#e3f6ec;color:#136b4d}.fb.try{background:#fff4da;color:#745619}.fb.reveal{background:#e8f0ff;color:#294b9b}
 .fb .explain{font-size:14px;font-weight:500;margin-top:8px;line-height:1.45}
-.fb .explain .why-heading{display:block;font-size:13px;font-weight:800;margin:0 0 4px;letter-spacing:.02em}
+.fb .explain .why-heading{display:inline;font-size:13px;font-weight:800;margin:0;letter-spacing:.02em}
+.fb .explain .why-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 6px}
+.hear-explain{background:#e8f5f2;color:#146f5b;border-radius:10px;padding:6px 11px;font-weight:800;font-size:13px}
+.hear-explain:hover{filter:brightness(1.03)}
+.fb.good .hear-explain,.fb.reveal .hear-explain{box-shadow:0 1px 0 rgba(0,0,0,.06)}
 .fb.good .explain,.fb.reveal .explain{color:inherit;opacity:.95}
 .continue-btn{display:inline-block;margin-top:12px;padding:10px 16px;border-radius:11px;background:var(--mint);color:#fff;font-weight:900;box-shadow:0 3px 0 #1e7a58}
 .continue-btn:hover{filter:brightness(1.05)}
@@ -1617,12 +1624,23 @@ function renderQuestion(){
   $('feedback').innerHTML='';
   const area=$('answerArea'); area.innerHTML='';
   if(state.current.type==='choice'){
+    let selected=null;
     const o=document.createElement('div'); o.className='options';
+    const checkBtn=document.createElement('button'); checkBtn.type='button'; checkBtn.className='submit'; checkBtn.textContent='Check answer'; checkBtn.disabled=true;
+    checkBtn.onclick=()=>{ if(selected!=null) submitAnswer(selected); };
     state.current.options.forEach(opt=>{
       const b=document.createElement('button'); b.type='button'; b.className='option'; b.textContent=opt;
-      b.onclick=()=>submitAnswer(opt); o.appendChild(b);
+      b.onclick=()=>{
+        if(b.disabled) return;
+        selected=opt;
+        o.querySelectorAll('.option').forEach(x=>x.classList.remove('selected'));
+        b.classList.add('selected');
+        checkBtn.disabled=false;
+      };
+      o.appendChild(b);
     });
     area.appendChild(o);
+    const checkWrap=document.createElement('div'); checkWrap.className='choice-check'; checkWrap.appendChild(checkBtn); area.appendChild(checkWrap);
   }else{
     const row=document.createElement('div'); row.className='answer-row';
     const input=document.createElement('input'); input.className='answer-input'; input.placeholder='Type your answer'; input.autocomplete='off'; input.setAttribute('aria-label','Your answer');
@@ -1663,9 +1681,10 @@ function submitAnswer(value){
     logQuestionResult(Object.assign({correct:true,revealed:false},meta));
     state.question++; state.streak++; state.best=Math.max(state.best,state.streak);
     const why=explainText(q);
-    $('feedback').innerHTML='<div class="fb good">✓ '+escapeHtml(praise)+'<div class="explain"><span class="why-heading">Why this is right</span>'+escapeHtml(why)+'</div><button type="button" class="continue-btn" id="continueBtn">Continue</button></div>';
+    $('feedback').innerHTML='<div class="fb good">✓ '+escapeHtml(praise)+'<div class="explain"><div class="why-row"><span class="why-heading">Why this is right</span><button type="button" class="hear-explain" id="hearExplainBtn">▶ Hear explanation</button></div>'+escapeHtml(why)+'</div><button type="button" class="continue-btn" id="continueBtn">Continue</button></div>';
     speak((praise||'')+'. '+why); saveProgress();
     document.querySelectorAll('.option,.submit,.answer-input,.hint-btn,.hint-hear').forEach(x=>x.disabled=true);
+    $('hearExplainBtn').onclick=()=>speak(why);
     $('continueBtn').onclick=()=>{ if(state.question>=3) completeLevel(); else renderQuestion(); };
   }else{
     state.wrong++; state.streak=0;
@@ -1673,9 +1692,10 @@ function submitAnswer(value){
     if(state.wrong>=2){
       logReveal(meta);
       const why=explainText(q);
-      $('feedback').innerHTML='<div class="fb reveal">The answer is <strong>'+escapeHtml(ansText)+'</strong>.<div class="explain"><span class="why-heading">Why this is right</span>'+escapeHtml(why)+'</div></div>';
+      $('feedback').innerHTML='<div class="fb reveal">The answer is <strong>'+escapeHtml(ansText)+'</strong>.<div class="explain"><div class="why-row"><span class="why-heading">Why this is right</span><button type="button" class="hear-explain" id="hearExplainBtn">▶ Hear explanation</button></div>'+escapeHtml(why)+'</div><button type="button" class="continue-btn" id="continueBtn">Continue</button></div>';
       speak('Here is the answer. '+ansText+'. '+why);
-      setTimeout(()=>renderQuestion(),2100);
+      $('hearExplainBtn').onclick=()=>speak(why);
+      $('continueBtn').onclick=()=>renderQuestion();
     }else{
       if(levelAttempt){
         levelAttempt.wrong++;
@@ -1686,7 +1706,12 @@ function submitAnswer(value){
       $('feedback').innerHTML='<div class="fb try">Not quite yet. '+escapeHtml(soft)+'<div class="explain">Have another go using that method.</div></div>';
       speak(soft);
       setTimeout(()=>{
-        document.querySelectorAll('.option,.submit,.answer-input').forEach(x=>x.disabled=false);
+        document.querySelectorAll('.option,.answer-input').forEach(x=>x.disabled=false);
+        const hasChoices=!!document.querySelector('.options');
+        document.querySelectorAll('.submit').forEach(btn=>{
+          if(hasChoices){ btn.disabled=!document.querySelector('.option.selected'); }
+          else { btn.disabled=false; }
+        });
         const inp=document.querySelector('.answer-input'); if(inp) inp.focus();
       },650);
     }
