@@ -145,13 +145,13 @@ table.rt th{color:var(--muted);font-size:12px}
   <div class="card hero-main">
     <div class="eyebrow">Playbook · Year 12 A-Level</div>
     <h2>Step onto the court. Call the play.</h2>
-    <p>Pick a subject, run five levels, string three correct answers to unlock the next. Hints are one-shot — use them like a timeout. Three subjects only: Economics (official pack), Business, and Pure Mathematics 1.</p>
+    <p>Pick a subject, run five levels, string three correct answers to unlock the next. Hints are one-shot — use them like a timeout. Three official Cambridge AS packs: Economics, Business, and Pure Mathematics 1.</p>
     <div class="coach-tip" id="coachTip">Coach tip: Film the mistake, then re-run the possession without the hint.</div>
   </div>
   <div class="card court" aria-hidden="true"><div class="hoop">🏀</div><div class="court-label">Game clock · tactics board</div></div>
 </section>
 <section id="home" class="screen active">
-  <div class="section-head"><h2>Choose your subject</h2><p>Economics is the official educator pack. Business and Pure Mathematics 1 use interim banks until the educator packs land.</p></div>
+  <div class="section-head"><h2>Choose your subject</h2><p>Three official AS packs: Economics (Bamford & Grant), Business (Stimpson & Farquharson), Pure Mathematics 1 (Pemberton).</p></div>
   <div class="row-title"><h3>Subjects</h3><span>5 levels · streak of 3 unlocks next</span></div>
   <div class="subject-grid" id="subjectGrid"></div>
   <div class="row-title"><h3 id="levelHeading">Levels</h3><span>Locked until previous complete</span></div>
@@ -222,562 +222,706 @@ table.rt th{color:var(--muted);font-size:12px}
 
 <script>
 'use strict';
-// PLACEHOLDER BANK — educator will replace (Economics = official pack below)
-// PLACEHOLDER / interim banks — educator will replace Business + PM1 with official packs
-const SKELETON_SUBJECTS = {
-  "Business": [
+/* Official Business pack (Stimpson & Farquharson) */
+const ALEVEL_BBALL_BUSINESS = {
+  "subject": "Business",
+  "syllabus": "Cambridge International AS & A Level Business (Stimpson & Farquharson coursebook)",
+  "theme": "Basketball club / arena business contexts",
+  "levels": [
     {
-      "name": "Business environment on the court",
-      "short": "Stakeholders & PESTLE",
+      "name": "Business purpose",
+      "short": "AS \u00b7 What is a business?",
+      "chapter": "Business and its environment",
       "questions": [
         {
           "type": "choice",
-          "text": "A basketball club raises ticket prices. Which stakeholder is most directly affected as a customer?",
+          "text": "A local basketball club sells match tickets and kit. Its primary business purpose is to?",
           "options": [
-            "Fans buying match tickets",
-            "The league referee association",
-            "A rival club's owners",
-            "The government's central bank"
+            "Provide goods/services to satisfy customer needs and add value",
+            "Only print posters for fun",
+            "Ignore customers completely",
+            "Avoid all money flows forever"
           ],
           "answers": [
-            "Fans buying match tickets"
+            "Provide goods/services to satisfy customer needs and add value"
           ],
-          "hint": "Who pays for the product?",
-          "praise": "Sharp stakeholder call!",
-          "explain": "Customers are the buyers of the firm's goods or services. Ticket-buying fans are the customers most directly hit by a price rise."
+          "hint": "Think needs, wants and adding value.",
+          "praise": "Clear AS business purpose!",
+          "explain": "Businesses satisfy customer needs/wants by providing goods or services and adding value \u2014 here, entertainment and merchandise."
+        },
+        {
+          "type": "input",
+          "text": "Name the four main factors of production (comma-separated is fine).",
+          "answers": [
+            "land labour capital enterprise",
+            "land, labour, capital, enterprise",
+            "land labor capital enterprise",
+            "land, labor, capital, enterprise"
+          ],
+          "hint": "Natural resources, workers, man-made resources, and risk-taking organisation.",
+          "praise": "Strong foundations!",
+          "explain": "The four factors are land, labour, capital and enterprise."
         },
         {
           "type": "choice",
-          "text": "Which PESTLE factor is a new national rule limiting late-night arena noise?",
+          "text": "Building a new arena creates construction jobs nearby. This is mainly which type of effect?",
           "options": [
-            "Political / legal",
-            "Economic",
-            "Social only",
-            "Technological"
+            "Positive externality / external benefit",
+            "Only a private cost to fans",
+            "A tariff",
+            "Depreciation of a laptop"
           ],
           "answers": [
-            "Political / legal"
+            "Positive externality / external benefit"
           ],
-          "hint": "Think regulation and law.",
-          "praise": "Clean environment scan!",
-          "explain": "Laws and regulations sit in the political/legal PESTLE layer. A noise rule is a legal constraint on how the arena operates."
-        },
-        {
-          "type": "choice",
-          "text": "A club sponsors local schools to build goodwill. This mainly aims at which objective?",
-          "options": [
-            "Corporate social responsibility / reputation",
-            "Cutting variable costs immediately",
-            "Raising interest rates",
-            "Reducing the capital employed to zero"
-          ],
-          "answers": [
-            "Corporate social responsibility / reputation"
-          ],
-          "hint": "Think image and community.",
-          "praise": "Good CSR read!",
-          "explain": "Community sponsorship is typically a CSR / reputation play, not an instant cost-cutting or finance-market move."
+          "hint": "Benefits spill over to people who are not the paying customer.",
+          "praise": "Excellent stakeholder thinking!",
+          "explain": "Spillover benefits to the wider community (jobs, local spending) are positive externalities / external benefits."
         }
       ]
     },
     {
-      "name": "People in the organisation",
-      "short": "Motivation & structure",
+      "name": "Stakeholders",
+      "short": "AS \u00b7 Who matters?",
+      "chapter": "Stakeholders",
       "questions": [
         {
           "type": "choice",
-          "text": "Paying coaches a bonus for each win is closest to which motivation idea?",
+          "text": "Season-ticket holders of a basketball team are best classified as?",
           "options": [
-            "Financial incentive linked to performance",
-            "Job rotation with no pay change",
-            "Maslow's physiological needs only",
-            "Removing all targets"
+            "Customers / consumers",
+            "Only central bankers",
+            "Only raw-material mines",
+            "Only government tax offices abroad"
           ],
           "answers": [
-            "Financial incentive linked to performance"
+            "Customers / consumers"
           ],
-          "hint": "Money tied to results.",
-          "praise": "Solid people play!",
-          "explain": "A win bonus is a financial reward tied to performance — a classic incentive scheme."
+          "hint": "They pay for the product/service.",
+          "praise": "Clear stakeholder ID!",
+          "explain": "Fans who buy tickets are customers (consumers) \u2014 a key external stakeholder group."
+        },
+        {
+          "type": "input",
+          "text": "Players employed by a professional club are which internal stakeholder group?",
+          "answers": [
+            "employees",
+            "workforce",
+            "staff",
+            "labour",
+            "workers"
+          ],
+          "hint": "They work for the organisation.",
+          "praise": "Sharp classification!",
+          "explain": "Players on the payroll are employees \u2014 an internal stakeholder group."
         },
         {
           "type": "choice",
-          "text": "A flat coaching staff with few layers usually means:",
+          "text": "Raising ticket prices may please owners (more revenue) but anger fans. This illustrates?",
           "options": [
-            "Wider spans of control / faster communication",
-            "More hierarchy layers than a tall structure",
-            "No one reports to anyone",
-            "Zero need for coordination"
+            "Stakeholder conflict",
+            "Perfect harmony always",
+            "Zero opportunity cost",
+            "Infinite resources"
           ],
           "answers": [
-            "Wider spans of control / faster communication"
+            "Stakeholder conflict"
           ],
-          "hint": "Flat vs tall org charts.",
-          "praise": "Nice structure read!",
-          "explain": "Flat structures have fewer layers, so spans of control tend to be wider and messages travel with fewer hand-offs."
-        },
-        {
-          "type": "choice",
-          "text": "Training a bench player on multiple positions is best described as:",
-          "options": [
-            "Multi-skilling / flexibility",
-            "Redundancy with no redeployment",
-            "Offshoring the roster",
-            "Deleveraging equity"
-          ],
-          "answers": [
-            "Multi-skilling / flexibility"
-          ],
-          "hint": "One person, several roles.",
-          "praise": "Flexible roster thinking!",
-          "explain": "Teaching several roles builds multi-skilling and operational flexibility on the bench."
+          "hint": "Different groups want different outcomes.",
+          "praise": "Mature business judgement!",
+          "explain": "When stakeholder objectives clash (profit vs affordable tickets), there is stakeholder conflict."
         }
       ]
     },
     {
-      "name": "Marketing the franchise",
-      "short": "4Ps & segments",
+      "name": "Marketing mix",
+      "short": "AS \u00b7 4Ps on court",
+      "chapter": "Marketing",
       "questions": [
         {
           "type": "choice",
-          "text": "Selling cheaper tickets to students is mainly which marketing mix element?",
+          "text": "Offering a half-price student ticket for midweek games is mainly which P?",
           "options": [
-            "Price (and targeting a segment)",
-            "Place only",
-            "Process quality control",
-            "Physical evidence of the arena roof"
+            "Price",
+            "Place only as a warehouse",
+            "Packaging of a shoe box only",
+            "Production of steel"
           ],
           "answers": [
-            "Price (and targeting a segment)"
+            "Price"
           ],
-          "hint": "Who pays what.",
-          "praise": "Sharp mix call!",
-          "explain": "Student discounts are a price decision aimed at a defined segment."
+          "hint": "It changes what customers pay.",
+          "praise": "Clear marketing mix!",
+          "explain": "Student discounts are a price decision within the marketing mix (4Ps)."
+        },
+        {
+          "type": "input",
+          "text": "Selling merch through the arena shop and the club website is mainly which P of the marketing mix?",
+          "answers": [
+            "place",
+            "distribution",
+            "place/distribution"
+          ],
+          "hint": "How and where the product reaches the customer.",
+          "praise": "Excellent channel thinking!",
+          "explain": "Place (distribution) is how the product reaches customers \u2014 shop and website channels."
         },
         {
           "type": "choice",
-          "text": "Streaming highlights on the club app mainly improves which mix element?",
+          "text": "A social-media campaign featuring star players before tip-off is mainly?",
           "options": [
-            "Promotion / place (digital channel)",
-            "Only the product's bounce rate of the ball",
-            "Interest rates",
-            "Government tax bands"
+            "Promotion",
+            "Only machine maintenance",
+            "Only accountancy depreciation",
+            "Only HR recruitment tests"
           ],
           "answers": [
-            "Promotion / place (digital channel)"
+            "Promotion"
           ],
-          "hint": "How fans hear about and access content.",
-          "praise": "Clean channel thinking!",
-          "explain": "App highlights promote the brand and deliver content through a digital channel (place/promotion)."
-        },
-        {
-          "type": "choice",
-          "text": "Grouping fans into families, students, and corporate boxes is:",
-          "options": [
-            "Market segmentation",
-            "Mass customisation of the basketball itself",
-            "Primary research only",
-            "Breaking even on fixed costs"
-          ],
-          "answers": [
-            "Market segmentation"
-          ],
-          "hint": "Split the market into groups.",
-          "praise": "Good segment read!",
-          "explain": "Dividing customers into groups with shared needs is market segmentation."
+          "hint": "Communicating with the market to boost awareness/sales.",
+          "praise": "Strong promo sense!",
+          "explain": "Advertising and social campaigns are promotion \u2014 communicating the offer to the target market."
         }
       ]
     },
     {
-      "name": "Ops & adding value",
-      "short": "Value chain basics",
+      "name": "People & motivation",
+      "short": "AS \u00b7 Managing people",
+      "chapter": "People in organisations",
       "questions": [
         {
           "type": "choice",
-          "text": "Turning raw players + coaching into a winning match-day experience is mainly:",
+          "text": "Paying players a win bonus is closest to which motivational approach?",
           "options": [
-            "Adding value through operations",
-            "Ignoring transformation processes",
-            "Only accounting depreciation",
-            "Setting the national interest rate"
+            "Financial reward / Taylor-style incentive",
+            "Ignoring all performance",
+            "Removing all contracts",
+            "Banning training"
           ],
           "answers": [
-            "Adding value through operations"
+            "Financial reward / Taylor-style incentive"
           ],
-          "hint": "Inputs → valued output.",
-          "praise": "Value-add spotted!",
-          "explain": "Operations transforms inputs (talent, coaching, facilities) into a valued match-day output."
+          "hint": "Money linked to performance.",
+          "praise": "Good motivation theory link!",
+          "explain": "Performance-related pay is a financial motivator, associated with scientific management / Taylorist incentives."
+        },
+        {
+          "type": "input",
+          "text": "In Maslow's hierarchy, which need sits at the top (self-actualisation) in one word?",
+          "answers": [
+            "self-actualisation",
+            "self-actualization",
+            "self actualisation",
+            "fulfilment",
+            "self-fulfilment"
+          ],
+          "hint": "Realising full potential.",
+          "praise": "Clear Maslow recall!",
+          "explain": "Self-actualisation (realising potential) is at the top of Maslow's hierarchy."
         },
         {
           "type": "choice",
-          "text": "Stocking too many replica kits that do not sell raises which cost risk?",
+          "text": "A coach praises effort in film sessions and gives players more say in set plays. This mainly targets?",
           "options": [
-            "Holding / inventory costs",
-            "Zero opportunity cost ever",
-            "Lower interest rates automatically",
-            "Eliminating all fixed costs"
+            "Non-financial motivation (recognition & empowerment)",
+            "Only cutting electricity bills",
+            "Only import tariffs",
+            "Only share buybacks"
           ],
           "answers": [
-            "Holding / inventory costs"
+            "Non-financial motivation (recognition & empowerment)"
           ],
-          "hint": "Money tied up in stock.",
-          "praise": "Ops cost awareness!",
-          "explain": "Unsold stock ties up cash and storage — classic holding/inventory cost risk."
-        },
-        {
-          "type": "choice",
-          "text": "A club outsources catering to a specialist firm. A likely advantage is:",
-          "options": [
-            "Focus on core basketball activities",
-            "Guaranteed higher ticket prices forever",
-            "No contracts needed",
-            "Removing all stakeholders"
-          ],
-          "answers": [
-            "Focus on core basketball activities"
-          ],
-          "hint": "Do what you do best.",
-          "praise": "Smart outsourcing call!",
-          "explain": "Outsourcing non-core services can let the club focus on its core basketball product."
+          "hint": "Praise and autonomy are not cash.",
+          "praise": "Excellent people management!",
+          "explain": "Recognition and empowerment are non-financial motivators that can raise engagement."
         }
       ]
     },
     {
-      "name": "Finance snapshot",
-      "short": "Costs & break-even ideas",
+      "name": "Finance basics",
+      "short": "AS \u00b7 Money in the club",
+      "chapter": "Finance and accounting",
       "questions": [
         {
           "type": "choice",
-          "text": "Arena rent that stays the same each month is best classed as a:",
+          "text": "Cash from selling this month's tickets is mainly?",
           "options": [
-            "Fixed cost",
-            "Variable cost that rises with every ticket",
-            "Semi-variable only when it rains",
-            "A capital injection from fans"
+            "Revenue / cash inflow from operations",
+            "A long-term bank loan only",
+            "Owner's drawings only",
+            "Depreciation of the court floor only"
           ],
           "answers": [
-            "Fixed cost"
+            "Revenue / cash inflow from operations"
           ],
-          "hint": "Does it change with output?",
-          "praise": "Clean cost classify!",
-          "explain": "Rent that does not change with match attendance in the short run is a fixed cost."
+          "hint": "Day-to-day trading money in.",
+          "praise": "Clear finance basics!",
+          "explain": "Ticket sales generate revenue and operating cash inflows."
+        },
+        {
+          "type": "input",
+          "text": "If revenue is 500000 and total costs are 420000, what is profit? (number only)",
+          "answers": [
+            "80000",
+            "80,000",
+            "80000 pounds"
+          ],
+          "hint": "Profit = revenue - total costs.",
+          "praise": "Clean calculation!",
+          "explain": "Profit = 500000 - 420000 = 80000."
         },
         {
           "type": "choice",
-          "text": "Cost of printing each extra match programme mainly behaves as a:",
+          "text": "Buying a new scoreboard lasting many seasons is best treated as?",
           "options": [
-            "Variable cost",
-            "Sunk cost from ten years ago",
-            "Interest rate",
-            "Solely a fixed overhead"
+            "Capital expenditure",
+            "Only a day-to-day snack cost",
+            "Revenue expenditure on popcorn",
+            "A temporary tweet"
           ],
           "answers": [
-            "Variable cost"
+            "Capital expenditure"
           ],
-          "hint": "Changes with volume.",
-          "praise": "Variable cost locked in!",
-          "explain": "Per-unit print cost rises with the number of programmes — a variable cost."
-        },
-        {
-          "type": "choice",
-          "text": "Break-even is closest to the point where:",
-          "options": [
-            "Total revenue equals total cost",
-            "Only fixed costs are zero",
-            "Price is always below variable cost",
-            "No tickets are sold"
-          ],
-          "answers": [
-            "Total revenue equals total cost"
-          ],
-          "hint": "TR = TC.",
-          "praise": "Break-even nailed!",
-          "explain": "Break-even is where total revenue equals total cost — neither profit nor loss."
-        }
-      ]
-    }
-  ],
-  "Pure Mathematics 1": [
-    {
-      "name": "Quadratics on the arc",
-      "short": "Factor & roots",
-      "questions": [
-        {
-          "type": "choice",
-          "text": "Solve x² − 5x + 6 = 0.",
-          "options": [
-            "x = 2 or x = 3",
-            "x = −2 or x = −3",
-            "x = 1 or x = 6",
-            "x = 0 or x = 5"
-          ],
-          "answers": [
-            "x = 2 or x = 3"
-          ],
-          "hint": "Factor as (x−2)(x−3).",
-          "praise": "Clean factoring!",
-          "explain": "(x−2)(x−3)=0 so x=2 or x=3."
-        },
-        {
-          "type": "choice",
-          "text": "The discriminant of ax²+bx+c is:",
-          "options": [
-            "b² − 4ac",
-            "b² + 4ac",
-            "2a",
-            "−b/2a only"
-          ],
-          "answers": [
-            "b² − 4ac"
-          ],
-          "hint": "Standard quadratic formula part.",
-          "praise": "Discriminant locked!",
-          "explain": "The discriminant Δ = b² − 4ac tells you how many real roots."
-        },
-        {
-          "type": "choice",
-          "text": "If Δ > 0 for a quadratic, the graph crosses the x-axis:",
-          "options": [
-            "Twice",
-            "Once",
-            "Never",
-            "Infinitely often"
-          ],
-          "answers": [
-            "Twice"
-          ],
-          "hint": "Positive discriminant.",
-          "praise": "Root count correct!",
-          "explain": "Δ > 0 means two distinct real roots, so two x-intercepts."
-        }
-      ]
-    },
-    {
-      "name": "Functions & domain",
-      "short": "f(x) basics",
-      "questions": [
-        {
-          "type": "choice",
-          "text": "If f(x) = 2x + 1, then f(3) =",
-          "options": [
-            "7",
-            "6",
-            "5",
-            "8"
-          ],
-          "answers": [
-            "7"
-          ],
-          "hint": "Substitute x=3.",
-          "praise": "Function eval clean!",
-          "explain": "f(3)=2×3+1=7."
-        },
-        {
-          "type": "choice",
-          "text": "The range of f(x)=x² for real x is:",
-          "options": [
-            "y ≥ 0",
-            "y ≤ 0",
-            "all real y",
-            "y > 1 only"
-          ],
-          "answers": [
-            "y ≥ 0"
-          ],
-          "hint": "Squares are never negative.",
-          "praise": "Range read solid!",
-          "explain": "A real square is ≥ 0, so the range is y ≥ 0."
-        },
-        {
-          "type": "choice",
-          "text": "A function must assign:",
-          "options": [
-            "Exactly one output to each input in its domain",
-            "Many outputs to one input always",
-            "No outputs",
-            "Only integer outputs"
-          ],
-          "answers": [
-            "Exactly one output to each input in its domain"
-          ],
-          "hint": "One-to-one mapping from domain.",
-          "praise": "Definition locked!",
-          "explain": "By definition, each domain input maps to exactly one output."
-        }
-      ]
-    },
-    {
-      "name": "Coordinate geometry",
-      "short": "Lines & midpoints",
-      "questions": [
-        {
-          "type": "choice",
-          "text": "Gradient of the line through (0,0) and (4,2) is:",
-          "options": [
-            "1/2",
-            "2",
-            "4",
-            "0"
-          ],
-          "answers": [
-            "1/2"
-          ],
-          "hint": "rise/run.",
-          "praise": "Gradient nailed!",
-          "explain": "m = (2−0)/(4−0) = 1/2."
-        },
-        {
-          "type": "choice",
-          "text": "Midpoint of (2,4) and (6,8) is:",
-          "options": [
-            "(4,6)",
-            "(4,4)",
-            "(8,12)",
-            "(2,8)"
-          ],
-          "answers": [
-            "(4,6)"
-          ],
-          "hint": "Average the coordinates.",
-          "praise": "Midpoint clean!",
-          "explain": "Midpoint = ((2+6)/2, (4+8)/2) = (4,6)."
-        },
-        {
-          "type": "choice",
-          "text": "Distance between (0,0) and (3,4) is:",
-          "options": [
-            "5",
-            "7",
-            "12",
-            "1"
-          ],
-          "answers": [
-            "5"
-          ],
-          "hint": "3-4-5 triangle.",
-          "praise": "Distance formula win!",
-          "explain": "√(3²+4²)=√25=5."
-        }
-      ]
-    },
-    {
-      "name": "Trig on the court",
-      "short": "sin cos intro",
-      "questions": [
-        {
-          "type": "choice",
-          "text": "In a right triangle, opposite/hypotenuse is:",
-          "options": [
-            "sin",
-            "cos",
-            "tan only as adjacent/opposite",
-            "sec = opposite/adjacent"
-          ],
-          "answers": [
-            "sin"
-          ],
-          "hint": "SOH…",
-          "praise": "SOH locked!",
-          "explain": "sin θ = opposite / hypotenuse."
-        },
-        {
-          "type": "choice",
-          "text": "cos 0° =",
-          "options": [
-            "1",
-            "0",
-            "−1",
-            "1/2"
-          ],
-          "answers": [
-            "1"
-          ],
-          "hint": "Unit circle at 0°.",
-          "praise": "Exact value correct!",
-          "explain": "At 0°, cosine is 1."
-        },
-        {
-          "type": "choice",
-          "text": "sin²θ + cos²θ equals:",
-          "options": [
-            "1",
-            "0",
-            "2",
-            "tan θ"
-          ],
-          "answers": [
-            "1"
-          ],
-          "hint": "Pythagorean identity.",
-          "praise": "Identity bang!",
-          "explain": "The fundamental identity is sin²θ + cos²θ = 1."
-        }
-      ]
-    },
-    {
-      "name": "Differentiation starters",
-      "short": "dy/dx basics",
-      "questions": [
-        {
-          "type": "choice",
-          "text": "If y = x³, dy/dx =",
-          "options": [
-            "3x²",
-            "x²",
-            "3x",
-            "x³/3"
-          ],
-          "answers": [
-            "3x²"
-          ],
-          "hint": "Bring power down, reduce power by 1.",
-          "praise": "Power rule solid!",
-          "explain": "d/dx(xⁿ)=n xⁿ⁻¹, so d/dx(x³)=3x²."
-        },
-        {
-          "type": "choice",
-          "text": "Stationary points occur where dy/dx is:",
-          "options": [
-            "0",
-            "1",
-            "undefined only",
-            "always positive"
-          ],
-          "answers": [
-            "0"
-          ],
-          "hint": "Gradient zero.",
-          "praise": "Stationary spotted!",
-          "explain": "At a stationary point the gradient dy/dx = 0."
-        },
-        {
-          "type": "choice",
-          "text": "If dy/dx > 0 on an interval, the function is:",
-          "options": [
-            "Increasing",
-            "Decreasing",
-            "Constant",
-            "Undefined"
-          ],
-          "answers": [
-            "Increasing"
-          ],
-          "hint": "Positive gradient.",
-          "praise": "Increasing correctly!",
-          "explain": "A positive derivative means the function is increasing on that interval."
+          "hint": "Long-term asset purchase.",
+          "praise": "Excellent capital vs revenue!",
+          "explain": "Spending on long-term assets (scoreboard) is capital expenditure, not day-to-day revenue spending."
         }
       ]
     }
   ]
 };
 
+
+/* Official Pure Mathematics 1 pack (Pemberton) */
+const ALEVEL_BBALL_PM1 = {
+  "subject": "Pure Mathematics 1",
+  "syllabus": "Cambridge International AS & A Level Mathematics: Pure Mathematics 1 (Pemberton)",
+  "theme": "Basketball / arena numerical contexts where natural; otherwise clean pure maths",
+  "levels": [
+    {
+      "name": "Quadratics",
+      "short": "P1 \u00b7 Quadratics",
+      "chapter": "Quadratics",
+      "questions": [
+        {
+          "type": "input",
+          "text": "Solve x^2 - 5x + 6 = 0. Give the smaller root first, then the larger, separated by a comma (e.g. 2, 3).",
+          "answers": [
+            "2, 3",
+            "2,3",
+            "2,3"
+          ],
+          "hint": "Factorise as (x-2)(x-3)=0.",
+          "praise": "Clean factorising!",
+          "explain": "x^2 - 5x + 6 = (x-2)(x-3)=0, so x=2 or x=3."
+        },
+        {
+          "type": "choice",
+          "text": "For y = x^2 - 4x + 1, the axis of symmetry is?",
+          "options": [
+            "x = 2",
+            "x = -2",
+            "x = 4",
+            "x = 1"
+          ],
+          "answers": [
+            "x = 2"
+          ],
+          "hint": "Axis is x = -b/(2a).",
+          "praise": "Strong quadratic graph skill!",
+          "explain": "a=1, b=-4, so x = -(-4)/(2)=2."
+        },
+        {
+          "type": "input",
+          "text": "Complete the square: x^2 + 6x + 5 = (x+?)^2 + ?. Give the constant inside the bracket only (the number added to x).",
+          "answers": [
+            "3"
+          ],
+          "hint": "Half of 6 is 3.",
+          "praise": "Excellent completing the square!",
+          "explain": "x^2 + 6x + 5 = (x+3)^2 - 9 + 5 = (x+3)^2 - 4. The number inside is 3."
+        }
+      ]
+    },
+    {
+      "name": "Functions",
+      "short": "P1 \u00b7 Functions",
+      "chapter": "Functions",
+      "questions": [
+        {
+          "type": "input",
+          "text": "If f(x) = 2x + 3, find f(4).",
+          "answers": [
+            "11"
+          ],
+          "hint": "Substitute x=4.",
+          "praise": "Clear function evaluation!",
+          "explain": "f(4)=2(4)+3=11."
+        },
+        {
+          "type": "choice",
+          "text": "The inverse of f(x)=2x+3 is?",
+          "options": [
+            "f^{-1}(x)=(x-3)/2",
+            "f^{-1}(x)=2x-3",
+            "f^{-1}(x)=3-2x",
+            "f^{-1}(x)=x/2+3"
+          ],
+          "answers": [
+            "f^{-1}(x)=(x-3)/2"
+          ],
+          "hint": "Swap x and y, then solve for y.",
+          "praise": "Excellent inverse work!",
+          "explain": "y=2x+3 \u2192 x=2y+3 \u2192 x-3=2y \u2192 y=(x-3)/2."
+        },
+        {
+          "type": "input",
+          "text": "If f(x)=x^2 (x real), is f one-one? Answer yes or no.",
+          "answers": [
+            "no"
+          ],
+          "hint": "Do different inputs ever share the same output?",
+          "praise": "Sharp function properties!",
+          "explain": "No \u2014 for example f(2)=f(-2)=4, so it is many-one on the reals."
+        }
+      ]
+    },
+    {
+      "name": "Coordinate geometry",
+      "short": "P1 \u00b7 Lines",
+      "chapter": "Coordinate geometry",
+      "questions": [
+        {
+          "type": "input",
+          "text": "Find the gradient of the line through (1,2) and (5,10).",
+          "answers": [
+            "2"
+          ],
+          "hint": "m = (y2-y1)/(x2-x1).",
+          "praise": "Clean gradient!",
+          "explain": "m=(10-2)/(5-1)=8/4=2."
+        },
+        {
+          "type": "choice",
+          "text": "A line has gradient 2 and passes through (0,1). Its equation is?",
+          "options": [
+            "y=2x+1",
+            "y=x+2",
+            "y=2x-1",
+            "y=-2x+1"
+          ],
+          "answers": [
+            "y=2x+1"
+          ],
+          "hint": "Use y=mx+c with c as the y-intercept.",
+          "praise": "Excellent line equation!",
+          "explain": "m=2 and intercept 1 give y=2x+1."
+        },
+        {
+          "type": "input",
+          "text": "Find the midpoint of (2,4) and (6,10). Give as (x,y).",
+          "answers": [
+            "(4,7)",
+            "(4, 7)",
+            "4,7"
+          ],
+          "hint": "Average the coordinates.",
+          "praise": "Clear midpoint!",
+          "explain": "Midpoint = ((2+6)/2,(4+10)/2)=(4,7)."
+        }
+      ]
+    },
+    {
+      "name": "Trigonometry",
+      "short": "P1 \u00b7 Trig basics",
+      "chapter": "Trigonometry",
+      "questions": [
+        {
+          "type": "input",
+          "text": "In a right-angled triangle, opposite=3 and adjacent=4. What is tan of the angle? Give a fraction or decimal.",
+          "answers": [
+            "3/4",
+            "0.75",
+            ".75"
+          ],
+          "hint": "tan = opposite/adjacent.",
+          "praise": "Solid SOHCAHTOA!",
+          "explain": "tan \u03b8 = opp/adj = 3/4."
+        },
+        {
+          "type": "choice",
+          "text": "sin 30\u00b0 equals?",
+          "options": [
+            "1/2",
+            "\u221a3/2",
+            "1",
+            "0"
+          ],
+          "answers": [
+            "1/2"
+          ],
+          "hint": "Standard exact value.",
+          "praise": "Exact-value fluency!",
+          "explain": "sin 30\u00b0 = 1/2."
+        },
+        {
+          "type": "input",
+          "text": "Convert 180 degrees to radians (in terms of pi, e.g. pi).",
+          "answers": [
+            "pi",
+            "\u03c0",
+            "1pi",
+            "1*pi"
+          ],
+          "hint": "180\u00b0 = \u03c0 radians.",
+          "praise": "Clear radians link!",
+          "explain": "180 degrees = \u03c0 radians."
+        }
+      ]
+    },
+    {
+      "name": "Differentiation",
+      "short": "P1 \u00b7 First derivatives",
+      "chapter": "Differentiation",
+      "questions": [
+        {
+          "type": "input",
+          "text": "Differentiate y = x^3. What is dy/dx?",
+          "answers": [
+            "3x^2",
+            "3x2",
+            "3*x^2"
+          ],
+          "hint": "Bring the power down and reduce the power by 1.",
+          "praise": "Clean power rule!",
+          "explain": "d/dx(x^3)=3x^2."
+        },
+        {
+          "type": "choice",
+          "text": "If y = 5x^2 - 4x + 7, then dy/dx is?",
+          "options": [
+            "10x - 4",
+            "5x - 4",
+            "10x + 7",
+            "5x^2 - 4"
+          ],
+          "answers": [
+            "10x - 4"
+          ],
+          "hint": "Differentiate term by term.",
+          "praise": "Excellent differentiation!",
+          "explain": "d/dx(5x^2)=10x, d/dx(-4x)=-4, constant \u2192 0."
+        },
+        {
+          "type": "input",
+          "text": "For y = x^2, find the gradient at x = 3.",
+          "answers": [
+            "6"
+          ],
+          "hint": "First find dy/dx, then substitute x=3.",
+          "praise": "Strong applications of the derivative!",
+          "explain": "dy/dx=2x; at x=3, gradient=6."
+        }
+      ]
+    }
+  ]
+};
+
+
+
+/* Official Economics pack (Bamford & Grant) */
+const ALEVEL_BBALL_ECONOMICS = {
+  subject: 'Economics',
+  syllabus: 'Cambridge International AS & A Level Economics (coursebook Bamford & Grant 4e)',
+  levels: [
+    {
+      name: 'Opportunity cost',
+      short: 'Unit 1 · Scarcity & choice',
+      chapter: '1 Scarcity, choice and opportunity cost',
+      questions: [
+        {
+          type: 'choice',
+          text: 'A player has two hours free: practise free throws or revise Economics. Choosing practice means the revision time given up is what?',
+          options: ['Opportunity cost', 'Fixed cost', 'Sunk cost', 'External cost'],
+          answers: ['Opportunity cost'],
+          hint: 'It is the next-best alternative forgone when a choice is made.',
+          praise: 'Clear AS opportunity-cost thinking!',
+          explain: 'Opportunity cost is the next-best alternative forgone — here, the Economics revision.'
+        },
+        {
+          type: 'input',
+          text: 'On a PPC, moving to more “games won” and fewer “study hours” illustrates what basic idea?',
+          answers: ['scarcity', 'trade-off', 'opportunity cost', 'choice'],
+          hint: 'Resources (time) are limited, so gaining one good means less of another.',
+          praise: 'Excellent PPC link!',
+          explain: 'A PPC shows scarcity and trade-offs: more of one outcome means less of another.'
+        },
+        {
+          type: 'choice',
+          text: 'Which statement best shows a normative claim about basketball pay?',
+          options: [
+            'Star players ought to earn more than coaches',
+            'Average ticket price rose 5% last season',
+            'Arena capacity is 18,000 seats',
+            'Three-point percentage was 36%'
+          ],
+          answers: ['Star players ought to earn more than coaches'],
+          hint: 'Normative statements include value judgements (ought / should).',
+          praise: 'Sharp positive vs normative distinction!',
+          explain: '“Ought” signals a value judgement — a normative statement.'
+        }
+      ]
+    },
+    {
+      name: 'Ticket demand & supply',
+      short: 'Unit 2 · Price system',
+      chapter: '7–10 Demand, supply and market equilibrium',
+      questions: [
+        {
+          type: 'choice',
+          text: 'If a rivalry game raises fans’ willingness to pay, the ticket demand curve usually…',
+          options: ['Shifts to the right', 'Shifts to the left', 'Becomes vertical only', 'Disappears'],
+          answers: ['Shifts to the right'],
+          hint: 'A change in demand conditions shifts the whole demand curve.',
+          praise: 'Strong demand analysis!',
+          explain: 'Higher willingness to pay at each price shifts demand rightward.'
+        },
+        {
+          type: 'input',
+          text: 'Other things equal, if ticket price rises, quantity demanded of tickets usually does what?',
+          answers: ['falls', 'decreases', 'falls / decreases', 'goes down'],
+          hint: 'Move along the demand curve — law of demand.',
+          praise: 'Clear law-of-demand thinking!',
+          explain: 'A higher price leads to a lower quantity demanded, ceteris paribus.'
+        },
+        {
+          type: 'choice',
+          text: 'A new arena increases seating capacity. What happens to the ticket supply curve?',
+          options: ['Shifts right', 'Shifts left', 'Becomes demand', 'Does not change'],
+          answers: ['Shifts right'],
+          hint: 'More can be offered at each price when capacity rises.',
+          praise: 'Excellent supply-shift reasoning!',
+          explain: 'Greater capacity increases supply — the supply curve shifts right.'
+        }
+      ]
+    },
+    {
+      name: 'Jersey price elasticity',
+      short: 'Unit 2 · Elasticities',
+      chapter: '8 Price, income and cross elasticity of demand',
+      questions: [
+        {
+          type: 'choice',
+          text: 'PED for replica jerseys is −2. A 10% price cut should change quantity demanded by about…',
+          options: ['20% increase', '5% increase', '2% decrease', '10% decrease'],
+          answers: ['20% increase'],
+          hint: '%ΔQD ≈ PED × %ΔP (use the magnitude carefully).',
+          praise: 'Excellent PED calculation!',
+          explain: '|−2| × 10% = 20% rise in quantity demanded when price falls.'
+        },
+        {
+          type: 'input',
+          text: 'If PED for tickets is inelastic, does a small price rise tend to raise or lower total revenue (other things equal)?',
+          answers: ['raise', 'increase', 'raises', 'increases'],
+          hint: 'When demand is inelastic, %ΔQD is smaller than %ΔP.',
+          praise: 'Strong revenue–elasticity link!',
+          explain: 'With inelastic demand, a price rise increases total revenue, ceteris paribus.'
+        },
+        {
+          type: 'choice',
+          text: 'Basketball boots and jerseys are often bought together. Cross elasticity of demand is likely…',
+          options: ['Negative (complements)', 'Positive (substitutes)', 'Always zero', 'Always infinite'],
+          answers: ['Negative (complements)'],
+          hint: 'Complements: price of one up → demand for the other down.',
+          praise: 'Clear XED thinking!',
+          explain: 'Complements have negative cross elasticity of demand.'
+        }
+      ]
+    },
+    {
+      name: 'Arena subsidy & market failure',
+      short: 'Unit 3 · Government micro intervention',
+      chapter: '12–13 Intervention; public/merit ideas',
+      questions: [
+        {
+          type: 'choice',
+          text: 'A city subsidises a public basketball court because fitness benefits others too. This argues the courts are partly…',
+          options: ['A merit good / positive externality case', 'A pure private demerit good', 'Always a monopoly', 'Only a progressive tax'],
+          answers: ['A merit good / positive externality case'],
+          hint: 'Social benefits may exceed private benefits.',
+          praise: 'Excellent market-failure application!',
+          explain: 'Positive externalities / merit-good reasoning can justify subsidy.'
+        },
+        {
+          type: 'input',
+          text: 'Name one microeconomic method a government might use to cut ticket prices for students.',
+          answers: ['subsidy', 'maximum price', 'price ceiling', 'voucher', 'subsidies'],
+          hint: 'Think taxes, subsidies or price controls from Unit 3.',
+          praise: 'Solid intervention toolkit!',
+          explain: 'Subsidies, maximum prices or vouchers can support lower student prices.'
+        },
+        {
+          type: 'choice',
+          text: 'A binding maximum ticket price set below equilibrium tends to create…',
+          options: ['Excess demand (shortage)', 'Excess supply (surplus)', 'No effect ever', 'Only inflation'],
+          answers: ['Excess demand (shortage)'],
+          hint: 'At a price below equilibrium, QD > QS.',
+          praise: 'Sharp price-control analysis!',
+          explain: 'A binding maximum price below equilibrium causes a shortage.'
+        }
+      ]
+    },
+    {
+      name: 'Macro: jobs, inflation, AD',
+      short: 'Units 4–5 · Macro + policy',
+      chapter: '17–23 AD/AS, unemployment, inflation, fiscal/monetary',
+      questions: [
+        {
+          type: 'choice',
+          text: 'Hosting a basketball finals week boosts tourism spending. In the short run this mainly shifts…',
+          options: ['AD to the right', 'LRAS left only', 'Money supply to zero', 'PED to infinity'],
+          answers: ['AD to the right'],
+          hint: 'Higher C/I/G/net exports components raise aggregate demand.',
+          praise: 'Clear AD thinking!',
+          explain: 'Extra spending raises aggregate demand — AD shifts right.'
+        },
+        {
+          type: 'input',
+          text: 'Stadium construction hires workers who previously had no job. Which type of unemployment mainly falls?',
+          answers: ['cyclical', 'demand-deficient', 'cyclical unemployment', 'demand deficient'],
+          hint: 'Think unemployment linked to weak aggregate demand.',
+          praise: 'Excellent unemployment classification!',
+          explain: 'Demand-deficient / cyclical unemployment falls when AD and hiring rise.'
+        },
+        {
+          type: 'choice',
+          text: 'If ticket and merchandise prices rise rapidly across the economy, the macro problem is mainly…',
+          options: ['Inflation', 'Deflation only', 'A current-account definition', 'Perfect competition'],
+          answers: ['Inflation'],
+          hint: 'Sustained rise in the general price level.',
+          praise: 'Clear price-stability link!',
+          explain: 'A sustained rise in the general price level is inflation.'
+        }
+      ]
+    }
+  ]
+};
+
+const SKELETON_SUBJECTS = {};
+
 const SUBJECT_DATA = Object.assign({}, SKELETON_SUBJECTS, {
   Economics: ALEVEL_BBALL_ECONOMICS.levels.map(function(lv){
+    return { name: lv.name, short: lv.short || '', questions: lv.questions };
+  }),
+  Business: ALEVEL_BBALL_BUSINESS.levels.map(function(lv){
+    return { name: lv.name, short: lv.short || '', questions: lv.questions };
+  }),
+  'Pure Mathematics 1': ALEVEL_BBALL_PM1.levels.map(function(lv){
     return { name: lv.name, short: lv.short || '', questions: lv.questions };
   })
 });
 const SUBJECT_NAMES = ['Economics','Business','Pure Mathematics 1'];
-const OFFICIAL = { Economics: true };
+const OFFICIAL = { Economics: true, Business: true, 'Pure Mathematics 1': true };
 const PRAISES = ['Clean look — bang.','That\'s the read the coach wanted.','Sharp under the game clock.','High-IQ basketball thinking.','Clutch answer.'];
 const HOME_TIPS = [
   'Coach tip: Warm up on something you nearly know, then stretch into the tougher set.',
