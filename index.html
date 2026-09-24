@@ -145,13 +145,13 @@ table.rt th{color:var(--muted);font-size:12px}
   <div class="card hero-main">
     <div class="eyebrow">Playbook · Year 12 A-Level</div>
     <h2>Step onto the court. Call the play.</h2>
-    <p>Pick a subject, run five levels, string three correct answers to unlock the next. Hints are one-shot — use them like a timeout. Economics uses the official Cambridge AS pack.</p>
+    <p>Pick a subject, run five levels, string three correct answers to unlock the next. Hints are one-shot — use them like a timeout. Three subjects only: Economics (official pack), Business, and Pure Mathematics 1.</p>
     <div class="coach-tip" id="coachTip">Coach tip: Film the mistake, then re-run the possession without the hint.</div>
   </div>
   <div class="card court" aria-hidden="true"><div class="hoop">🏀</div><div class="court-label">Game clock · tactics board</div></div>
 </section>
 <section id="home" class="screen active">
-  <div class="section-head"><h2>Choose your subject</h2><p>Economics is the official educator pack. Other subjects are skeletons until Jerry confirms.</p></div>
+  <div class="section-head"><h2>Choose your subject</h2><p>Economics is the official educator pack. Business and Pure Mathematics 1 use interim banks until the educator packs land.</p></div>
   <div class="row-title"><h3>Subjects</h3><span>5 levels · streak of 3 unlocks next</span></div>
   <div class="subject-grid" id="subjectGrid"></div>
   <div class="row-title"><h3 id="levelHeading">Levels</h3><span>Locked until previous complete</span></div>
@@ -223,1178 +223,548 @@ table.rt th{color:var(--muted);font-size:12px}
 <script>
 'use strict';
 // PLACEHOLDER BANK — educator will replace (Economics = official pack below)
+// PLACEHOLDER / interim banks — educator will replace Business + PM1 with official packs
 const SKELETON_SUBJECTS = {
-  "Maths": [
+  "Business": [
     {
-      "name": "Free throws & probability",
-      "short": "Chance on the line",
+      "name": "Business environment on the court",
+      "short": "Stakeholders & PESTLE",
       "questions": [
         {
           "type": "choice",
-          "text": "A shooter makes 80% of free throws. Assuming independence, P(makes both of two)?",
+          "text": "A basketball club raises ticket prices. Which stakeholder is most directly affected as a customer?",
           "options": [
-            "0.64",
-            "0.80",
-            "1.60",
-            "0.16"
+            "Fans buying match tickets",
+            "The league referee association",
+            "A rival club's owners",
+            "The government's central bank"
           ],
           "answers": [
-            "0.64"
+            "Fans buying match tickets"
           ],
-          "hint": "Multiply two independent success probabilities.",
-          "praise": "Clean probability read!",
-          "explain": "Independent events multiply: P(make)=0.8 each. So P(both)=0.8×0.8=0.64 — a 64% chance of two makes in a row if shots are independent."
+          "hint": "Who pays for the product?",
+          "praise": "Sharp stakeholder call!",
+          "explain": "Customers are the buyers of the firm's goods or services. Ticket-buying fans are the customers most directly hit by a price rise."
         },
         {
           "type": "choice",
-          "text": "Same shooter (p=0.8). P(misses the first free throw)?",
+          "text": "Which PESTLE factor is a new national rule limiting late-night arena noise?",
           "options": [
-            "0.2",
-            "0.8",
-            "0.16",
-            "1.2"
+            "Political / legal",
+            "Economic",
+            "Social only",
+            "Technological"
           ],
           "answers": [
-            "0.2"
+            "Political / legal"
           ],
-          "hint": "P(miss)=1−P(make).",
-          "praise": "Solid complement rule!",
-          "explain": "Use the complement rule: P(miss)=1−P(make)=1−0.8=0.2. So there is a 20% chance the first free throw is missed."
+          "hint": "Think regulation and law.",
+          "praise": "Clean environment scan!",
+          "explain": "Laws and regulations sit in the political/legal PESTLE layer. A noise rule is a legal constraint on how the arena operates."
         },
         {
-          "type": "input",
-          "text": "In 10 independent free throws at p=0.7, expected number made?",
+          "type": "choice",
+          "text": "A club sponsors local schools to build goodwill. This mainly aims at which objective?",
+          "options": [
+            "Corporate social responsibility / reputation",
+            "Cutting variable costs immediately",
+            "Raising interest rates",
+            "Reducing the capital employed to zero"
+          ],
           "answers": [
+            "Corporate social responsibility / reputation"
+          ],
+          "hint": "Think image and community.",
+          "praise": "Good CSR read!",
+          "explain": "Community sponsorship is typically a CSR / reputation play, not an instant cost-cutting or finance-market move."
+        }
+      ]
+    },
+    {
+      "name": "People in the organisation",
+      "short": "Motivation & structure",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "Paying coaches a bonus for each win is closest to which motivation idea?",
+          "options": [
+            "Financial incentive linked to performance",
+            "Job rotation with no pay change",
+            "Maslow's physiological needs only",
+            "Removing all targets"
+          ],
+          "answers": [
+            "Financial incentive linked to performance"
+          ],
+          "hint": "Money tied to results.",
+          "praise": "Solid people play!",
+          "explain": "A win bonus is a financial reward tied to performance — a classic incentive scheme."
+        },
+        {
+          "type": "choice",
+          "text": "A flat coaching staff with few layers usually means:",
+          "options": [
+            "Wider spans of control / faster communication",
+            "More hierarchy layers than a tall structure",
+            "No one reports to anyone",
+            "Zero need for coordination"
+          ],
+          "answers": [
+            "Wider spans of control / faster communication"
+          ],
+          "hint": "Flat vs tall org charts.",
+          "praise": "Nice structure read!",
+          "explain": "Flat structures have fewer layers, so spans of control tend to be wider and messages travel with fewer hand-offs."
+        },
+        {
+          "type": "choice",
+          "text": "Training a bench player on multiple positions is best described as:",
+          "options": [
+            "Multi-skilling / flexibility",
+            "Redundancy with no redeployment",
+            "Offshoring the roster",
+            "Deleveraging equity"
+          ],
+          "answers": [
+            "Multi-skilling / flexibility"
+          ],
+          "hint": "One person, several roles.",
+          "praise": "Flexible roster thinking!",
+          "explain": "Teaching several roles builds multi-skilling and operational flexibility on the bench."
+        }
+      ]
+    },
+    {
+      "name": "Marketing the franchise",
+      "short": "4Ps & segments",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "Selling cheaper tickets to students is mainly which marketing mix element?",
+          "options": [
+            "Price (and targeting a segment)",
+            "Place only",
+            "Process quality control",
+            "Physical evidence of the arena roof"
+          ],
+          "answers": [
+            "Price (and targeting a segment)"
+          ],
+          "hint": "Who pays what.",
+          "praise": "Sharp mix call!",
+          "explain": "Student discounts are a price decision aimed at a defined segment."
+        },
+        {
+          "type": "choice",
+          "text": "Streaming highlights on the club app mainly improves which mix element?",
+          "options": [
+            "Promotion / place (digital channel)",
+            "Only the product's bounce rate of the ball",
+            "Interest rates",
+            "Government tax bands"
+          ],
+          "answers": [
+            "Promotion / place (digital channel)"
+          ],
+          "hint": "How fans hear about and access content.",
+          "praise": "Clean channel thinking!",
+          "explain": "App highlights promote the brand and deliver content through a digital channel (place/promotion)."
+        },
+        {
+          "type": "choice",
+          "text": "Grouping fans into families, students, and corporate boxes is:",
+          "options": [
+            "Market segmentation",
+            "Mass customisation of the basketball itself",
+            "Primary research only",
+            "Breaking even on fixed costs"
+          ],
+          "answers": [
+            "Market segmentation"
+          ],
+          "hint": "Split the market into groups.",
+          "praise": "Good segment read!",
+          "explain": "Dividing customers into groups with shared needs is market segmentation."
+        }
+      ]
+    },
+    {
+      "name": "Ops & adding value",
+      "short": "Value chain basics",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "Turning raw players + coaching into a winning match-day experience is mainly:",
+          "options": [
+            "Adding value through operations",
+            "Ignoring transformation processes",
+            "Only accounting depreciation",
+            "Setting the national interest rate"
+          ],
+          "answers": [
+            "Adding value through operations"
+          ],
+          "hint": "Inputs → valued output.",
+          "praise": "Value-add spotted!",
+          "explain": "Operations transforms inputs (talent, coaching, facilities) into a valued match-day output."
+        },
+        {
+          "type": "choice",
+          "text": "Stocking too many replica kits that do not sell raises which cost risk?",
+          "options": [
+            "Holding / inventory costs",
+            "Zero opportunity cost ever",
+            "Lower interest rates automatically",
+            "Eliminating all fixed costs"
+          ],
+          "answers": [
+            "Holding / inventory costs"
+          ],
+          "hint": "Money tied up in stock.",
+          "praise": "Ops cost awareness!",
+          "explain": "Unsold stock ties up cash and storage — classic holding/inventory cost risk."
+        },
+        {
+          "type": "choice",
+          "text": "A club outsources catering to a specialist firm. A likely advantage is:",
+          "options": [
+            "Focus on core basketball activities",
+            "Guaranteed higher ticket prices forever",
+            "No contracts needed",
+            "Removing all stakeholders"
+          ],
+          "answers": [
+            "Focus on core basketball activities"
+          ],
+          "hint": "Do what you do best.",
+          "praise": "Smart outsourcing call!",
+          "explain": "Outsourcing non-core services can let the club focus on its core basketball product."
+        }
+      ]
+    },
+    {
+      "name": "Finance snapshot",
+      "short": "Costs & break-even ideas",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "Arena rent that stays the same each month is best classed as a:",
+          "options": [
+            "Fixed cost",
+            "Variable cost that rises with every ticket",
+            "Semi-variable only when it rains",
+            "A capital injection from fans"
+          ],
+          "answers": [
+            "Fixed cost"
+          ],
+          "hint": "Does it change with output?",
+          "praise": "Clean cost classify!",
+          "explain": "Rent that does not change with match attendance in the short run is a fixed cost."
+        },
+        {
+          "type": "choice",
+          "text": "Cost of printing each extra match programme mainly behaves as a:",
+          "options": [
+            "Variable cost",
+            "Sunk cost from ten years ago",
+            "Interest rate",
+            "Solely a fixed overhead"
+          ],
+          "answers": [
+            "Variable cost"
+          ],
+          "hint": "Changes with volume.",
+          "praise": "Variable cost locked in!",
+          "explain": "Per-unit print cost rises with the number of programmes — a variable cost."
+        },
+        {
+          "type": "choice",
+          "text": "Break-even is closest to the point where:",
+          "options": [
+            "Total revenue equals total cost",
+            "Only fixed costs are zero",
+            "Price is always below variable cost",
+            "No tickets are sold"
+          ],
+          "answers": [
+            "Total revenue equals total cost"
+          ],
+          "hint": "TR = TC.",
+          "praise": "Break-even nailed!",
+          "explain": "Break-even is where total revenue equals total cost — neither profit nor loss."
+        }
+      ]
+    }
+  ],
+  "Pure Mathematics 1": [
+    {
+      "name": "Quadratics on the arc",
+      "short": "Factor & roots",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "Solve x² − 5x + 6 = 0.",
+          "options": [
+            "x = 2 or x = 3",
+            "x = −2 or x = −3",
+            "x = 1 or x = 6",
+            "x = 0 or x = 5"
+          ],
+          "answers": [
+            "x = 2 or x = 3"
+          ],
+          "hint": "Factor as (x−2)(x−3).",
+          "praise": "Clean factoring!",
+          "explain": "(x−2)(x−3)=0 so x=2 or x=3."
+        },
+        {
+          "type": "choice",
+          "text": "The discriminant of ax²+bx+c is:",
+          "options": [
+            "b² − 4ac",
+            "b² + 4ac",
+            "2a",
+            "−b/2a only"
+          ],
+          "answers": [
+            "b² − 4ac"
+          ],
+          "hint": "Standard quadratic formula part.",
+          "praise": "Discriminant locked!",
+          "explain": "The discriminant Δ = b² − 4ac tells you how many real roots."
+        },
+        {
+          "type": "choice",
+          "text": "If Δ > 0 for a quadratic, the graph crosses the x-axis:",
+          "options": [
+            "Twice",
+            "Once",
+            "Never",
+            "Infinitely often"
+          ],
+          "answers": [
+            "Twice"
+          ],
+          "hint": "Positive discriminant.",
+          "praise": "Root count correct!",
+          "explain": "Δ > 0 means two distinct real roots, so two x-intercepts."
+        }
+      ]
+    },
+    {
+      "name": "Functions & domain",
+      "short": "f(x) basics",
+      "questions": [
+        {
+          "type": "choice",
+          "text": "If f(x) = 2x + 1, then f(3) =",
+          "options": [
             "7",
-            "7.0"
-          ],
-          "hint": "E(X)=n×p for a binomial.",
-          "praise": "Nice expected-value work!",
-          "explain": "For n independent trials with success probability p, E(X)=n×p. Here E(X)=10×0.7=7, so you expect seven makes on average."
-        }
-      ]
-    },
-    {
-      "name": "Expected value on court",
-      "short": "Payoffs & EV",
-      "questions": [
-        {
-          "type": "choice",
-          "text": "A 3-pointer scores 3 if made (p=0.35). Expected points per attempt?",
-          "options": [
-            "1.05",
-            "3.00",
-            "0.35",
-            "2.65"
-          ],
-          "answers": [
-            "1.05"
-          ],
-          "hint": "EV = value × probability.",
-          "praise": "Sharp EV thinking!",
-          "explain": "Expected points = score if successful × probability of success = 3×0.35=1.05. So each attempt is worth 1.05 points on average."
-        },
-        {
-          "type": "choice",
-          "text": "2-pointer p=0.55 vs 3-pointer p=0.35. Which has higher EV?",
-          "options": [
-            "The 2-pointer",
-            "The 3-pointer",
-            "Equal",
-            "Cannot tell"
-          ],
-          "answers": [
-            "The 2-pointer"
-          ],
-          "hint": "Compare 2×0.55 with 3×0.35.",
-          "praise": "Good comparison!",
-          "explain": "EV(2-pt)=2×0.55=1.10 and EV(3-pt)=3×0.35=1.05. Because 1.10>1.05, the 2-pointer has the higher expected value in this matchup."
-        },
-        {
-          "type": "input",
-          "text": "A gamble pays £12 with probability 1/4 (else £0). Expected payout (£)?",
-          "answers": [
-            "3",
-            "3.0",
-            "£3"
-          ],
-          "hint": "Multiply payout by probability.",
-          "praise": "Clear EV!",
-          "explain": "Expected value = payoff × probability = 12×(1/4)=3. The average return per play is therefore £3."
-        }
-      ]
-    },
-    {
-      "name": "Rates & ratios",
-      "short": "Per-possession maths",
-      "questions": [
-        {
-          "type": "choice",
-          "text": "108 points in 90 possessions. Points per possession (1 d.p.)?",
-          "options": [
-            "1.2",
-            "1.08",
-            "0.83",
-            "12"
-          ],
-          "answers": [
-            "1.2"
-          ],
-          "hint": "Divide points by possessions.",
-          "praise": "Pace maths locked in!",
-          "explain": "Divide total points by possessions: 108÷90=1.2. So the team scored 1.2 points per possession."
-        },
-        {
-          "type": "input",
-          "text": "Simplify assists:turnovers 18:12.",
-          "answers": [
-            "3:2",
-            "3 : 2"
-          ],
-          "hint": "Divide by the HCF.",
-          "praise": "Ratio simplified!",
-          "explain": "Divide both parts by the highest common factor 6: 18:12 → 3:2. The simplified assist-to-turnover ratio is 3:2."
-        },
-        {
-          "type": "choice",
-          "text": "Runs 24 m in 4 s at constant speed. Speed in m/s?",
-          "options": [
             "6",
-            "28",
-            "4",
-            "96"
-          ],
-          "answers": [
-            "6"
-          ],
-          "hint": "Speed = distance ÷ time.",
-          "praise": "Clean kinematics link!",
-          "explain": "Speed = distance÷time = 24÷4=6 m/s. At constant speed the athlete covers 6 metres every second."
-        }
-      ]
-    },
-    {
-      "name": "Sequences",
-      "short": "Pattern on the clock",
-      "questions": [
-        {
-          "type": "input",
-          "text": "Arithmetic sequence of quarter scores: 22, 45, 68, … Next term?",
-          "answers": [
-            "91"
-          ],
-          "hint": "Find the common difference.",
-          "praise": "Sequence spotted!",
-          "explain": "Common difference = 45−22=23 (and 68−45=23). Next term = 68+23=91."
-        },
-        {
-          "type": "choice",
-          "text": "Geometric loads 2, 6, 18, … Common ratio?",
-          "options": [
-            "3",
-            "4",
-            "2",
-            "6"
-          ],
-          "answers": [
-            "3"
-          ],
-          "hint": "Divide a term by the previous one.",
-          "praise": "Ratio found!",
-          "explain": "Common ratio = term÷previous term = 6÷2=3 (and 18÷6=3). Each load is three times the one before."
-        },
-        {
-          "type": "input",
-          "text": "Sum of first 4 terms of 5, 10, 15, 20?",
-          "answers": [
-            "50"
-          ],
-          "hint": "Add them or use Sₙ=n/2×(first+last).",
-          "praise": "Series sum correct!",
-          "explain": "Add the four terms: 5+10+15+20=50. This is also 4× the average of first and last: 4×(5+20)/2=50."
-        }
-      ]
-    },
-    {
-      "name": "Graphs & equations",
-      "short": "Playbook algebra",
-      "questions": [
-        {
-          "type": "choice",
-          "text": "Points vs minutes is a straight line with gradient 1.5. Gradient means:",
-          "options": [
-            "Points per minute",
-            "Total points",
-            "Minutes only",
-            "y-intercept only"
-          ],
-          "answers": [
-            "Points per minute"
-          ],
-          "hint": "Gradient = Δy/Δx.",
-          "praise": "Graph sense!",
-          "explain": "Gradient means change in points per minute played. A gradient of 1.5 means 1.5 extra points for each extra minute on court."
-        },
-        {
-          "type": "choice",
-          "text": "Tickets £8, programmes £2, budget £40. Max programmes if 3 tickets bought?",
-          "options": [
-            "8",
             "5",
-            "16",
-            "20"
-          ],
-          "answers": [
             "8"
           ],
-          "hint": "Pay for tickets first, then divide remainder.",
-          "praise": "Budget constraint solved!",
-          "explain": "Three tickets cost 3×8=24, leaving 40−24=16. Programmes at £2 each: 16÷2=8. So the maximum is 8 programmes."
+          "answers": [
+            "7"
+          ],
+          "hint": "Substitute x=3.",
+          "praise": "Function eval clean!",
+          "explain": "f(3)=2×3+1=7."
         },
         {
-          "type": "input",
-          "text": "Solve 2x+5=17 for x.",
-          "answers": [
-            "6",
-            "x=6",
-            "x = 6"
+          "type": "choice",
+          "text": "The range of f(x)=x² for real x is:",
+          "options": [
+            "y ≥ 0",
+            "y ≤ 0",
+            "all real y",
+            "y > 1 only"
           ],
-          "hint": "Subtract 5, divide by 2.",
-          "praise": "Equation cracked!",
-          "explain": "Subtract 5 from both sides: 2x=12. Divide by 2: x=6. Check: 2×6+5=17."
+          "answers": [
+            "y ≥ 0"
+          ],
+          "hint": "Squares are never negative.",
+          "praise": "Range read solid!",
+          "explain": "A real square is ≥ 0, so the range is y ≥ 0."
+        },
+        {
+          "type": "choice",
+          "text": "A function must assign:",
+          "options": [
+            "Exactly one output to each input in its domain",
+            "Many outputs to one input always",
+            "No outputs",
+            "Only integer outputs"
+          ],
+          "answers": [
+            "Exactly one output to each input in its domain"
+          ],
+          "hint": "One-to-one mapping from domain.",
+          "praise": "Definition locked!",
+          "explain": "By definition, each domain input maps to exactly one output."
         }
       ]
-    }
-  ],
-  "Physics": [
+    },
     {
-      "name": "Jump-shot projectile",
-      "short": "Ball in flight",
+      "name": "Coordinate geometry",
+      "short": "Lines & midpoints",
       "questions": [
         {
           "type": "choice",
-          "text": "Ignoring air resistance, which is constant after release?",
+          "text": "Gradient of the line through (0,0) and (4,2) is:",
           "options": [
-            "Horizontal velocity component",
-            "Vertical velocity component",
-            "Speed",
-            "Vertical acceleration is zero"
+            "1/2",
+            "2",
+            "4",
+            "0"
           ],
           "answers": [
-            "Horizontal velocity component"
+            "1/2"
           ],
-          "hint": "Gravity acts vertically only.",
-          "praise": "Projectile fundamentals!",
-          "explain": "With no air resistance, horizontal velocity does not change in flight. Gravity only changes the vertical component."
+          "hint": "rise/run.",
+          "praise": "Gradient nailed!",
+          "explain": "m = (2−0)/(4−0) = 1/2."
         },
         {
           "type": "choice",
-          "text": "At the apex of the arc, vertical velocity is:",
+          "text": "Midpoint of (2,4) and (6,8) is:",
           "options": [
-            "Zero",
-            "Maximum",
-            "Always equal to horizontal",
-            "Equal to g"
+            "(4,6)",
+            "(4,4)",
+            "(8,12)",
+            "(2,8)"
           ],
           "answers": [
-            "Zero"
+            "(4,6)"
           ],
-          "hint": "The ball stops rising for an instant.",
-          "praise": "Apex understood!",
-          "explain": "At the highest point the ball stops rising for an instant, so vertical velocity is zero before it starts to fall."
+          "hint": "Average the coordinates.",
+          "praise": "Midpoint clean!",
+          "explain": "Midpoint = ((2+6)/2, (4+8)/2) = (4,6)."
         },
         {
-          "type": "input",
-          "text": "Symmetric flight time 1.0 s; g=10 m/s². Initial vertical speed (m/s)?",
-          "answers": [
+          "type": "choice",
+          "text": "Distance between (0,0) and (3,4) is:",
+          "options": [
             "5",
-            "5.0"
+            "7",
+            "12",
+            "1"
           ],
-          "hint": "Time to apex is half the flight.",
-          "praise": "SUVAT applied!",
-          "explain": "For a symmetric flight of 1.0 s, time to apex is 0.5 s. At the apex vertical velocity is 0, so 0=u−10×0.5 ⇒ u=5 m/s."
+          "answers": [
+            "5"
+          ],
+          "hint": "3-4-5 triangle.",
+          "praise": "Distance formula win!",
+          "explain": "√(3²+4²)=√25=5."
         }
       ]
     },
     {
-      "name": "Forces & momentum",
-      "short": "Contact plays",
+      "name": "Trig on the court",
+      "short": "sin cos intro",
       "questions": [
         {
           "type": "choice",
-          "text": "0.60 kg ball at 8.0 m/s is stopped. |Δp| in kg m/s?",
+          "text": "In a right triangle, opposite/hypotenuse is:",
           "options": [
-            "4.8",
-            "8.6",
-            "0.075",
-            "13.3"
+            "sin",
+            "cos",
+            "tan only as adjacent/opposite",
+            "sec = opposite/adjacent"
           ],
           "answers": [
-            "4.8"
+            "sin"
           ],
-          "hint": "Δp=mΔv with final speed 0.",
-          "praise": "Momentum change nailed!",
-          "explain": "Change in momentum |Δp|=m|Δv|=0.60×8.0=4.8 kg m/s when the ball is brought to rest."
+          "hint": "SOH…",
+          "praise": "SOH locked!",
+          "explain": "sin θ = opposite / hypotenuse."
         },
         {
           "type": "choice",
-          "text": "Floor pushes up on the ball. Equal and opposite force is:",
+          "text": "cos 0° =",
           "options": [
-            "Ball pushing down on the floor",
-            "Gravity on the ball",
-            "Air resistance only",
-            "Weight of the floor"
+            "1",
+            "0",
+            "−1",
+            "1/2"
           ],
           "answers": [
-            "Ball pushing down on the floor"
+            "1"
           ],
-          "hint": "Newton III pairs act on different bodies.",
-          "praise": "Newton III clear!",
-          "explain": "Newton’s third law: if the floor pushes up on the ball, the ball pushes down on the floor with equal magnitude."
+          "hint": "Unit circle at 0°.",
+          "praise": "Exact value correct!",
+          "explain": "At 0°, cosine is 1."
         },
         {
-          "type": "input",
-          "text": "Force 24 N for 0.20 s. Impulse (N s)?",
-          "answers": [
-            "4.8",
-            "4.80"
+          "type": "choice",
+          "text": "sin²θ + cos²θ equals:",
+          "options": [
+            "1",
+            "0",
+            "2",
+            "tan θ"
           ],
-          "hint": "Impulse=F×t.",
-          "praise": "Impulse sorted!",
-          "explain": "Impulse = force × time = 24×0.20=4.8 N s. Impulse equals the change in momentum."
+          "answers": [
+            "1"
+          ],
+          "hint": "Pythagorean identity.",
+          "praise": "Identity bang!",
+          "explain": "The fundamental identity is sin²θ + cos²θ = 1."
         }
       ]
     },
     {
-      "name": "Energy",
-      "short": "KE, GPE, work",
+      "name": "Differentiation starters",
+      "short": "dy/dx basics",
       "questions": [
         {
           "type": "choice",
-          "text": "70 kg player; CoM rises 0.40 m; g=10 N/kg. ΔGPE (J)?",
+          "text": "If y = x³, dy/dx =",
           "options": [
-            "280",
-            "28",
-            "700",
-            "175"
+            "3x²",
+            "x²",
+            "3x",
+            "x³/3"
           ],
           "answers": [
-            "280"
+            "3x²"
           ],
-          "hint": "ΔGPE=mgΔh.",
-          "praise": "Energy gain correct!",
-          "explain": "ΔGPE=mgh=70×10×0.40=280 J. That is the gain in gravitational potential energy in the jump."
+          "hint": "Bring power down, reduce power by 1.",
+          "praise": "Power rule solid!",
+          "explain": "d/dx(xⁿ)=n xⁿ⁻¹, so d/dx(x³)=3x²."
         },
         {
           "type": "choice",
-          "text": "Work done equals:",
+          "text": "Stationary points occur where dy/dx is:",
           "options": [
-            "Force × distance in the direction of the force",
-            "Force ÷ time",
-            "Mass × velocity",
-            "Power × force"
+            "0",
+            "1",
+            "undefined only",
+            "always positive"
           ],
           "answers": [
-            "Force × distance in the direction of the force"
+            "0"
           ],
-          "hint": "Definition of mechanical work.",
-          "praise": "Work defined!",
-          "explain": "Mechanical work is W=F×s when force and displacement are in the same direction (or F×s×cosθ in general)."
-        },
-        {
-          "type": "input",
-          "text": "KE of 0.6 kg ball at 10 m/s (J)? KE=½mv².",
-          "answers": [
-            "30",
-            "30.0"
-          ],
-          "hint": "Square speed, ×mass, ÷2.",
-          "praise": "KE calculated!",
-          "explain": "Kinetic energy is ½mv². Substitute m=0.6 kg and v=10 m/s: ½×0.6×100=30 J. That is the energy due to the ball’s motion."
-        }
-      ]
-    },
-    {
-      "name": "Pressure & collisions",
-      "short": "Impact science",
-      "questions": [
-        {
-          "type": "choice",
-          "text": "Pressure is:",
-          "options": [
-            "Force / area",
-            "Force × area",
-            "Mass / volume",
-            "Energy / time"
-          ],
-          "answers": [
-            "Force / area"
-          ],
-          "hint": "Force spread over contact area.",
-          "praise": "Pressure definition locked!",
-          "explain": "Pressure is force per unit area: P=F/A. Larger area or smaller force means lower pressure."
+          "hint": "Gradient zero.",
+          "praise": "Stationary spotted!",
+          "explain": "At a stationary point the gradient dy/dx = 0."
         },
         {
           "type": "choice",
-          "text": "Same impulse: soft pad vs hard floor. Soft pad usually means:",
+          "text": "If dy/dx > 0 on an interval, the function is:",
           "options": [
-            "Longer contact time and smaller average force",
-            "Shorter time and larger force",
-            "Zero impulse",
-            "Higher momentum always"
+            "Increasing",
+            "Decreasing",
+            "Constant",
+            "Undefined"
           ],
           "answers": [
-            "Longer contact time and smaller average force"
+            "Increasing"
           ],
-          "hint": "Impulse=F_avg×t.",
-          "praise": "Impulse–time trade-off!",
-          "explain": "Impulse=average force×time. A soft pad lengthens the contact time, so the peak force is smaller for the same impulse."
-        },
-        {
-          "type": "input",
-          "text": "200 N on 0.050 m². Pressure (Pa)?",
-          "answers": [
-            "4000",
-            "4 000",
-            "4e3"
-          ],
-          "hint": "P=F/A.",
-          "praise": "Pressure found!",
-          "explain": "Pressure is force per unit area: P=F/A=200÷0.050=4000 Pa. Spreading the same force over a larger area would reduce pressure."
-        }
-      ]
-    },
-    {
-      "name": "Motion graphs",
-      "short": "SUVAT & graphs",
-      "questions": [
-        {
-          "type": "choice",
-          "text": "Area under a velocity–time graph is:",
-          "options": [
-            "Displacement",
-            "Acceleration",
-            "Force",
-            "Power"
-          ],
-          "answers": [
-            "Displacement"
-          ],
-          "hint": "Integral of v dt.",
-          "praise": "Graph area read!",
-          "explain": "The area under a v–t graph equals displacement (change in position) over that time interval."
-        },
-        {
-          "type": "choice",
-          "text": "Gradient of a velocity–time graph is:",
-          "options": [
-            "Acceleration",
-            "Displacement",
-            "Speed",
-            "Momentum"
-          ],
-          "answers": [
-            "Acceleration"
-          ],
-          "hint": "a=Δv/Δt.",
-          "praise": "Gradient = acceleration!",
-          "explain": "Gradient = Δv/Δt, which is acceleration. A steeper v–t slope means greater acceleration."
-        },
-        {
-          "type": "input",
-          "text": "From rest, a=2.0 m/s² for 3.0 s. Final speed (m/s)?",
-          "answers": [
-            "6",
-            "6.0"
-          ],
-          "hint": "v=u+at, u=0.",
-          "praise": "SUVAT done!",
-          "explain": "From rest, u=0. Use v=u+at: v=0+2.0×3.0=6 m/s after 3 seconds of constant acceleration."
-        }
-      ]
-    }
-  ],
-  "Biology (Sport Science)": [
-    {
-      "name": "ATP & energy systems",
-      "short": "Fuel for the play",
-      "questions": [
-        {
-          "type": "choice",
-          "text": "Immediate energy currency for muscle contraction?",
-          "options": [
-            "ATP",
-            "Glucose only",
-            "DNA",
-            "Oxygen alone"
-          ],
-          "answers": [
-            "ATP"
-          ],
-          "hint": "Hydrolysed at the myosin head.",
-          "praise": "ATP locked in!",
-          "explain": "ATP is the immediate energy currency: its hydrolysis powers the myosin–actin cross-bridge cycle that shortens the muscle."
-        },
-        {
-          "type": "choice",
-          "text": "Maximal dunk ~2–3 s: which system dominates initially?",
-          "options": [
-            "ATP–PC (phosphocreatine)",
-            "Aerobic only",
-            "Protein synthesis",
-            "Photosynthesis"
-          ],
-          "answers": [
-            "ATP–PC (phosphocreatine)"
-          ],
-          "hint": "Brief explosive efforts use phosphagens.",
-          "praise": "Energy system sorted!",
-          "explain": "The ATP–PC (phosphocreatine) system resynthesises ATP fastest and dominates very short maximal efforts of about 2–3 seconds."
-        },
-        {
-          "type": "input",
-          "text": "Organelle where most aerobic ATP is made?",
-          "answers": [
-            "mitochondria",
-            "mitochondrion"
-          ],
-          "hint": "Powerhouse of the cell.",
-          "praise": "Organelle named!",
-          "explain": "Mitochondria produce most aerobic ATP by oxidative phosphorylation when oxygen is available."
-        }
-      ]
-    },
-    {
-      "name": "Aerobic vs anaerobic",
-      "short": "Fourth-quarter energy",
-      "questions": [
-        {
-          "type": "choice",
-          "text": "Long half-court press (several minutes): main energy supply?",
-          "options": [
-            "Aerobic respiration",
-            "ATP–PC only",
-            "Anaerobic only forever",
-            "Digestive enzymes"
-          ],
-          "answers": [
-            "Aerobic respiration"
-          ],
-          "hint": "Sustained work needs oxygen pathways.",
-          "praise": "Aerobic dominance clear!",
-          "explain": "Efforts lasting several minutes rely mainly on aerobic metabolism, which can sustain ATP supply with oxygen."
-        },
-        {
-          "type": "choice",
-          "text": "By-product of intense anaerobic glycolysis in muscle?",
-          "options": [
-            "Lactate",
-            "Oxygen gas",
-            "Urea only",
-            "Starch"
-          ],
-          "answers": [
-            "Lactate"
-          ],
-          "hint": "Pyruvate reduced when O₂ limited.",
-          "praise": "Fatigue chemistry!",
-          "explain": "Intense anaerobic glycolysis produces lactate (lactic acid system) when oxygen supply cannot meet demand."
-        },
-        {
-          "type": "input",
-          "text": "glucose + oxygen → CO₂ + water + ?",
-          "answers": [
-            "ATP",
-            "energy"
-          ],
-          "hint": "Useful product for the cell.",
-          "praise": "Respiration products!",
-          "explain": "Aerobic respiration releases energy stored as ATP (as well as CO₂ and water)."
-        }
-      ]
-    },
-    {
-      "name": "Muscle & recovery",
-      "short": "Between possessions",
-      "questions": [
-        {
-          "type": "choice",
-          "text": "More fatigue-resistant fibre type?",
-          "options": [
-            "Type I (slow oxidative)",
-            "Type IIx only",
-            "Cardiac only",
-            "Gut smooth muscle only"
-          ],
-          "answers": [
-            "Type I (slow oxidative)"
-          ],
-          "hint": "Slow-twitch, aerobic capacity.",
-          "praise": "Fibre types clear!",
-          "explain": "Type I (slow-twitch) fibres are more oxidative and fatigue-resistant than Type II fibres."
-        },
-        {
-          "type": "choice",
-          "text": "EPOC mainly helps to:",
-          "options": [
-            "Restore PC and clear metabolites",
-            "Create DNA",
-            "Stop breathing",
-            "Digest protein only"
-          ],
-          "answers": [
-            "Restore PC and clear metabolites"
-          ],
-          "hint": "Elevated O₂ use after hard efforts.",
-          "praise": "Recovery science!",
-          "explain": "After exercise, EPOC supports recovery processes such as phosphocreatine resynthesis and lactate clearance."
-        },
-        {
-          "type": "input",
-          "text": "Sliding filament: which filament binds ATP — actin or myosin?",
-          "answers": [
-            "myosin"
-          ],
-          "hint": "Thick filament with ATPase heads.",
-          "praise": "Myosin named!",
-          "explain": "Myosin heads bind and hydrolyse ATP; that energy drives the power stroke along actin."
-        }
-      ]
-    },
-    {
-      "name": "Cardio & VO₂",
-      "short": "Oxygen delivery",
-      "questions": [
-        {
-          "type": "choice",
-          "text": "Cardiac output equals:",
-          "options": [
-            "Heart rate × stroke volume",
-            "HR ÷ SV",
-            "BP × resistance only",
-            "Tidal volume × rate only"
-          ],
-          "answers": [
-            "Heart rate × stroke volume"
-          ],
-          "hint": "Flow per minute = rate × volume/beat.",
-          "praise": "Q=HR×SV!",
-          "explain": "Cardiac output = heart rate × stroke volume. It is the volume of blood pumped per minute."
-        },
-        {
-          "type": "choice",
-          "text": "VO₂ max is:",
-          "options": [
-            "Max rate of O₂ uptake in intense exercise",
-            "Max lung volume at rest",
-            "Resting HR only",
-            "Blood glucose"
-          ],
-          "answers": [
-            "Max rate of O₂ uptake in intense exercise"
-          ],
-          "hint": "Index of aerobic power.",
-          "praise": "VO₂ max defined!",
-          "explain": "VO₂ max is the maximum rate at which the body can take up and use oxygen during intense exercise."
-        },
-        {
-          "type": "input",
-          "text": "Gas delivered to muscle, mainly on haemoglobin?",
-          "answers": [
-            "oxygen",
-            "O2",
-            "O₂"
-          ],
-          "hint": "Final electron acceptor.",
-          "praise": "Gas named!",
-          "explain": "Oxygen is carried mainly bound to haemoglobin in red blood cells to working muscle."
-        }
-      ]
-    },
-    {
-      "name": "Training adaptations",
-      "short": "Season-long gains",
-      "questions": [
-        {
-          "type": "choice",
-          "text": "Long-term aerobic adaptation often includes:",
-          "options": [
-            "Higher stroke volume / capillary density",
-            "Fewer mitochondria",
-            "Loss of haemoglobin",
-            "Cannot use fat"
-          ],
-          "answers": [
-            "Higher stroke volume / capillary density"
-          ],
-          "hint": "Better O₂ delivery and use.",
-          "praise": "Adaptation known!",
-          "explain": "Endurance training often increases stroke volume and muscle capillarisation, improving oxygen delivery."
-        },
-        {
-          "type": "choice",
-          "text": "Progressive overload means:",
-          "options": [
-            "Gradually raising training demand to drive adaptation",
-            "Never changing sessions",
-            "Only resting",
-            "Training with no recovery"
-          ],
-          "answers": [
-            "Gradually raising training demand to drive adaptation"
-          ],
-          "hint": "Stimulus must increase over time.",
-          "praise": "Overload principle!",
-          "explain": "Training load (intensity or volume) is increased gradually so the body keeps adapting without sudden overload."
-        },
-        {
-          "type": "input",
-          "text": "One health risk of chronic dehydration in heavy training?",
-          "answers": [
-            "fatigue",
-            "heatstroke",
-            "heat stroke",
-            "cramp",
-            "cramps",
-            "kidney damage",
-            "headache"
-          ],
-          "hint": "Performance drop or heat illness.",
-          "praise": "Risk noted!",
-          "explain": "Chronic dehydration raises risks such as earlier fatigue and heat-related illness in hard training."
-        }
-      ]
-    }
-  ],
-  "Psychology": [
-    {
-      "name": "Arousal & performance",
-      "short": "Game-day nerves",
-      "questions": [
-        {
-          "type": "choice",
-          "text": "Inverted-U: performance best at:",
-          "options": [
-            "Moderate arousal",
-            "Zero arousal only",
-            "Maximum panic",
-            "No attention"
-          ],
-          "answers": [
-            "Moderate arousal"
-          ],
-          "hint": "Too little or too much hurts performance.",
-          "praise": "Arousal curve clear!",
-          "explain": "The inverted-U hypothesis says performance peaks at a moderate (optimal) arousal level — too little or too much arousal reduces performance."
-        },
-        {
-          "type": "choice",
-          "text": "Sudden collapse under high cognitive anxiety + high arousal is a:",
-          "options": [
-            "Catastrophe",
-            "Plateau only",
-            "Habituation",
-            "Extinction burst"
-          ],
-          "answers": [
-            "Catastrophe"
-          ],
-          "hint": "Sharper than a smooth inverted U.",
-          "praise": "Catastrophe theory!",
-          "explain": "Catastrophe theory: when cognitive anxiety is already high and physiological arousal rises past the optimum, performance can fall sharply rather than gently."
-        },
-        {
-          "type": "input",
-          "text": "Surname of psychologist linked to social facilitation / audience effects?",
-          "answers": [
-            "Zajonc",
-            "zajonc"
-          ],
-          "hint": "Classic drive-theory audience work.",
-          "praise": "Researcher named!",
-          "explain": "Zajonc is associated with social facilitation — the presence of others affecting performance."
-        }
-      ]
-    },
-    {
-      "name": "Social facilitation",
-      "short": "Crowd in the gym",
-      "questions": [
-        {
-          "type": "choice",
-          "text": "Social facilitation typically boosts:",
-          "options": [
-            "Well-learned / dominant responses",
-            "Brand-new complex skills only",
-            "Sleep",
-            "Zero-practice tasks"
-          ],
-          "answers": [
-            "Well-learned / dominant responses"
-          ],
-          "hint": "Audience boosts what is already dominant.",
-          "praise": "Facilitation sorted!",
-          "explain": "An audience tends to enhance dominant (well-learned) responses; that is the core social-facilitation effect."
-        },
-        {
-          "type": "choice",
-          "text": "Audience may impair a novice free throw mainly via:",
-          "options": [
-            "Higher arousal disrupting a non-dominant skill",
-            "Instant automaticity",
-            "Zero evaluation worry",
-            "Lower heart rate only"
-          ],
-          "answers": [
-            "Higher arousal disrupting a non-dominant skill"
-          ],
-          "hint": "Novice correct response not yet dominant.",
-          "praise": "Novice effect clear!",
-          "explain": "Social facilitation boosts dominant skills. For a novice, the free throw is not yet dominant, so audience arousal can impair accuracy."
-        },
-        {
-          "type": "input",
-          "text": "Term for worry about being judged by others?",
-          "answers": [
-            "evaluation apprehension",
-            "evaluation-apprehension"
-          ],
-          "hint": "Two-word phrase.",
-          "praise": "Term locked!",
-          "explain": "Evaluation apprehension is anxiety about being judged by an audience or evaluators."
-        }
-      ]
-    },
-    {
-      "name": "Choking under pressure",
-      "short": "Clutch or choke",
-      "questions": [
-        {
-          "type": "choice",
-          "text": "Choking often means:",
-          "options": [
-            "Big performance drop under pressure despite ability",
-            "Always improving under pressure",
-            "Airway blockage only",
-            "Forgetting rules forever"
-          ],
-          "answers": [
-            "Big performance drop under pressure despite ability"
-          ],
-          "hint": "Under-performance when stakes feel high.",
-          "praise": "Choking defined!",
-          "explain": "Choking is a clear drop in skilled performance under pressure compared with normal ability."
-        },
-        {
-          "type": "choice",
-          "text": "Explicit monitoring explanation of choking:",
-          "options": [
-            "Over-thinking automatic skills step-by-step",
-            "Never thinking",
-            "Imagery only",
-            "Ignoring the basket"
-          ],
-          "answers": [
-            "Over-thinking automatic skills step-by-step"
-          ],
-          "hint": "Conscious control disrupts procedural skill.",
-          "praise": "Reinvestment clear!",
-          "explain": "Under pressure, performers may consciously monitor normally automatic movements, which disrupts fluent skill."
-        },
-        {
-          "type": "input",
-          "text": "One anti-choke strategy (routine, quiet eye, simulation…)?",
-          "answers": [
-            "pre-performance routine",
-            "routines",
-            "routine",
-            "quiet eye",
-            "quiet-eye",
-            "simulation",
-            "imagery",
-            "breathing",
-            "mindfulness"
-          ],
-          "hint": "Consistent actions before the shot.",
-          "praise": "Strategy named!",
-          "explain": "Pre-shot routines, quiet-eye focus, or pressure simulation in practice help keep attention on task cues."
-        }
-      ]
-    },
-    {
-      "name": "Motivation & goals",
-      "short": "Drive to improve",
-      "questions": [
-        {
-          "type": "choice",
-          "text": "Mastery (task) goals focus on:",
-          "options": [
-            "Skill improvement and personal progress",
-            "Only beating others",
-            "Avoiding feedback",
-            "Ignoring effort"
-          ],
-          "answers": [
-            "Skill improvement and personal progress"
-          ],
-          "hint": "Contrast with ego/outcome goals.",
-          "praise": "Goal orientation clear!",
-          "explain": "Mastery (task) goals emphasise learning, improvement and effort rather than only beating others."
-        },
-        {
-          "type": "choice",
-          "text": "Self-determination theory needs autonomy, competence and:",
-          "options": [
-            "Relatedness",
-            "Punishment only",
-            "Fixed mindset only",
-            "Silence"
-          ],
-          "answers": [
-            "Relatedness"
-          ],
-          "hint": "Three basic psychological needs.",
-          "praise": "SDT triad!",
-          "explain": "Self-determination theory’s three needs are autonomy, competence and relatedness (connection with others)."
-        },
-        {
-          "type": "input",
-          "text": "In SMART goals, M usually stands for?",
-          "answers": [
-            "measurable"
-          ],
-          "hint": "Trackable criteria.",
-          "praise": "SMART M!",
-          "explain": "In SMART, M usually means Measurable — you can track progress with a clear measure."
-        }
-      ]
-    },
-    {
-      "name": "Memory & tactics",
-      "short": "Playbook recall",
-      "questions": [
-        {
-          "type": "choice",
-          "text": "Working memory is:",
-          "options": [
-            "Limited system for holding/manipulating info now",
-            "Permanent life storage",
-            "Glycogen stores",
-            "Spinal cord only"
-          ],
-          "answers": [
-            "Limited system for holding/manipulating info now"
-          ],
-          "hint": "Baddeley-style temporary workspace.",
-          "praise": "WM defined!",
-          "explain": "Working memory is a limited-capacity system for holding and processing information temporarily while you use it."
-        },
-        {
-          "type": "choice",
-          "text": "Chunking helps remember plays by:",
-          "options": [
-            "Grouping into meaningful units",
-            "Deleting schemas",
-            "Avoiding organisation",
-            "Sensory memory only"
-          ],
-          "answers": [
-            "Grouping into meaningful units"
-          ],
-          "hint": "Experts chunk offensive sets.",
-          "praise": "Chunking clear!",
-          "explain": "Chunking groups elements into meaningful units (e.g. a play pattern), so more information fits in memory."
-        },
-        {
-          "type": "input",
-          "text": "Brief store from the senses (iconic/echoic)?",
-          "answers": [
-            "sensory memory",
-            "sensory",
-            "iconic memory",
-            "echoic memory"
-          ],
-          "hint": "Before working memory.",
-          "praise": "Store named!",
-          "explain": "Sensory memory briefly holds raw sensory input (iconic for vision, echoic for hearing) before further processing."
-        }
-      ]
-    }
-  ]
-};
-
-/* Official Economics pack (inline from alevel-basketball-economics-pack.js) */
-const ALEVEL_BBALL_ECONOMICS = {
-  subject: 'Economics',
-  syllabus: 'Cambridge International AS & A Level Economics (coursebook Bamford & Grant 4e)',
-  levels: [
-    {
-      name: 'Opportunity cost',
-      short: 'Unit 1 · Scarcity & choice',
-      chapter: '1 Scarcity, choice and opportunity cost',
-      questions: [
-        {
-          type: 'choice',
-          text: 'A player has two hours free: practise free throws or revise Economics. Choosing practice means the revision time given up is what?',
-          options: ['Opportunity cost', 'Fixed cost', 'Sunk cost', 'External cost'],
-          answers: ['Opportunity cost'],
-          hint: 'It is the next-best alternative forgone when a choice is made.',
-          praise: 'Clear AS opportunity-cost thinking!',
-          explain: 'Opportunity cost is the next-best alternative forgone — here, the Economics revision.'
-        },
-        {
-          type: 'input',
-          text: 'On a PPC, moving to more “games won” and fewer “study hours” illustrates what basic idea?',
-          answers: ['scarcity', 'trade-off', 'opportunity cost', 'choice'],
-          hint: 'Resources (time) are limited, so gaining one good means less of another.',
-          praise: 'Excellent PPC link!',
-          explain: 'A PPC shows scarcity and trade-offs: more of one outcome means less of another.'
-        },
-        {
-          type: 'choice',
-          text: 'Which statement best shows a normative claim about basketball pay?',
-          options: [
-            'Star players ought to earn more than coaches',
-            'Average ticket price rose 5% last season',
-            'Arena capacity is 18,000 seats',
-            'Three-point percentage was 36%'
-          ],
-          answers: ['Star players ought to earn more than coaches'],
-          hint: 'Normative statements include value judgements (ought / should).',
-          praise: 'Sharp positive vs normative distinction!',
-          explain: '“Ought” signals a value judgement — a normative statement.'
-        }
-      ]
-    },
-    {
-      name: 'Ticket demand & supply',
-      short: 'Unit 2 · Price system',
-      chapter: '7–10 Demand, supply and market equilibrium',
-      questions: [
-        {
-          type: 'choice',
-          text: 'If a rivalry game raises fans’ willingness to pay, the ticket demand curve usually…',
-          options: ['Shifts to the right', 'Shifts to the left', 'Becomes vertical only', 'Disappears'],
-          answers: ['Shifts to the right'],
-          hint: 'A change in demand conditions shifts the whole demand curve.',
-          praise: 'Strong demand analysis!',
-          explain: 'Higher willingness to pay at each price shifts demand rightward.'
-        },
-        {
-          type: 'input',
-          text: 'Other things equal, if ticket price rises, quantity demanded of tickets usually does what?',
-          answers: ['falls', 'decreases', 'falls / decreases', 'goes down'],
-          hint: 'Move along the demand curve — law of demand.',
-          praise: 'Clear law-of-demand thinking!',
-          explain: 'A higher price leads to a lower quantity demanded, ceteris paribus.'
-        },
-        {
-          type: 'choice',
-          text: 'A new arena increases seating capacity. What happens to the ticket supply curve?',
-          options: ['Shifts right', 'Shifts left', 'Becomes demand', 'Does not change'],
-          answers: ['Shifts right'],
-          hint: 'More can be offered at each price when capacity rises.',
-          praise: 'Excellent supply-shift reasoning!',
-          explain: 'Greater capacity increases supply — the supply curve shifts right.'
-        }
-      ]
-    },
-    {
-      name: 'Jersey price elasticity',
-      short: 'Unit 2 · Elasticities',
-      chapter: '8 Price, income and cross elasticity of demand',
-      questions: [
-        {
-          type: 'choice',
-          text: 'PED for replica jerseys is −2. A 10% price cut should change quantity demanded by about…',
-          options: ['20% increase', '5% increase', '2% decrease', '10% decrease'],
-          answers: ['20% increase'],
-          hint: '%ΔQD ≈ PED × %ΔP (use the magnitude carefully).',
-          praise: 'Excellent PED calculation!',
-          explain: '|−2| × 10% = 20% rise in quantity demanded when price falls.'
-        },
-        {
-          type: 'input',
-          text: 'If PED for tickets is inelastic, does a small price rise tend to raise or lower total revenue (other things equal)?',
-          answers: ['raise', 'increase', 'raises', 'increases'],
-          hint: 'When demand is inelastic, %ΔQD is smaller than %ΔP.',
-          praise: 'Strong revenue–elasticity link!',
-          explain: 'With inelastic demand, a price rise increases total revenue, ceteris paribus.'
-        },
-        {
-          type: 'choice',
-          text: 'Basketball boots and jerseys are often bought together. Cross elasticity of demand is likely…',
-          options: ['Negative (complements)', 'Positive (substitutes)', 'Always zero', 'Always infinite'],
-          answers: ['Negative (complements)'],
-          hint: 'Complements: price of one up → demand for the other down.',
-          praise: 'Clear XED thinking!',
-          explain: 'Complements have negative cross elasticity of demand.'
-        }
-      ]
-    },
-    {
-      name: 'Arena subsidy & market failure',
-      short: 'Unit 3 · Government micro intervention',
-      chapter: '12–13 Intervention; public/merit ideas',
-      questions: [
-        {
-          type: 'choice',
-          text: 'A city subsidises a public basketball court because fitness benefits others too. This argues the courts are partly…',
-          options: ['A merit good / positive externality case', 'A pure private demerit good', 'Always a monopoly', 'Only a progressive tax'],
-          answers: ['A merit good / positive externality case'],
-          hint: 'Social benefits may exceed private benefits.',
-          praise: 'Excellent market-failure application!',
-          explain: 'Positive externalities / merit-good reasoning can justify subsidy.'
-        },
-        {
-          type: 'input',
-          text: 'Name one microeconomic method a government might use to cut ticket prices for students.',
-          answers: ['subsidy', 'maximum price', 'price ceiling', 'voucher', 'subsidies'],
-          hint: 'Think taxes, subsidies or price controls from Unit 3.',
-          praise: 'Solid intervention toolkit!',
-          explain: 'Subsidies, maximum prices or vouchers can support lower student prices.'
-        },
-        {
-          type: 'choice',
-          text: 'A binding maximum ticket price set below equilibrium tends to create…',
-          options: ['Excess demand (shortage)', 'Excess supply (surplus)', 'No effect ever', 'Only inflation'],
-          answers: ['Excess demand (shortage)'],
-          hint: 'At a price below equilibrium, QD > QS.',
-          praise: 'Sharp price-control analysis!',
-          explain: 'A binding maximum price below equilibrium causes a shortage.'
-        }
-      ]
-    },
-    {
-      name: 'Macro: jobs, inflation, AD',
-      short: 'Units 4–5 · Macro + policy',
-      chapter: '17–23 AD/AS, unemployment, inflation, fiscal/monetary',
-      questions: [
-        {
-          type: 'choice',
-          text: 'Hosting a basketball finals week boosts tourism spending. In the short run this mainly shifts…',
-          options: ['AD to the right', 'LRAS left only', 'Money supply to zero', 'PED to infinity'],
-          answers: ['AD to the right'],
-          hint: 'Higher C/I/G/net exports components raise aggregate demand.',
-          praise: 'Clear AD thinking!',
-          explain: 'Extra spending raises aggregate demand — AD shifts right.'
-        },
-        {
-          type: 'input',
-          text: 'Stadium construction hires workers who previously had no job. Which type of unemployment mainly falls?',
-          answers: ['cyclical', 'demand-deficient', 'cyclical unemployment', 'demand deficient'],
-          hint: 'Think unemployment linked to weak aggregate demand.',
-          praise: 'Excellent unemployment classification!',
-          explain: 'Demand-deficient / cyclical unemployment falls when AD and hiring rise.'
-        },
-        {
-          type: 'choice',
-          text: 'If ticket and merchandise prices rise rapidly across the economy, the macro problem is mainly…',
-          options: ['Inflation', 'Deflation only', 'A current-account definition', 'Perfect competition'],
-          answers: ['Inflation'],
-          hint: 'Sustained rise in the general price level.',
-          praise: 'Clear price-stability link!',
-          explain: 'A sustained rise in the general price level is inflation.'
+          "hint": "Positive gradient.",
+          "praise": "Increasing correctly!",
+          "explain": "A positive derivative means the function is increasing on that interval."
         }
       ]
     }
@@ -1406,7 +776,7 @@ const SUBJECT_DATA = Object.assign({}, SKELETON_SUBJECTS, {
     return { name: lv.name, short: lv.short || '', questions: lv.questions };
   })
 });
-const SUBJECT_NAMES = ['Maths','Physics','Biology (Sport Science)','Psychology','Economics'];
+const SUBJECT_NAMES = ['Economics','Business','Pure Mathematics 1'];
 const OFFICIAL = { Economics: true };
 const PRAISES = ['Clean look — bang.','That\'s the read the coach wanted.','Sharp under the game clock.','High-IQ basketball thinking.','Clutch answer.'];
 const HOME_TIPS = [
